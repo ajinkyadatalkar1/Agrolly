@@ -1,0 +1,47 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "com.coakum.frm"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.coakum.frm"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.coakum.frm"
+    },
+    "cordova-plugin-ionic-webview": {
+      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
+      "PACKAGE_NAME": "com.coakum.frm"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "com.coakum.frm"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.coakum.frm"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.coakum.frm"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.coakum.frm"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.coakum.frm"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "com.coakum.frm"
+    }
+  },
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.coakum.frm"
+    }
+  }
+}

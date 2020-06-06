@@ -1,0 +1,23 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>
+      LOGIN
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+-->
+
+
+<ion-content>
+  <div class="centerContent">
+    <div class="loginBar">
+    <div class="small_logo">
+    <img class="logo" src="../../assets/logo_small.svg" /><h2>{{language.agrolly}}</h2>
+    </div>
+    <input type="email" [attr.placeholder]="language.enter_email" class="crediantials input-block" [(ngModel)]="username" required/>
+    <input type="password" [attr.placeholder]="language.password" class="crediantials input-block" [(ngModel)]="password" required/>
+    <ion-button class="crediantials" (click)="login()">{{language.login}}<ion-icon name="md-happy"></ion-icon></ion-button>
+    <ion-button class="crediantials" (click)="forgotpsd()" color="danger">{{language.forgot_password}} <ion-icon name="md-sad"></ion-icon></ion-button>
+    </div>
+  </div>
+</ion-content>
