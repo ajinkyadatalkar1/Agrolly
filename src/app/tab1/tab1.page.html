@@ -1,0 +1,60 @@
+<!--
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      The FRM CLUB
+    </ion-title>
+    <ion-buttons *ngIf="showLogout" slot="end">
+      <ion-tab-button (click)="logout()">
+        <ion-icon name="walk"></ion-icon>
+        <ion-label>Logout</ion-label>
+      </ion-tab-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+-->
+<ion-content>
+<div class="centerAll">
+   <div class="bannerImage" >
+    <img src='../../assets/try_logo.svg' />
+   </div>
+   <div class="mainButtons">
+   <ion-grid>
+     <ion-row>
+       <ion-button class="examType" [routerLink]="['/tabs/forum']" routerLinkActive="router-link-active" color="success">
+         {{language.forum}}  <ion-icon name="people"></ion-icon>
+       </ion-button>
+     </ion-row>
+     <ion-row>
+       <ion-button [routerLink]="['/tabs/frm1']" routerLinkActive="router-link-active" class="examType" color="success" disabled>
+        {{language.weather}}  <ion-icon name="partly-sunny"></ion-icon>
+       </ion-button>
+     </ion-row>
+     <ion-row>
+       <ion-button [routerLink]="['/tabs/frm2']" class="examType" color="success"  disabled>
+        {{language.crop_management}}  <ion-icon name="nutrition"></ion-icon>
+       </ion-button>
+     </ion-row>
+     <ion-row *ngIf="showLogout">
+      <ion-button (click)="logout()" class="examType" color="warning">
+        {{language.logout}}  <ion-icon name="walk"></ion-icon>
+      </ion-button>
+    </ion-row>
+   </ion-grid>
+   </div>  
+</div>
+</ion-content>
+
+<div>
+  <ion-tab-bar slot="bottom" class="languageBar">
+      <ion-tab-button (click)="english()">
+        English
+      </ion-tab-button>
+      <ion-tab-button (click)="mongolian()">
+        Монгол
+      </ion-tab-button>
+      <ion-tab-button (click)="portuguese()">
+        Português
+      </ion-tab-button>
+    </ion-tab-bar>
+  </div>

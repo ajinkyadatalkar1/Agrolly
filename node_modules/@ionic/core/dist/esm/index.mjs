@@ -1,0 +1,34 @@
+export { g as getPlatforms, i as isPlatform } from './config-3c7f3790.js';
+import './helpers-46f4a262.js';
+export { c as createAnimation } from './animation-af478fe9.js';
+export { createGesture } from './index-624eea58.js';
+export { a as LIFECYCLE_DID_ENTER, c as LIFECYCLE_DID_LEAVE, L as LIFECYCLE_WILL_ENTER, b as LIFECYCLE_WILL_LEAVE, d as LIFECYCLE_WILL_UNLOAD } from './constants-3c3e1099.js';
+export { m as menuController } from './index-1e5940d5.js';
+export { b as actionSheetController, a as alertController, l as loadingController, m as modalController, p as pickerController, c as popoverController, t as toastController } from './overlays-10640d86.js';
+
+const setupConfig = (config) => {
+    const win = window;
+    const Ionic = win.Ionic;
+    if (Ionic && Ionic.config && Ionic.config.constructor.name !== 'Object') {
+        console.error('ionic config was already initialized');
+        return;
+    }
+    win.Ionic = win.Ionic || {};
+    win.Ionic.config = Object.assign(Object.assign({}, win.Ionic.config), config);
+    return win.Ionic.config;
+};
+const getMode = () => {
+    const win = window;
+    const config = win && win.Ionic && win.Ionic.config;
+    if (config) {
+        if (config.mode) {
+            return config.mode;
+        }
+        else {
+            return config.get('mode');
+        }
+    }
+    return 'md';
+};
+
+export { getMode, setupConfig };

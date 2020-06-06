@@ -1,0 +1,22 @@
+import * as tslib_1 from "tslib";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { QuescommentsPageRoutingModule } from './quescomments-routing.module';
+import { QuescommentsPage } from './quescomments.page';
+let QuescommentsPageModule = class QuescommentsPageModule {
+};
+QuescommentsPageModule = tslib_1.__decorate([
+    NgModule({
+        imports: [
+            CommonModule,
+            FormsModule,
+            IonicModule,
+            QuescommentsPageRoutingModule
+        ],
+        declarations: [QuescommentsPage]
+    })
+], QuescommentsPageModule);
+export { QuescommentsPageModule };
+//# sourceMappingURL=quescomments.module.js.map
