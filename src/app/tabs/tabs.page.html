@@ -1,0 +1,38 @@
+<ion-tabs (ionTabsDidChange)="checkLogin()" >
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tab1" *ngIf="showHomeTab" (click)="setDefaultTabs()">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{languageList.home}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab2" *ngIf="showLoginTab" (click)="onLoginRegisterClicked()">
+      <ion-icon name="contact"></ion-icon>
+      <ion-label>{{languageList.login}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3" *ngIf="showRegisterTab" (click)="onLoginRegisterClicked()">
+      <ion-icon name="md-person-add"></ion-icon>
+      <ion-label>{{languageList.register}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="myques" *ngIf="showMyQuestionsTab">
+        <ion-icon name="md-create"></ion-icon>
+        <ion-label>{{languageList.my_questions}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="askques" *ngIf="showAskQuestionsTab">
+          <ion-icon name="md-chatbubbles"></ion-icon>
+          <ion-label>{{languageList.ask_a_question}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="frm1" *ngIf="showFrm1Tab" (click)="onFrm1Clicked()">
+        <ion-icon name="partly-sunny"></ion-icon>
+        <ion-label>{{languageList.weather}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="frm2" *ngIf="showFrm2Tab" (click)="onFrm2Clicked()">
+      <ion-icon name="nutrition"></ion-icon>
+      <ion-label>{{languageList.crop_management}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

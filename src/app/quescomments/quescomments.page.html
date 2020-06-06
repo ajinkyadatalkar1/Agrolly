@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Comments & Answers</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()"><ion-icon name="close"></ion-icon></ion-button>
+    </ion-buttons> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="lines" refreshingText="Loading"></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngFor="let item of completeQues">
+    <ion-card-header>
+      <span class="ion-text-justify" style="color: #0000EE;">{{item.question}}</span>
+    </ion-card-header>
+
+    <ion-card-content>
+      <h5>Option1: {{item.option1}}</h5>
+      <h5>Option2: {{item.option2}}</h5>
+      <h5>Option3: {{item.option3}}</h5>
+      <h5>Option4: {{item.option4}}</h5>
+      <h5>Option5: {{item.option5}}</h5>
+      <br />
+      <h6>Posted By: {{item.name}}</h6>
+      <h6>Category: {{item.questionType}}</h6>
+      <h6>Type: {{item.answerType}}</h6>
+      <h6>Posted: {{item.date}}</h6>
+    </ion-card-content>
+
+    <ion-list>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            
+            <ion-col>
+              Answer:<span *ngIf="showAns">{{item.answer}}</span>
+            </ion-col>
+  
+            <ion-col>
+            </ion-col>
+  
+            <ion-col>
+              <ion-button color="danger" (click)="showAnswer()">{{showHideAns}}</ion-button>
+            </ion-col>
+  
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+
+  </ion-card>
+
+
+
+  <ion-list *ngFor="let item of commentLists | slice:0:commentLists.length-1">
+    <ion-item>
+      <ion-label>{{item.text}}
+      <br />
+      <h3>{{item.name}}</h3>
+      <h3>Posted: {{item.date}}</h3>
+    </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer *ngIf="checkLogin">
+    <ion-grid>
+    <ion-row>
+    <ion-col size="7">
+      <ion-textarea [(ngModel)]="answer" placeholder="You know the answer?"></ion-textarea>
+    </ion-col>
+
+    <ion-col>
+      <ion-button class="comment-btn" color="success" (click)="postAnswer()">Comment</ion-button>
+    </ion-col>
+
+    </ion-row>
+    </ion-grid>
+</ion-footer>

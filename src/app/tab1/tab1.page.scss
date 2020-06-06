@@ -1,0 +1,106 @@
+.welcome-card img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+
+ion-content {
+  --background: url("../../assets/background.jpg") no-repeat center/cover fixed;
+}
+
+.centerAll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.languageBar {
+  background-color: black;
+  height: 30px;
+}
+
+.languageBar ion-tab-button {
+  background-color: black;
+  color: whitesmoke;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .examType {
+    width: 300px;
+    height: 50px;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  ion-content {
+    --background: url("../../assets/background.jpg") no-repeat center/cover fixed;
+  }
+
+  .mainButtons ion-button {
+    width: 700px;
+  }
+}
+
+@media only screen and (min-width: 414px) and (max-width: 767px) {
+  .examType {
+    width: 300px;
+    height: 50px;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .mainButtons ion-button {
+    width: 700px;
+  }
+}
+
+@media only screen and (min-width: 376px) and (max-width: 412px) {
+  .examType {
+    width: 300px;
+    height: 50px;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  .mainButtons ion-grid{
+    width: fit-content;
+  }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 375px) {
+  .examType {
+    width: 300px;
+    height: 50px;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  .mainButtons ion-grid{
+    width: fit-content;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .examType {
+    width: 300px;
+    height: 45px;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  .mainButtons ion-grid{
+    width: fit-content;
+  }
+}
