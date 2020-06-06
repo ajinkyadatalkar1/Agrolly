@@ -1,0 +1,29 @@
+<ion-content>
+  <div class="centerContent">
+    <div class="loginBar">
+      <div class="small_logo">
+        <img class="logo" src="../../assets/logo_small.svg" /><h2>AGROLLY</h2>
+        </div>
+        <input type="text" [attr.placeholder]="language.full_name" class="crediantials input-block" [(ngModel)]="name" required/>
+        <input type="email" [attr.placeholder]="language.email_address" class="crediantials input-block" [(ngModel)]="email" required/>
+        <input type="password" [attr.placeholder]="language.password" class="crediantials input-block" [(ngModel)]="password" required/>
+        
+          <div class="countrySelect crediantials input-block">
+            <ion-icon [attr.src]="countrySelectedIcon" size="large"></ion-icon>
+            <ion-select class="crediantials" [attr.placeholder]="language.country" interface="action-sheet" mode="ios" [(ngModel)]="countrySelected" (ionChange)="showCountryIcon()" required>
+              <ion-select-option *ngFor="let c of countries" class="fold-lines" [value]="c.name">{{c.name}}</ion-select-option>
+            </ion-select>
+          </div>
+
+          <div class="countrySelect crediantials input-block"  *ngIf="showStates">
+            <ion-icon [attr.src]="countrySelectedIcon" size="large"></ion-icon>
+            <ion-select class="crediantials" [attr.placeholder]="language.state" interface="action-sheet" [(ngModel)]="stateSelected" *ngIf="showStates" required>
+              <ion-select-option *ngFor="let s of states" class="fold-lines" [value]="s">{{s}}</ion-select-option>
+            </ion-select>
+          </div>
+        
+        <ion-button class="crediantials" (click)="register()">{{language.register}} <ion-icon name="md-happy"></ion-icon></ion-button>
+        <ion-button class="crediantials" (click)="forgotpsd()" color="danger">{{language.forgot_password}}<ion-icon name="md-sad"></ion-icon></ion-button>
+    </div>
+  </div>
+</ion-content>
