@@ -27,7 +27,8 @@ export class QuescommentsPage implements OnInit {
     quality: 30,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
+    mediaType: this.camera.MediaType.PICTURE,
+    correctOrientation: true
   };
 
   constructor(private httpcalls: HttpcallsService,  private modalCtrl: ModalController, private camera: Camera) {
@@ -45,6 +46,7 @@ export class QuescommentsPage implements OnInit {
     this.camera.getPicture(this.options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
+
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.clickedImage = base64Image;
     }, (err) => {
@@ -86,6 +88,8 @@ export class QuescommentsPage implements OnInit {
       this.httpcalls.getComments(this.Qid);
       this.completeQues = this.httpcalls.completeQues;
       this.commentLists = this.httpcalls.commentList;
+    } else {
+      this.httpcalls.commentPostFailed();
     }
   }
 
