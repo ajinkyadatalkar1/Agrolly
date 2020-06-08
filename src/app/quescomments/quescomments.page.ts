@@ -20,6 +20,7 @@ export class QuescommentsPage implements OnInit {
   @Input("Qid") Qid;
   @Input("Key") Key;
 
+
   constructor(private httpcalls: HttpcallsService,  private modalCtrl: ModalController) {
     this.showAns = false;
     this.showHideAns = 'Show Answer';
