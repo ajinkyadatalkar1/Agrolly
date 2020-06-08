@@ -16,6 +16,17 @@ h3 {
     align-items: center;
 }
 
-ion-col {
-    --position: initial;
+.preview {
+    width: 75px;
+    height: 75px;
+    border-radius: 3px;
+}
+
+.previewImage, .closeBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    padding: 3px;
+    background-color: lightgray;
 }
