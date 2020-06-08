@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpcallsService } from '../services/httpcalls.service';
 import { ModalController } from '@ionic/angular';
 import { timer } from 'rxjs';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 
 @Component({
@@ -20,8 +21,16 @@ export class QuescommentsPage implements OnInit {
   @Input("Qid") Qid;
   @Input("Key") Key;
 
+  clickedImage: string;
 
-  constructor(private httpcalls: HttpcallsService,  private modalCtrl: ModalController) {
+  options: CameraOptions = {
+    quality: 30,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+  };
+
+  constructor(private httpcalls: HttpcallsService,  private modalCtrl: ModalController, private camera: Camera) {
     this.showAns = false;
     this.showHideAns = 'Show Answer';
     this.timer = setInterval(() => {
@@ -30,6 +39,18 @@ export class QuescommentsPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  captureImage() {
+    this.camera.getPicture(this.options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.clickedImage = base64Image;
+    }, (err) => {
+      console.log(err);
+      // Handle error
+    });
   }
 
   async closeModal() {
