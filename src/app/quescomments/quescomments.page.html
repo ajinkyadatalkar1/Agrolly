@@ -35,6 +35,7 @@
   </ion-list>
 </ion-content>
 <ion-footer *ngIf="checkLogin">
+  <img [src]="clickedImage" />
   <ion-grid>
   <ion-row>
   <ion-col size="9" class="send">
@@ -42,7 +43,7 @@
   </ion-col>
 
   <ion-col class="send">
-    <ion-icon name="camera" size="large"></ion-icon>
+    <ion-icon name="camera" size="large" (click)="captureImage()"></ion-icon>
   </ion-col>
 
   <ion-col class="send">
