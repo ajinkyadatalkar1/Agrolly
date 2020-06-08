@@ -9,6 +9,13 @@ h3 {
     color: grey;
 }
 
+.send {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 ion-col {
     --position: initial;
 }

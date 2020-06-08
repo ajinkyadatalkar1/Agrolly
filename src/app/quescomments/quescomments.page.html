@@ -37,15 +37,15 @@
 <ion-footer *ngIf="checkLogin">
   <ion-grid>
   <ion-row>
-  <ion-col size="9">
+  <ion-col size="9" class="send">
     <textarea [(ngModel)]="answer" placeholder="Comment"></textarea>
   </ion-col>
 
-  <ion-col size="1">
-    <ion-icon name="attach" size="large"></ion-icon>
+  <ion-col class="send">
+    <ion-icon name="camera" size="large"></ion-icon>
   </ion-col>
 
-  <ion-col size="1">
+  <ion-col class="send">
     <ion-icon name="send" size="large" (click)="postAnswer()"></ion-icon>
   </ion-col>
 
