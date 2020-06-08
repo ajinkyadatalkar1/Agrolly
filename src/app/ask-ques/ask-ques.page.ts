@@ -65,19 +65,10 @@ export class AskQuesPage implements OnInit {
     console.log(this.httpCalls.id);
     console.log(this.httpCalls.phone);*/
     if (this.httpCalls.name !== undefined && this.httpCalls.id !== undefined && this.httpCalls.email !== undefined ) {
-      if (this.question !== undefined && this.source !== undefined && this.qtype !== undefined && this.atype !== undefined) {
-        this.httpCalls.post_question(this.question, this.option1, this.option2, this.option3, this.option4, this.option5,
-        this.source, this.qtype, this.atype, this.answer);
+      if (this.question !== undefined ) {
+        this.httpCalls.post_question(this.question);
         this.question = '';
-        this.source = '';
-        this.qtype = '';
-        this.atype = '';
-        this.option1 = '';
-        this.option2 = '';
-        this.option3 = '';
-        this.option4 = '';
-        this.option5 = '';
-        this.answer = '';
+
       } else {
         this.alertModalFillFields();
       }
