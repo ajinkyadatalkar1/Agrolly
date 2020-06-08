@@ -21,7 +21,7 @@ export class QuescommentsPage implements OnInit {
   @Input("Qid") Qid;
   @Input("Key") Key;
 
-  clickedImage: string;
+  clickedImage: string = undefined;
 
   options: CameraOptions = {
     quality: 30,
@@ -53,6 +53,10 @@ export class QuescommentsPage implements OnInit {
     });
   }
 
+  removeImage() {
+    this.clickedImage = undefined;
+  }
+
   async closeModal() {
     clearInterval(this.timer);
     await this.modalCtrl.dismiss(); // close the modal component
@@ -75,14 +79,14 @@ export class QuescommentsPage implements OnInit {
   }
 
   postAnswer() {
-    this.httpcalls.postAnswer(this.answer, this.Qid);
-    this.answer = '';
-
-    this.httpcalls.getQuestion(this.Qid);
-    this.httpcalls.getComments(this.Qid);
-
-    this.completeQues = this.httpcalls.completeQues;
-    this.commentLists = this.httpcalls.commentList;
+    if (this.answer !== undefined || this.clickedImage !== undefined ) {
+      this.httpcalls.postAnswer(this.answer, this.Qid);
+      this.answer = '';
+      this.httpcalls.getQuestion(this.Qid);
+      this.httpcalls.getComments(this.Qid);
+      this.completeQues = this.httpcalls.completeQues;
+      this.commentLists = this.httpcalls.commentList;
+    }
   }
 
   refresh(event) {

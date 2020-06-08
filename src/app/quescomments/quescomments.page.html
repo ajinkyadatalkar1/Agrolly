@@ -35,7 +35,24 @@
   </ion-list>
 </ion-content>
 <ion-footer *ngIf="checkLogin">
-  <img [src]="clickedImage" />
+  
+  <div class="previewImage" *ngIf="clickedImage !== undefined">
+  <ion-grid>
+  <ion-row>
+  
+  <ion-col size="10" class="closeBtn">
+  <img [src]="clickedImage" class="preview" />
+  </ion-col>
+
+  <ion-col size="2">
+  <ion-icon name="close" (click)="removeImage()" size="large"></ion-icon>
+  </ion-col>
+
+  </ion-row>
+  </ion-grid>
+  </div>
+
+
   <ion-grid>
   <ion-row>
   <ion-col size="9" class="send">
