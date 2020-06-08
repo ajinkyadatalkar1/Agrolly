@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.coakum.frm" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>FRM Club</name>
+<widget id="com.coakum.agrolly" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Agrolly</name>
     <description>An app that help students appearing for frm exam collabratively.</description>
     <author email="ajinkya.dbz.1994@gmail.com" href="http://coakum.com/">Coakum technologies</author>
     <content src="index.html" />

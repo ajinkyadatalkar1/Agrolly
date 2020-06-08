@@ -6,7 +6,6 @@ import { Language } from '../language/language';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
 
-
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -17,7 +16,8 @@ export class Tab1Page {
   showLogout: any;
   language: any;
   // tslint:disable-next-line: max-line-length
-  constructor( private showHideTabs: TabsPage, private httpcalls: HttpcallsService, private lang: Language, private storage: Storage, private Toast: ToastController) {
+  constructor( private showHideTabs: TabsPage, private httpcalls: HttpcallsService, private lang: Language, private storage: Storage,
+               private Toast: ToastController) {
     this.LogcheckSubscriber();
     this.language = this.httpcalls.languageList;
   }

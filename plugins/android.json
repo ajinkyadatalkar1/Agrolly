@@ -8,40 +8,60 @@
   },
   "installed_plugins": {
     "cordova-plugin-android-permissions": {
-      "PACKAGE_NAME": "com.coakum.frm"
+      "PACKAGE_NAME": "com.coakum.agrolly"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.coakum.frm"
+      "PACKAGE_NAME": "com.coakum.agrolly"
+    },
+    "cordova-plugin-fullscreen": {
+      "PACKAGE_NAME": "com.coakum.agrolly"
     },
     "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "com.coakum.frm"
+      "PACKAGE_NAME": "com.coakum.agrolly"
     },
     "cordova-plugin-ionic-webview": {
       "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
-      "PACKAGE_NAME": "com.coakum.frm"
+      "PACKAGE_NAME": "com.coakum.agrolly"
     },
     "cordova-plugin-screen-orientation": {
-      "PACKAGE_NAME": "com.coakum.frm"
+      "PACKAGE_NAME": "com.coakum.agrolly"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.coakum.frm"
+      "PACKAGE_NAME": "com.coakum.agrolly"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.coakum.frm"
+      "PACKAGE_NAME": "com.coakum.agrolly"
     },
     "cordova-plugin-vibration": {
-      "PACKAGE_NAME": "com.coakum.frm"
+      "PACKAGE_NAME": "com.coakum.agrolly"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.coakum.frm"
+      "PACKAGE_NAME": "com.coakum.agrolly"
     },
     "cordova-sqlite-storage": {
-      "PACKAGE_NAME": "com.coakum.frm"
+      "PACKAGE_NAME": "com.coakum.agrolly"
+    },
+    "cordova-plugin-fcm-with-dependecy-updated": {
+      "FCM_VERSION": "19.0.0",
+      "GRADLE_TOOLS_VERSION": "3.5.3",
+      "GOOGLE_SERVICES_VERSION": "4.3.3",
+      "SUPPORT_LIBRARY_VERSION": "28.0.0",
+      "ANDROID_DEFAULT_NOTIFICATION_ICON": "@mipmap/ic_launcher",
+      "PACKAGE_NAME": "com.coakum.agrolly"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.coakum.agrolly"
     }
   },
   "dependent_plugins": {
     "es6-promise-plugin": {
-      "PACKAGE_NAME": "com.coakum.frm"
+      "PACKAGE_NAME": "com.coakum.agrolly"
+    },
+    "cordova-support-google-services": {
+      "PACKAGE_NAME": "com.coakum.agrolly"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.coakum.agrolly"
     }
   }
 }

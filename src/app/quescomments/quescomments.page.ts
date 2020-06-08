@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpcallsService } from '../services/httpcalls.service';
 import { ModalController } from '@ionic/angular';
+import { timer } from 'rxjs';
 
 
 @Component({
@@ -15,28 +16,35 @@ export class QuescommentsPage implements OnInit {
   answer: string;
   showAns: boolean;
   showHideAns: string;
-
+  timer: any;
   @Input("Qid") Qid;
   @Input("Key") Key;
 
   constructor(private httpcalls: HttpcallsService,  private modalCtrl: ModalController) {
     this.showAns = false;
     this.showHideAns = 'Show Answer';
+    this.timer = setInterval(() => {
+      this.refreshComments();
+    }, 3000);
   }
 
   ngOnInit() {
   }
 
   async closeModal() {
+    clearInterval(this.timer);
     await this.modalCtrl.dismiss(); // close the modal component
   }
 
+  refreshComments() {
+    this.httpcalls.getComments(this.Qid);
+    this.commentLists = this.httpcalls.commentList;
+  }
 
   ionViewWillEnter() {
     this.checkLogin = this.httpcalls.loggedIn;
     this.completeQues = this.httpcalls.completeQues;
     this.commentLists = this.httpcalls.commentList;
-    // console.log(this.completeQues);
   }
 
   showAnswer() {
@@ -53,8 +61,6 @@ export class QuescommentsPage implements OnInit {
 
     this.completeQues = this.httpcalls.completeQues;
     this.commentLists = this.httpcalls.commentList;
-
-    // console.log(this.answer);
   }
 
   refresh(event) {
@@ -65,7 +71,7 @@ export class QuescommentsPage implements OnInit {
      this.completeQues = this.httpcalls.completeQues;
      this.commentLists = this.httpcalls.commentList;
      event.target.complete();
-    }, 4000);
+    }, 2000);
   }
 
 }
