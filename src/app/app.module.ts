@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 import { Language } from './language/language';
 import { Countries } from './Country/countries';
@@ -30,6 +31,7 @@ import { ShowquestionsPage } from './showquestions/showquestions.page';
     StatusBar,
     SplashScreen,
     ScreenOrientation,
+    FCM,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Language,
     Countries,

@@ -6,6 +6,7 @@ import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { Language } from '../language/language';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 
 @Injectable({
@@ -49,7 +50,8 @@ export class HttpcallsService {
 
 
   // tslint:disable-next-line: max-line-length
-  constructor(private http: HttpClient, private route: Router, private Toast: ToastController, private storage: Storage, private screenOrientation: ScreenOrientation, private lang: Language) {
+  constructor(private http: HttpClient, private route: Router, private Toast: ToastController, private storage: Storage, private screenOrientation: ScreenOrientation, private lang: Language,
+              private fcm: FCM) {
     this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 
     this.languageList = this.lang.English[0];
@@ -96,6 +98,13 @@ export class HttpcallsService {
       }
     });
 
+
+    /*********** firebase cloud messaging ****************/
+
+    this.initFireBase();
+
+    /**************** FCM *****************************/
+
     this.GetTopics();
     this.GetTopics2();
     this.GetForumQuestions();
@@ -112,6 +121,65 @@ export class HttpcallsService {
       'Content-type': 'application/x-www-form-urlencoded', // 'application/json', try different formats if you keep receiving error
     })
   };
+
+  /* Notifications */
+  initFireBase() {
+    this.fcm.getToken().then(token => {
+      this.setToken(token);
+      console.log(token);
+    });
+
+    this.fcm.onTokenRefresh().subscribe(token => {
+      console.log(token);
+    });
+
+    this.fcm.onNotification().subscribe(data => {
+      console.log(data);
+      if (data.wasTapped) {
+        console.log('Received in background');
+      } else {
+        console.log('Received in foreground');
+      }
+    });
+  }
+
+  setToken(token: string) {
+    this.checkLogin();
+    const postData = {
+      uid: this.id,
+      utoken: token,
+      type: 'setToken',
+    };
+    if (this.loggedIn && (this.id !== null || this.id !== undefined)) {
+      this.http.post('http://agrolly.tech/notify.php', postData, this.httpOptionsPost).subscribe(
+        (result) => {
+          console.log('Result is:' + result['result']);
+          if (result['result'] === 'successful') {
+            console.log('Successful');
+          } else {
+            console.log('unuccessful');
+          }
+        }
+      );
+    }
+  }
+
+  removeTokenOnLogout() {
+    const postData = {
+      uid: this.id,
+      type: 'unsetToken',
+    };
+    this.http.post('http://agrolly.tech/notify.php', postData, this.httpOptionsPost).subscribe(
+      (result) => {
+        console.log('Result is:' + result['result']);
+        if (result['result'] === 'successful') {
+          console.log('Successful');
+        } else {
+          console.log('unsuccessful');
+        }
+      }
+    );
+  }
 
 
   /* Language List */
@@ -152,6 +220,7 @@ export class HttpcallsService {
           this.storage.set('name', this.name);
           this.storage.set('id', this.id);
           this.GetUserQuestions();
+          this.initFireBase();
         } else {
           // console.log(result);
           this.LoginFailed();
@@ -168,6 +237,7 @@ export class HttpcallsService {
 
 
   Logout() {
+    this.removeTokenOnLogout();
     this.loggedIn = false;
     this.showHomeTab = true;
     this.showLoginTab = true;
@@ -324,25 +394,15 @@ export class HttpcallsService {
   }
 
   /* Ask Questions Page */
-  post_question(question: string, option1: string, option2: string, option3: string, option4: string, option5: string,
-                source: string, qtype: string, atype: string, answer: string) {
+  post_question(question: string) {
     if (this.name !== 'null' || this.name !== undefined) {
       const postQuesData = {
         postquestion: question,
-        postsource: source,
-        postqtype: qtype,
-        opt1: option1,
-        opt2: option2,
-        opt3: option3,
-        opt4: option4,
-        opt5: option5,
-        postatype: atype,
         postuid: this.id,
         postname: this.name,
-        ans: answer
       };
 
-      this.http.post('http://caokumtech.com/submitquestion.php', postQuesData, this.httpOptionsPost).subscribe(
+      this.http.post('http://agrolly.tech/submitquestion.php', postQuesData, this.httpOptionsPost).subscribe(
         (result) => {
           if (result['result'] === 'successful') {
             this.quesPostSuccessful();
@@ -375,7 +435,7 @@ export class HttpcallsService {
 
   /* Get Forum Questions */
   GetForumQuestions() {
-    this.http.get('http://caokumtech.com/forum.php', this.httpOptionsGet).subscribe(
+    this.http.get('http://agrolly.tech/forum.php', this.httpOptionsGet).subscribe(
       (result) => {
         this.forumList = result;
       });
@@ -387,7 +447,7 @@ export class HttpcallsService {
       const postQuesData = {
         uid: this.id
       };
-      this.http.post('http://caokumtech.com/myquestions.php', postQuesData, this.httpOptionsPost).subscribe(
+      this.http.post('http://agrolly.tech/myquestions.php', postQuesData, this.httpOptionsPost).subscribe(
         (result) => {
           this.userQuesList = result;
           // console.log(result);
@@ -396,14 +456,14 @@ export class HttpcallsService {
   }
   /* Load Questions and Comments */
   getQuestion(id) {
-    this.http.get('http://caokumtech.com/quesComm.php?what=question&id=' + id, this.httpOptionsGet).subscribe(
+    this.http.get('http://agrolly.tech/quesComm.php?what=question&id=' + id, this.httpOptionsGet).subscribe(
       (result) => {
         this.completeQues = result;
       });
   }
 
   getComments(id) {
-    this.http.get('http://caokumtech.com/quesComm.php?what=comment&id=' + id, this.httpOptionsGet).subscribe(
+    this.http.get('http://agrolly.tech/quesComm.php?what=comment&id=' + id, this.httpOptionsGet).subscribe(
       (result) => {
         this.commentList = result;
       });
@@ -416,8 +476,10 @@ export class HttpcallsService {
       text: answer,
       qid: Qid
     };
-    this.http.post('http://caokumtech.com/postAnswer.php', postQuesData, this.httpOptionsPost).subscribe(
+    this.http.post('http://agrolly.tech/postAnswer.php', postQuesData, this.httpOptionsPost).subscribe(
       (result) => {
+        console.log(result['user_id']);
+        console.log(result['token']);
         if (result['result'] === 'successful') {
           this.commentPostSuccessful();
         } else {

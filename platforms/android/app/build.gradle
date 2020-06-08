@@ -18,6 +18,7 @@
 */
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'  // Google Services plugin
 
 buildscript {
     repositories {
@@ -98,6 +99,8 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
+apply from: "../cordova-support-google-services/agrolly-build.gradle"
+apply from: "../cordova-plugin-fcm-with-dependecy-updated/agrolly-FCMPlugin.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()
@@ -185,7 +188,7 @@ android {
     defaultConfig {
         versionCode cdvVersionCode ?: new BigInteger("" + privateHelpers.extractIntFromManifest("versionCode"))
         applicationId privateHelpers.extractStringFromManifest("package")
-
+        multiDexEnabled true
         if (cdvMinSdkVersion != null) {
             minSdkVersion cdvMinSdkVersion
         }
@@ -294,6 +297,7 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
     implementation "com.android.support:support-annotations:27.+"
+    implementation "com.google.firebase:firebase-messaging:19.0.0"
     // SUB-PROJECT DEPENDENCIES END
 }
 
