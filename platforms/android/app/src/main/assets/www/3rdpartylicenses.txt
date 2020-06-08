@@ -41,6 +41,9 @@ MIT
 @ionic-native/core
 MIT
 
+@ionic-native/fcm
+MIT
+
 @ionic-native/screen-orientation
 MIT
 
