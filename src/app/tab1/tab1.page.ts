@@ -72,7 +72,7 @@ export class Tab1Page {
       this.changeTabs();
       this.language = this.httpcalls.languageList;
       this.showHideTabs.languageSubscriber();
-    }, 50);
+    }, 500);
   }
 
   LogcheckSubscriber() { // use subscriber to show and hide logout button
