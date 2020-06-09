@@ -1,0 +1,1 @@
+If in case you get dex error while compiling just install the AndroidX cordova plugin and then add the AndroidX adapter.
