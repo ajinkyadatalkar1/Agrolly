@@ -394,12 +394,13 @@ export class HttpcallsService {
   }
 
   /* Ask Questions Page */
-  post_question(question: string) {
+  post_question(question: string, imageName: string) {
     if (this.name !== 'null' || this.name !== undefined) {
       const postQuesData = {
         postquestion: question,
         postuid: this.id,
         postname: this.name,
+        postFile: imageName
       };
 
       this.http.post('http://agrolly.tech/submitquestion.php', postQuesData, this.httpOptionsPost).subscribe(
