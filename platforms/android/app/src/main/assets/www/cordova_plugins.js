@@ -306,6 +306,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "SQLitePlugin"
       ]
+    },
+    {
+      "id": "com-sarriaroman-photoviewer.PhotoViewer",
+      "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
+      "pluginId": "com-sarriaroman-photoviewer",
+      "clobbers": [
+        "PhotoViewer"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -327,6 +335,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-sqlite-storage": "4.0.0",
     "cordova-support-google-services": "1.3.2",
     "cordova-plugin-androidx": "2.0.0",
-    "cordova-plugin-androidx-adapter": "1.1.1"
+    "cordova-plugin-androidx-adapter": "1.1.1",
+    "com-sarriaroman-photoviewer": "1.2.4"
   };
 });
