@@ -1,7 +1,20 @@
-.fold-lines{
-	white-space: pre-line!important;
-}
-
 ion-button {
     width: 100%;
+}
+
+.preview {
+    width: 75px;
+    height: 75px;
+    border-radius: 3px;
+}
+
+.previewImage, .closeBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    padding: 3px;
+    background-color:lightsteelblue;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpcallsService } from '../services/httpcalls.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
 @Component({
   selector: 'app-ask-ques',
@@ -9,72 +11,88 @@ import { AlertController } from '@ionic/angular';
 })
 export class AskQuesPage implements OnInit {
   question: string;
-  source: string;
-  qtype: string;
-  atype: string;
-  option1: string;
-  option2: string;
-  option3: string;
-  option4: string;
-  option5: string;
-  answer: string;
+  clickedImage: string = undefined;
+  base64Image: string;
+  imageFilename: string;
 
-  constructor(private httpCalls: HttpcallsService, private alertCtrl: AlertController) { }
-  ExamList = [
-    {
-      subject: 'Miscellaneous / Off Topic'
-    },
-    {
-      subject: 'Foundations of Risk Management',
-    },
-    {
-      subject: 'Quantitative Analysis',
-    },
-    {
-      subject: 'Financial markets and products',
-    },
-    {
-      subject: 'Valuation and risk models',
-    },
-    {
-      subject: 'Market risk measurement and management',
-    },
-    {
-      subject: 'Credit risk measurement and management',
-    },
-    {
-      subject: 'Operational risk and resiliency',
-    },
-    {
-      subject: 'Liquidity and treasury risk measurement and management',
-    },
-    {
-      subject: 'Risk management and investment management',
-    },
-    {
-      subject: 'Current issues in financial markets',
-    },
-   ];
 
+  options: CameraOptions = {
+    quality: 30,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE,
+    correctOrientation: true
+  };
+
+  constructor(private httpCalls: HttpcallsService, private alertCtrl: AlertController, private camera: Camera,
+              private transfer: FileTransfer, private loadingCtrl: LoadingController) { }
   logForm() {
 
   }
 
   submitQues() {
-   /* console.log(this.httpCalls.name);
-    console.log(this.httpCalls.id);
-    console.log(this.httpCalls.phone);*/
     if (this.httpCalls.name !== undefined && this.httpCalls.id !== undefined && this.httpCalls.email !== undefined ) {
-      if (this.question !== undefined ) {
-        this.httpCalls.post_question(this.question);
+      if (this.question !== undefined || this.question !== null  || this.question !== '') {
+        this.imageFilename = this.httpCalls.name + Date.now() + '.jpg';
+        if (this.clickedImage !== undefined) {
+          this.httpCalls.post_question(this.question, this.imageFilename);
+          this.transferImage();
+        } else {
+          this.httpCalls.post_question(this.question, 'NaI');
+        }
         this.question = '';
-
       } else {
         this.alertModalFillFields();
       }
     } else {
         this.alertModalLogin();
     }
+  }
+
+  captureImage() {
+    this.clickedImage = undefined;
+    this.camera.getPicture(this.options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+
+      this.base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.clickedImage = this.base64Image;
+    }, (err) => {
+      console.log(err);
+      // Handle error
+    });
+  }
+
+  async transferImage() {
+    const loader = await this.loadingCtrl.create({
+      message: 'Uploading....',
+    });
+    await loader.present();
+
+    const fileTransfer: FileTransferObject = this.transfer.create();
+
+    const options: FileUploadOptions = {
+      fileKey: 'photo',
+      fileName:  this.imageFilename,
+      chunkedMode: false,
+      mimeType: 'image/jpeg',
+      headers: {}
+    };
+
+    fileTransfer.upload(this.base64Image, 'http://www.agrolly.tech/questionImages.php', options).then(data => {
+      console.log(data['response']);
+      loader.dismiss();
+      this.clickedImage = undefined;
+    }, error => {
+      alert('Error uploading image');
+      // alert('error' + JSON.stringify(error));
+      loader.dismiss();
+      this.clickedImage = undefined;
+    });
+  }
+
+  removeImage() {
+    this.clickedImage = undefined;
   }
 
   async alertModalLogin() {
