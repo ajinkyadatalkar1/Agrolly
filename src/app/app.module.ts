@@ -14,6 +14,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 
 import { Language } from './language/language';
 import { Countries } from './Country/countries';
@@ -34,6 +36,8 @@ import { ShowquestionsPage } from './showquestions/showquestions.page';
     ScreenOrientation,
     FCM,
     Camera,
+    FileTransfer,
+    PhotoViewer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Language,
     Countries,
