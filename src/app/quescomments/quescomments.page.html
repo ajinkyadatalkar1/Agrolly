@@ -12,7 +12,7 @@
     <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="lines" refreshingText="Loading"></ion-refresher-content>
   </ion-refresher>
 
-  <ion-card *ngFor="let item of completeQues">
+  <ion-card *ngFor="let item of completeQues;let i = index">
     <ion-card-header>
       <span class="ion-text-justify" style="color: #0000EE;">{{item.question}}</span>
     </ion-card-header>
@@ -24,13 +24,15 @@
     </ion-card-content>
 
   </ion-card>
-  <ion-list *ngFor="let item of commentLists | slice:0:commentLists.length-1">
+  <ion-list *ngFor="let item of commentLists | slice:0:commentLists.length-1;let i = index">
     <ion-item>
-      <ion-label>{{item.text}}
-      <br />
-      <h3>{{item.name}}</h3>
-      <h3>{{item.date}}</h3>
-    </ion-label>
+      <div>
+        <div class="para">{{item.text}} <br />
+          <div class="commentImage" *ngIf="commentLists[i].image != 'NaI'"><img class="thumbnail" [attr.src]="commentLists[i].image" (click)="showImage(commentLists[i].image)" /></div>
+        </div>
+        <p class="stamp">{{item.name}}<br />
+        {{item.date}}</p>
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>

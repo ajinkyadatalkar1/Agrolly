@@ -61,12 +61,15 @@
     },
     "cordova-plugin-androidx-adapter": {
       "PACKAGE_NAME": "com.coakum.agrolly"
-    }
-  },
-  "dependent_plugins": {
+    },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "com.coakum.agrolly"
     },
+    "com-sarriaroman-photoviewer": {
+      "PACKAGE_NAME": "com.coakum.agrolly"
+    }
+  },
+  "dependent_plugins": {
     "es6-promise-plugin": {
       "PACKAGE_NAME": "com.coakum.agrolly"
     },

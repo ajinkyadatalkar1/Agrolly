@@ -5,8 +5,10 @@ textarea {
     border: thin;
 }
 
-h3 {
+.stamp {
     color: grey;
+    font-size: small;
+    font-weight: 200;
 }
 
 .send {
@@ -31,4 +33,21 @@ h3 {
     background-color:lightsteelblue;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
+}
+
+.para {
+    text-align: justify;
+    text-justify: inter-word;
+    width: 90%;
+}
+
+.commentImage {
+    width: fit-content;
+    height: fit-content;
+}
+
+.thumbnail  {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
 }

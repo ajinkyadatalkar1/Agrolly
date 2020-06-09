@@ -469,12 +469,13 @@ export class HttpcallsService {
       });
   }
 
-  postAnswer(answer, Qid) {
+  postAnswer(answer: string, Qid: string, imageFileName: string) {
     const postQuesData = {
       uid: this.id,
       name: this.name,
       text: answer,
-      qid: Qid
+      qid: Qid,
+      filename: imageFileName
     };
     this.http.post('http://agrolly.tech/postAnswer.php', postQuesData, this.httpOptionsPost).subscribe(
       (result) => {
