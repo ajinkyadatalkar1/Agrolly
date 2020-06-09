@@ -18,6 +18,7 @@
     </ion-card-header>
 
     <ion-card-content>
+      <ion-img [src]="item.image" (click)="showImage(item.image)" ></ion-img>
       <br />
       <h6>Posted By: {{item.name}}</h6>
       <h6>Posted: {{item.date}}</h6>
@@ -27,7 +28,8 @@
   <ion-list *ngFor="let item of commentLists | slice:0:commentLists.length-1;let i = index">
     <ion-item>
       <div>
-        <div class="para">{{item.text}} <br />
+        <div>{{item.text}}
+         <br />
           <div class="commentImage" *ngIf="commentLists[i].image != 'NaI'"><img class="thumbnail" [attr.src]="commentLists[i].image" (click)="showImage(commentLists[i].image)" /></div>
         </div>
         <p class="stamp">{{item.name}}<br />

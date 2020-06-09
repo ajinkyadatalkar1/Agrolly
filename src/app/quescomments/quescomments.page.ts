@@ -28,7 +28,7 @@ export class QuescommentsPage implements OnInit {
   clickedImage: string = undefined;
 
   options: CameraOptions = {
-    quality: 30,
+    quality: 80,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE,
@@ -64,7 +64,7 @@ export class QuescommentsPage implements OnInit {
       message: 'Uploading....',
     });
     await loader.present();
-
+    clearInterval(this.timer);
     const fileTransfer: FileTransferObject = this.transfer.create();
 
     const options: FileUploadOptions = {
@@ -79,11 +79,17 @@ export class QuescommentsPage implements OnInit {
       console.log(data['response']);
       loader.dismiss();
       this.clickedImage = undefined;
+      this.timer = setInterval(() => {
+        this.refreshComments();
+      }, 3000);
     }, error => {
       alert('Error uploading image');
       // alert('error' + JSON.stringify(error));
       loader.dismiss();
       this.clickedImage = undefined;
+      this.timer = setInterval(() => {
+        this.refreshComments();
+      }, 3000);
     });
   }
 
@@ -97,6 +103,7 @@ export class QuescommentsPage implements OnInit {
 
   async closeModal() {
     clearInterval(this.timer);
+    this.commentLists = undefined;
     await this.modalCtrl.dismiss(); // close the modal component
   }
 
@@ -105,6 +112,7 @@ export class QuescommentsPage implements OnInit {
     this.length1 = JSON.stringify(this.commentLists);
     this.length2 = JSON.stringify(this.httpcalls.commentList);
     if (this.length1.length !== this.length2.length) {
+      this.commentLists = undefined;
       this.commentLists = this.httpcalls.commentList;
     }
   }
@@ -141,7 +149,7 @@ export class QuescommentsPage implements OnInit {
      this.completeQues = this.httpcalls.completeQues;
      this.commentLists = this.httpcalls.commentList;
      event.target.complete();
-    }, 2000);
+    }, 3000);
   }
 
 }
