@@ -76,10 +76,6 @@ export class Tab1Page {
       this.language = this.httpcalls.languageList;
       this.showHideTabs.languageSubscriber();
     }, 500);
-
-    if (this.httpcalls.tapQues !== undefined && this.httpcalls.tapQues !== null) {
-      this.route.navigateByUrl('/tabs/myques');
-    }
   }
 
   LogcheckSubscriber() { // use subscriber to show and hide logout button

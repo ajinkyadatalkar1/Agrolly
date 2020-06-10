@@ -107,7 +107,13 @@ export class QuescommentsPage implements OnInit {
   async closeModal() {
     clearInterval(this.timer);
     this.commentLists = undefined;
-    this.httpcalls.tapQues = undefined;
+
+    for (let i =0 ; i < this.httpcalls.tapQues.length ; i++) {
+      if (this.Qid === this.httpcalls.tapQues[i].NotificationId) {
+        this.httpcalls.tapQues[i].NotificationId = undefined;
+      }
+    }
+
     await this.modalCtrl.dismiss(); // close the modal component
   }
 
