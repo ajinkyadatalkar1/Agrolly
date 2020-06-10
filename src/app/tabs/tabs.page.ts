@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpcallsService } from '../services/httpcalls.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class TabsPage {
   languageList: any;
   languagesubscriber: Subscription;
 
-  constructor(private httpcallsService: HttpcallsService) {
+  constructor(private httpcallsService: HttpcallsService, private route: Router) {
     this.showHomeTab = this.httpcallsService.showHomeTab;
     this.showLoginTab = this.httpcallsService.showLoginTab;
     this.showRegisterTab = this.httpcallsService.showRegisterTab;

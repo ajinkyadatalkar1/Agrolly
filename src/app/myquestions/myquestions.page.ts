@@ -3,6 +3,7 @@ import { HttpcallsService } from '../services/httpcalls.service';
 import { ModalController } from '@ionic/angular';
 import { QuescommentsPage } from '../quescomments/quescomments.page';
 import { LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-myquestions',
@@ -14,13 +15,20 @@ export class MyquestionsPage implements OnInit {
   completeQues: any;
   commentLists: any;
 
-  constructor(private httpcalls: HttpcallsService, private modalCtrl: ModalController, private loading: LoadingController) {
+  constructor(private httpcalls: HttpcallsService, private modalCtrl: ModalController, private loading: LoadingController,
+              private route: Router) {
     this.httpcalls.GetUserQuestions();
     this.lists = this.httpcalls.userQuesList;
   }
 
   ionViewWillEnter() { // Lifecycle event
     this.lists = this.httpcalls.userQuesList;
+  }
+
+  ionViewDidEnter() {
+    if (this.httpcalls.tapQues !== undefined && this.httpcalls.tapQues !== null) {
+      this.LoadQuesAndComment(this.httpcalls.tapQues);
+    }
   }
 
   LoadQuesAndComment(id) {

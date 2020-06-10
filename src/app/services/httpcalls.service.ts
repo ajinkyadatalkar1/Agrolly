@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { Language } from '../language/language';
@@ -48,10 +48,13 @@ export class HttpcallsService {
   // Language lists
   languageList: any;
 
+  // notifications
+  tapQues: any;
+
 
   // tslint:disable-next-line: max-line-length
   constructor(private http: HttpClient, private route: Router, private Toast: ToastController, private storage: Storage, private screenOrientation: ScreenOrientation, private lang: Language,
-              private fcm: FCM) {
+              private fcm: FCM, private ngZone: NgZone, private navCtrl: NavController) {
     this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 
     this.languageList = this.lang.English[0];
@@ -130,17 +133,32 @@ export class HttpcallsService {
     });
 
     this.fcm.onTokenRefresh().subscribe(token => {
+      this.setToken(token);
       console.log(token);
     });
 
     this.fcm.onNotification().subscribe(data => {
       console.log(data);
       if (data.wasTapped) {
-        console.log('Received in background');
+        this.tapQues = data.qid;
+        this.ngZone.run(() => this.route.navigateByUrl('/tabs/myques')).then();
+        console.log('Root Navigated');
       } else {
-        console.log('Received in foreground');
+        this.tapQues = data.qid;
+        this.ngZone.run(() => this.route.navigateByUrl('/tabs/myques')).then();
+        console.log('tapQues' + this.tapQues);
       }
     });
+  }
+
+  async notification() {
+    const toast = await this.Toast.create({
+      message: 'Someone Commented on your post',
+      duration: 2000,
+      position: 'top',
+      translucent: true,
+    });
+    toast.present();
   }
 
   setToken(token: string) {
@@ -408,9 +426,13 @@ export class HttpcallsService {
           if (result['result'] === 'successful') {
             this.quesPostSuccessful();
           } else {
-            this.quesPostFailed();
+            this.quesPostFailed(this.languageList.question_post_failed);
           }
-        });
+        }, error => {
+          // console.log(error);
+          this.quesPostFailed(error);
+        }
+        );
     }
   }
 
@@ -424,9 +446,10 @@ export class HttpcallsService {
     toast.present();
   }
 
-  async quesPostFailed() {
+  async quesPostFailed(error: string) {
     const toast = await this.Toast.create({
-      message: this.languageList.question_post_failed,
+      // message: this.languageList.question_post_failed,
+      message: error,
       duration: 2000,
       position: 'top',
       translucent: true
@@ -482,12 +505,16 @@ export class HttpcallsService {
       (result) => {
         console.log(result['user_id']);
         console.log(result['token']);
-        if (result['result'] === 'successful') {
+        if (result['success'] === 1) {
           this.commentPostSuccessful();
         } else {
-          this.commentPostFailed();
+          this.commentPostFailed(this.languageList.comment_post_failed);
         }
-      });
+      }, error => {
+        console.log(error);
+        this.commentPostFailed(error);
+      }
+      );
   }
 
   async commentPostSuccessful() {
@@ -500,9 +527,10 @@ export class HttpcallsService {
     toast.present();
   }
 
-  async commentPostFailed() {
+  async commentPostFailed(error: string) {
     const toast = await this.Toast.create({
-      message: this.languageList.comment_post_failed,
+      // message: this.languageList.comment_post_failed,
+      message: error,
       duration: 2000,
       position: 'top',
       translucent: true
