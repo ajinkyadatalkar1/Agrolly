@@ -14,6 +14,7 @@ export class MyquestionsPage implements OnInit {
   lists: any;
   completeQues: any;
   commentLists: any;
+  hightlight: any;
 
   constructor(private httpcalls: HttpcallsService, private modalCtrl: ModalController, private loading: LoadingController,
               private route: Router) {
@@ -23,15 +24,35 @@ export class MyquestionsPage implements OnInit {
 
   ionViewWillEnter() { // Lifecycle event
     this.lists = this.httpcalls.userQuesList;
+    this.hightlight = this.httpcalls.tapQues;
+  }
+
+  setcolor(id: number) {
+    if (this.hightlight !== undefined) {
+      for (let i =0; i < this.hightlight.length ; i++) {
+        if (this.hightlight[i].NotificationId === id) {
+          console.log('setting color success');
+          return 'success';
+        }
+      }
+    } else {
+      console.log('setting no success color');
+      return null;
+    }
+    return null;
+  }
+
+  ionViewWillLeave() {
+    this.lists = undefined;
   }
 
   ionViewDidEnter() {
-    if (this.httpcalls.tapQues !== undefined && this.httpcalls.tapQues !== null) {
+/*    if (this.httpcalls.tapQues !== undefined && this.httpcalls.tapQues !== null) {
       this.LoadQuesAndComment(this.httpcalls.tapQues);
-    }
+    }*/
   }
 
-  LoadQuesAndComment(id) {
+  LoadQuesAndComment(id: number) {
     this.httpcalls.getQuestion(id);
     this.httpcalls.getComments(id);
     this.presentLoading();
