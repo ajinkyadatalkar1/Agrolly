@@ -2,11 +2,13 @@ import { Injectable, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { ToastController, NavController } from '@ionic/angular';
+import { ToastController, NavController, AngularDelegate } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { Language } from '../language/language';
 import { FCM } from '@ionic-native/fcm/ngx';
+import { ValueAccessor } from '@ionic/angular/dist/directives/control-value-accessors/value-accessor';
+import { StoreNotifications } from '../notificationStore/storenotifications';
 
 
 @Injectable({
@@ -48,15 +50,16 @@ export class HttpcallsService {
   // Language lists
   languageList: any;
 
-  // notifications
+  // notification
   tapQues: any;
 
 
   // tslint:disable-next-line: max-line-length
   constructor(private http: HttpClient, private route: Router, private Toast: ToastController, private storage: Storage, private screenOrientation: ScreenOrientation, private lang: Language,
-              private fcm: FCM, private ngZone: NgZone, private navCtrl: NavController) {
+              private fcm: FCM, private ngZone: NgZone, private navCtrl: NavController, private notificationId: StoreNotifications) {
     this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 
+    this.tapQues = this.notificationId.Notifications;
     this.languageList = this.lang.English[0];
     storage.get('language').then((val) => {
       if (val === 'Mongolian') {
@@ -139,21 +142,33 @@ export class HttpcallsService {
 
     this.fcm.onNotification().subscribe(data => {
       console.log(data);
+      console.log("No of notifications: " + this.tapQues.length);
       if (data.wasTapped) {
-        this.tapQues = data.qid;
-        this.ngZone.run(() => this.route.navigateByUrl('/tabs/myques')).then();
-        console.log('Root Navigated');
+        // this.ngZone.run(() => this.route.navigateByUrl('/tabs/myques')).then();
+        for (let i = 0 ; i < this.tapQues.length ; i++) {
+          if (this.tapQues[i].NotificationId === undefined) {
+            this.tapQues[i].NotificationId = data.qid;
+            console.log(this.tapQues[i].NotificationId);
+            break;
+          }
+        }
+        this.notification();
       } else {
-        this.tapQues = data.qid;
-        this.ngZone.run(() => this.route.navigateByUrl('/tabs/myques')).then();
-        console.log('tapQues' + this.tapQues);
+        for (let i = 0 ; i < this.tapQues.length ; i++ ) {
+          if (this.tapQues[i].NotificationId === undefined) {
+            this.tapQues[i].NotificationId = data.qid;
+            console.log(this.tapQues[i].NotificationId);
+            break;
+          }
+        }
+        this.notification();
       }
     });
   }
 
   async notification() {
     const toast = await this.Toast.create({
-      message: 'Someone Commented on your post',
+      message: 'Someone Commented on your post, go to My Questions',
       duration: 2000,
       position: 'top',
       translucent: true,
