@@ -4,6 +4,8 @@ import { ModalController, LoadingController, AngularDelegate } from '@ionic/angu
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+import { Storage } from '@ionic/storage';
+
 
 
 @Component({
@@ -36,7 +38,8 @@ export class QuescommentsPage implements OnInit {
   };
 
   constructor(private httpcalls: HttpcallsService,  private modalCtrl: ModalController, private camera: Camera,
-              private transfer: FileTransfer, private loadingCtrl: LoadingController, private photoVwr: PhotoViewer) {
+              private transfer: FileTransfer, private loadingCtrl: LoadingController, private photoVwr: PhotoViewer,
+              private storage: Storage) {
     this.showAns = false;
     this.timer = setInterval(() => {
       this.refreshComments();
@@ -104,6 +107,7 @@ export class QuescommentsPage implements OnInit {
   async closeModal() {
     clearInterval(this.timer);
     this.commentLists = undefined;
+    this.httpcalls.tapQues = undefined;
     await this.modalCtrl.dismiss(); // close the modal component
   }
 
@@ -135,9 +139,9 @@ export class QuescommentsPage implements OnInit {
       }
       this.answer = '';
       this.httpcalls.getQuestion(this.Qid);
-      this.httpcalls.getComments(this.Qid);
+      // this.httpcalls.getComments(this.Qid);
     } else {
-      this.httpcalls.commentPostFailed();
+      this.httpcalls.commentPostFailed('Cannot post an empty comment.');
     }
   }
 
