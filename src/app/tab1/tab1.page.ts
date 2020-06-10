@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { Language } from '../language/language';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-tab1',
@@ -17,10 +19,11 @@ export class Tab1Page {
   language: any;
   // tslint:disable-next-line: max-line-length
   constructor( private showHideTabs: TabsPage, private httpcalls: HttpcallsService, private lang: Language, private storage: Storage,
-               private Toast: ToastController) {
+               private Toast: ToastController, private route: Router) {
     this.LogcheckSubscriber();
     this.language = this.httpcalls.languageList;
   }
+
 
   changeTabs() {
     this.showHideTabs.showLoginTab = this.httpcalls.showLoginTab;
@@ -73,6 +76,10 @@ export class Tab1Page {
       this.language = this.httpcalls.languageList;
       this.showHideTabs.languageSubscriber();
     }, 500);
+
+    if (this.httpcalls.tapQues !== undefined && this.httpcalls.tapQues !== null) {
+      this.route.navigateByUrl('/tabs/myques');
+    }
   }
 
   LogcheckSubscriber() { // use subscriber to show and hide logout button

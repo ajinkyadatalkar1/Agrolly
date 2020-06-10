@@ -18,7 +18,7 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-img [src]="item.image" (click)="showImage(item.image)" ></ion-img>
+      <ion-img *ngIf="item.image != 'NaI'" [src]="item.image" (click)="showImage(item.image)" ></ion-img>
       <br />
       <h6>Posted By: {{item.name}}</h6>
       <h6>Posted: {{item.date}}</h6>
