@@ -54,6 +54,8 @@ export class AskQuesPage implements OnInit {
     } else {
         this.alertModalLogin();
     }
+    this.httpCalls.GetForumQuestions();
+    this.httpCalls.GetUserQuestions();
   }
 
   captureImage() {
