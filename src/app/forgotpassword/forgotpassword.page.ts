@@ -16,8 +16,15 @@ export class ForgotpasswordPage implements OnInit {
   fgtpass: string;
   registerUsr: string;
   otp: string;
-  constructor(private otpModal: ModalController, private alert: AlertController, private httpcalls: HttpcallsService) { }
+  language: string;
+  constructor(private otpModal: ModalController, private alert: AlertController, private httpcalls: HttpcallsService) { 
+    this.language = this.httpcalls.languageList;
+  }
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    this.language = this.httpcalls.languageList;
   }
 
   async requestOtp() {
@@ -29,7 +36,7 @@ export class ForgotpasswordPage implements OnInit {
       const myModal = await this.otpModal.create({
         component: OnetimepasswordPage,
         // tslint:disable-next-line: max-line-length
-        componentProps: {save_phone: this.email, save_password: this.password, page_type_fgt: this.fgtpass, page_type_reg: this.registerUsr, otp: this.otp}
+        componentProps: {save_email: this.email, save_password: this.password, page_type_fgt: this.fgtpass, page_type_reg: this.registerUsr, otp: this.otp}
       });
       this.email = undefined;
       this.password = undefined;

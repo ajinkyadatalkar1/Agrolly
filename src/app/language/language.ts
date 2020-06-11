@@ -15,6 +15,7 @@ export class Language {
             enter_email: 'Enter your email address',
             password: 'Password (8 characters or more)',
             forgot_password: 'Forgot your password?',
+            new_password: 'Enter new password',
             logout_message: 'You have been logged out successfully',
             login_successful_message: 'Logged in',
             login_failed_message: 'Login failed',
@@ -30,6 +31,7 @@ export class Language {
             email_address: 'Email Address',
             country: 'Country',
             state: 'State/Province',
+            city: 'City',
             submit: 'Submit',
             otp: 'One time password'
         }
@@ -51,6 +53,7 @@ export class Language {
             enter_email: 'имэйл хаягаа оруулна уу',
             password: 'Нууц үг (8 буюу түүнээс дээш тэмдэгт)',
             forgot_password: 'Нууц үгээ мартсан?',
+            new_password: 'Шинэ нууц үг оруулна уу',
             logout_message: 'Та амжилттай гарсан байна',
             login_successful_message: 'Нэвтэрсэн',
             login_failed_message: 'Нэвтэрч чадсангүй',
@@ -66,7 +69,7 @@ export class Language {
             email_address: 'Имэйл хаяг',
             country: 'Улс',
             state: 'Аймаг',
-            district: 'Сум',
+            city: 'Сум',
             submit: 'Илгээх',
             otp: 'Нэг удаагийн нууц үг',
         }
@@ -88,6 +91,7 @@ export class Language {
             enter_email: 'Insira o seu endereço de email',
             password: 'Senha (8 caracteres ou mais)',
             forgot_password: 'Esqueceu a senha?',
+            new_password: 'Insira a nova senha',
             logout_message: 'Você foi desconectado com sucesso',
             login_successful_message: 'Logado',
             login_failed_message: 'Falha na autenticação',
@@ -103,6 +107,7 @@ export class Language {
             email_address: 'Endereço de e-mail',
             country: 'País',
             state: 'Estado / Província',
+            city: 'Cidade',
             submit: 'Enviar',
             otp: 'Senha de uso único',
         }
