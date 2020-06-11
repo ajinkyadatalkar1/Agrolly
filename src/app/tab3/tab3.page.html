@@ -2,7 +2,7 @@
   <div class="centerContent">
     <div class="loginBar">
       <div class="small_logo">
-        <img class="logo" src="../../assets/logo_small.svg" /><h2>AGROLLY</h2>
+        <img class="logo" src="../../assets/logo_small.svg" /><h2>{{language.agrolly}}</h2>
         </div>
         <input type="text" [attr.placeholder]="language.full_name" class="crediantials input-block" [(ngModel)]="name" required/>
         <input type="email" [attr.placeholder]="language.email_address" class="crediantials input-block" [(ngModel)]="email" required/>
@@ -10,15 +10,22 @@
         
           <div class="countrySelect crediantials input-block">
             <ion-icon [attr.src]="countrySelectedIcon" size="large"></ion-icon>
-            <ion-select class="crediantials" [attr.placeholder]="language.country" interface="action-sheet" mode="ios" [(ngModel)]="countrySelected" (ionChange)="showCountryIcon()" required>
+            <ion-select class="crediantials" [attr.placeholder]="language.country" interface="action-sheet" [(ngModel)]="countrySelected" (ionChange)="showCountryIcon()" required>
               <ion-select-option *ngFor="let c of countries" class="fold-lines" [value]="c.name">{{c.name}}</ion-select-option>
             </ion-select>
           </div>
 
           <div class="countrySelect crediantials input-block"  *ngIf="showStates">
             <ion-icon [attr.src]="countrySelectedIcon" size="large"></ion-icon>
-            <ion-select class="crediantials" [attr.placeholder]="language.state" interface="action-sheet" [(ngModel)]="stateSelected" *ngIf="showStates" required>
+            <ion-select class="crediantials" [attr.placeholder]="language.state" interface="action-sheet" [(ngModel)]="stateSelected" *ngIf="showStates" (ionChange)="showCity()" required>
               <ion-select-option *ngFor="let s of states" class="fold-lines" [value]="s">{{s}}</ion-select-option>
+            </ion-select>
+          </div>
+
+          <div class="countrySelect crediantials input-block"  *ngIf="showCities">
+            <ion-icon [attr.src]="countrySelectedIcon" size="large"></ion-icon>
+            <ion-select class="crediantials" [attr.placeholder]="language.city" interface="action-sheet" [(ngModel)]="citySelected" *ngIf="showStates" required>
+              <ion-select-option *ngFor="let c of cities" class="fold-lines" [value]="c">{{c}}</ion-select-option>
             </ion-select>
           </div>
         

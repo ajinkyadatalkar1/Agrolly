@@ -15,8 +15,8 @@
   <ion-list>
     <ion-item *ngFor="let item of lists | slice:0:lists.length-1" [attr.color]="setcolor(item.id)" (click)="LoadQuesAndComment(item.id)" button>
       <ion-label class="fold-lines" class="ion-text-wrap">
-        <h2>{{item.question}}</h2>
-        <h5>Name: {{item.name}}</h5>
+        <h2>{{item.question}}</h2><br />
+        <h5>Date: {{item.date}}</h5>
       </ion-label>
     </ion-item>
   </ion-list>

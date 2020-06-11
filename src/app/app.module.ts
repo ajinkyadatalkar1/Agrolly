@@ -20,6 +20,7 @@ import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { Language } from './language/language';
 import { Countries } from './Country/countries';
 import { States } from './States/states';
+import { Sums } from './Sums/sums';
 import { StoreNotifications } from './notificationStore/storenotifications';
 
 import { OnetimepasswordPage } from './onetimepassword/onetimepassword.page';
@@ -43,6 +44,7 @@ import { ShowquestionsPage } from './showquestions/showquestions.page';
     Language,
     Countries,
     States,
+    Sums,
     StoreNotifications
   ],
   bootstrap: [AppComponent],
