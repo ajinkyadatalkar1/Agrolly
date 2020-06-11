@@ -76,7 +76,6 @@ export class HttpcallsService {
       if (val !== '' && val !== null && val !== undefined) {
         this.id = val;
         this.GetUserQuestions(); // call when login available
-        // console.log("id is:" + this.id);
       } else {
         storage.remove('id');
       }
@@ -483,17 +482,18 @@ export class HttpcallsService {
 
   /* Get User Questions */
   GetUserQuestions() {
-    if (this.name !== 'null' || this.name !== undefined) {
-      const postQuesData = {
-        uid: this.id
-      };
-      this.http.post('http://agrolly.tech/myquestions.php', postQuesData, this.httpOptionsPost).subscribe(
-        (result) => {
-          this.userQuesList = result;
-          // console.log(result);
-        });
-    }
+      if (this.name !== 'null' || this.name !== undefined) {
+        const postQuesData = {
+          uid: this.id
+        };
+        this.http.post('http://agrolly.tech/myquestions.php', postQuesData, this.httpOptionsPost).subscribe(
+          (result) => {
+            this.userQuesList = result;
+            // console.log(result);
+          });
+      }
   }
+
   /* Load Questions and Comments */
   getQuestion(id) {
     this.http.get('http://agrolly.tech/quesComm.php?what=question&id=' + id, this.httpOptionsGet).subscribe(

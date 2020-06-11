@@ -5,6 +5,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { Storage } from '@ionic/storage';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { timeout, catchError } from 'rxjs/operators';
+
 
 
 
@@ -16,6 +19,7 @@ import { Storage } from '@ionic/storage';
 export class QuescommentsPage implements OnInit {
   checkLogin: boolean;
   commentLists: any;
+  commentListsUpdated: any;
   completeQues: any;
   answer: string;
   showAns: boolean;
@@ -27,7 +31,6 @@ export class QuescommentsPage implements OnInit {
   @Input('Qid') Qid;
   @Input('Key') Key;
   language: any;
-
   clickedImage: string = undefined;
 
   options: CameraOptions = {
@@ -40,13 +43,21 @@ export class QuescommentsPage implements OnInit {
 
   constructor(private httpcalls: HttpcallsService,  private modalCtrl: ModalController, private camera: Camera,
               private transfer: FileTransfer, private loadingCtrl: LoadingController, private photoVwr: PhotoViewer,
-              private storage: Storage) {
+              private storage: Storage, private http: HttpClient) {
     this.showAns = false;
     this.language = this.httpcalls.languageList;
+    this.commentLists = this.httpcalls.commentList;
+    this.commentListsUpdated =  this.httpcalls.commentList;
     this.timer = setInterval(() => {
       this.refreshComments();
     }, 3000);
   }
+
+  httpOptionsGet = {
+    headers: new HttpHeaders({
+      'Content-type': 'text/html',
+    })
+  };
 
   ngOnInit() {
   }
@@ -118,7 +129,18 @@ export class QuescommentsPage implements OnInit {
     await this.modalCtrl.dismiss(); // close the modal component
   }
 
+
+
   refreshComments() {
+
+    this.http.get('http://agrolly.tech/quesComm.php?what=comment&id=' + this.Qid, this.httpOptionsGet).pipe(timeout(2000), catchError(e => {
+      console.log('Comments timed out');
+      return null;
+    })).subscribe(
+      (result) => {
+        this.commentListsUpdated = result;
+    });
+
     this.httpcalls.getComments(this.Qid);
     this.length1 = JSON.stringify(this.commentLists);
     this.length2 = JSON.stringify(this.httpcalls.commentList);
