@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { HttpcallsService } from '../services/httpcalls.service';
 import { Countries } from '../Country/countries';
 import { States } from '../States/states';
+import { Sums } from '../Sums/sums';
 
 @Component({
   selector: 'app-tab3',
@@ -20,20 +21,25 @@ export class Tab3Page implements OnInit {
   stateSelected: string;
   countrySelected: string;
   countrySelectedIcon: string;
+  citySelected: string;
   fgtpass: string;
   registerUsr: string;
   otp: string;
   showLogoutsubscriber: Subscription;
   countries: any;
   states: any;
+  cities: any;
   showStates: boolean;
+  showCities: boolean;
   language: any;
 
   constructor(private otpmodal: ModalController, private router: Router,
-              private alert: AlertController, private httpcalls: HttpcallsService, private country: Countries, private state: States) {
+              private alert: AlertController, private httpcalls: HttpcallsService, private country: Countries, private state: States,
+              private city: Sums) {
                 this.countries = this.country.Country;
                 this.countrySelectedIcon = '../../assets/icon/earth.svg';
                 this.showStates = false;
+                this.showCities = false;
                 this.language = this.httpcalls.languageList;
               }
   ngOnInit() {
@@ -47,9 +53,12 @@ export class Tab3Page implements OnInit {
       this.name = undefined;
       this.email = undefined;
       this.password = undefined;
-      this.countrySelected = '../../assets/icon/earth.svg';
-      this.stateSelected = '../../assets/icon/earth.svg';
+      this.countrySelectedIcon = '../../assets/icon/earth.svg';
+      this.showStates = false;
+      this.countrySelected = undefined;
+      this.stateSelected = undefined;
       this.otp = undefined;
+      this.citySelected = undefined;
     } else {
       this.alertModal();
     }
@@ -64,12 +73,24 @@ export class Tab3Page implements OnInit {
     this.stateSelected = '';
     this.showStates = true;
     this.states = this.state.list[this.countrySelected];
+    this.showCities = false;
+    // this.citySelected = null;
+  }
+
+  showCity() {
+    if (this.countrySelected === 'Mongolia' && this.stateSelected === 'Dornod') {
+      this.showCities = true;
+      this.cities = this.city.cities.Dornod;
+    } else {
+      this.showCities = false;
+      this.citySelected = null;
+    }
   }
 
   async showDev() {
     const alert = await this.alert.create({
       header: 'Developer Info:',
-      message: 'Developed by Ajinkya Datalkar and Manoela Morais.',
+      message: 'Developed by Ajinkya Datalkar, Chimka and Manoela Morais.',
       buttons: ['Close']
     });
     await alert.present();
@@ -88,6 +109,7 @@ export class Tab3Page implements OnInit {
         save_password: this.password,
         save_country: this.countrySelected,
         save_state: this.stateSelected,
+        save_city: this.citySelected,
         page_type_fgt: this.fgtpass,
         page_type_reg: this.registerUsr,
         otp: this.otp
@@ -114,6 +136,9 @@ export class Tab3Page implements OnInit {
   ionViewDidEnter() { // Lifecycle event
     this.LogcheckSubscriber();
     this.language = this.httpcalls.languageList;
+    this.showStates = false;
+    this.showCities = false;
+    this.countrySelectedIcon = '../../assets/icon/earth.svg';
   }
 
   LogcheckSubscriber() { // use subscriber to show and hide logout button
