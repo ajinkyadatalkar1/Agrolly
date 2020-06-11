@@ -33,7 +33,22 @@ export class Language {
             state: 'State/Province',
             city: 'City',
             submit: 'Submit',
-            otp: 'One time password'
+            otp: 'One time password',
+            comment_notification: 'Someone commented on your post, navigate to My Questions',
+            uploading: 'Uploading...',
+            please_login: 'Please Login',
+            alert_msg: 'Alert',
+            fill_all_fields: 'Please complete all the fields',
+            ok: 'Ok',
+            please_wait: 'Please Wait',
+            name: 'Name',
+            location: 'Location',
+            date: 'Date',
+            common_ques: 'Common Questions',
+            comments_ans: 'Comments & Answers',
+            comment: 'Comment',
+            pull_refresh: 'Pull down to refresh',
+            loading: 'Loading',
         }
     ];
 
@@ -72,6 +87,21 @@ export class Language {
             city: 'Сум',
             submit: 'Илгээх',
             otp: 'Нэг удаагийн нууц үг',
+            comment_notification: 'Хэн нэгэн таны нийтлэл дээр сэтгэгдэл үлдээж, Миний Асуулт руу очно уу',
+            uploading: 'Байршуулж байна ...',
+            please_login: 'Нэвтэрч орно уу',
+            alert_msg: 'Сэрэмжлүүлэг',
+            fill_all_fields: 'Бүх талбарыг бөглөнө үү',
+            ok: 'болж байна уу',
+            please_wait: 'Түр хүлээнэ үү',
+            name: 'Нэр',
+            location: 'Байршил',
+            date: 'Огноо',
+            common_ques: 'Түгээмэл асуултууд',
+            comments_ans: 'Сэтгэгдэл ба хариулт',
+            comment: 'Сэтгэгдэл бичих',
+            pull_refresh: 'Шинэчлэх бол доош татна уу',
+            loading: 'Ачаалж байна',
         }
     ];
 
@@ -110,6 +140,21 @@ export class Language {
             city: 'Cidade',
             submit: 'Enviar',
             otp: 'Senha de uso único',
+            comment_notification: 'Alguém comentou sua postagem, navegue até Minhas perguntas',
+            uploading: 'Enviando...',
+            please_login: 'Por favor entre',
+            alert_msg: 'Alerta',
+            fill_all_fields: 'Por favor, complete todos os campos',
+            ok: 'Ok',
+            please_wait: 'Por favor, espere',
+            name: 'Nome',
+            location: 'Localização',
+            date: 'Encontro',
+            common_ques: 'Perguntas comuns',
+            comments_ans: 'Comentários e Respostas',
+            comment: 'Comente',
+            pull_refresh: 'Puxe para baixo para atualizar',
+            loading: 'Carregando',
         }
     ];
 }
