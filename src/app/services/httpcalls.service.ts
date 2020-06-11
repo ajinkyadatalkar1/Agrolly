@@ -142,7 +142,7 @@ export class HttpcallsService {
 
     this.fcm.onNotification().subscribe(data => {
       console.log(data);
-      console.log("No of notifications: " + this.tapQues.length);
+      console.log('No of notifications: ' + this.tapQues.length);
       if (data.wasTapped) {
         // this.ngZone.run(() => this.route.navigateByUrl('/tabs/myques')).then();
         for (let i = 0 ; i < this.tapQues.length ; i++) {
@@ -318,13 +318,14 @@ export class HttpcallsService {
     toast.present();
   }
   /* Register User */
-  register(email: string, password: string, name: string, country: string, state: string) {
+  register(email: string, password: string, name: string, country: string, state: string, city: string) {
     const postData = {
       useremail: email,
       userpassword: password,
       username: name,
       usercountry: country,
       userstate: state,
+      usercity: city
     };
     this.http.post('http://agrolly.tech/register.php', postData, this.httpOptionsPost).subscribe(
       (result) => {

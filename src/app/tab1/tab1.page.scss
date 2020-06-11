@@ -16,6 +16,14 @@ ion-content {
   vertical-align: middle;
 }
 
+.bannerImage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
 .languageBar {
   background-color: black;
   height: 30px;

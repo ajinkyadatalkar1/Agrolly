@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.coakum.agrolly" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.coakum.agrolly" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="Permissions">
         <param name="android-package" value="com.android.plugins.Permissions" />
     </feature>
@@ -55,7 +55,7 @@
         <param name="android-package" value="com.ionicframework.cordova.webview.IonicWebView" />
     </feature>
     <name>Agrolly</name>
-    <description>An app that help students appearing for frm exam collabratively.</description>
+    <description>Revolutionize Farming</description>
     <author email="ajinkya.dbz.1994@gmail.com" href="http://coakum.com/">Coakum technologies</author>
     <content src="index.html" />
     <access origin="*" />

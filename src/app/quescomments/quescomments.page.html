@@ -21,7 +21,8 @@
       <ion-img *ngIf="item.image != 'NaI'" [src]="item.image" (click)="showImage(item.image)" ></ion-img>
       <br />
       <h6>Posted By: {{item.name}}</h6>
-      <h6>Posted: {{item.date}}</h6>
+      <h6>Location: {{item.state}}, {{item.country}}</h6>
+      <h6>Date: {{item.date}}</h6>
     </ion-card-content>
 
   </ion-card>
