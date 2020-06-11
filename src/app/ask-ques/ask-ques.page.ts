@@ -14,6 +14,7 @@ export class AskQuesPage implements OnInit {
   clickedImage: string = undefined;
   base64Image: string;
   imageFilename: string;
+  language: string;
 
 
   options: CameraOptions = {
@@ -25,14 +26,20 @@ export class AskQuesPage implements OnInit {
   };
 
   constructor(private httpCalls: HttpcallsService, private alertCtrl: AlertController, private camera: Camera,
-              private transfer: FileTransfer, private loadingCtrl: LoadingController) { }
+              private transfer: FileTransfer, private loadingCtrl: LoadingController) {
+                this.language = this.httpCalls.languageList;
+               }
   logForm() {
 
   }
 
+  ionViewWillEnter() {
+    this.language = this.httpCalls.languageList;
+  }
+
   submitQues() {
     if (this.httpCalls.name !== undefined && this.httpCalls.id !== undefined && this.httpCalls.email !== undefined ) {
-      if (this.question !== undefined || this.question !== null  || this.question !== '') {
+      if (this.question !== undefined && this.question !== null  && this.question !== '') {
         this.imageFilename = this.httpCalls.name + Date.now() + '.jpg';
         if (this.clickedImage !== undefined) {
           this.httpCalls.post_question(this.question, this.imageFilename);
@@ -65,7 +72,7 @@ export class AskQuesPage implements OnInit {
 
   async transferImage() {
     const loader = await this.loadingCtrl.create({
-      message: 'Uploading....',
+      message: this.httpCalls.languageList.uploading,
     });
     await loader.present();
 
@@ -97,18 +104,18 @@ export class AskQuesPage implements OnInit {
 
   async alertModalLogin() {
     const alert = await this.alertCtrl.create({
-      header: 'Alert:',
-      message: 'Please Login',
-      buttons: ['OK']
+      header: this.httpCalls.languageList.alert,
+      message: this.httpCalls.languageList.please_login,
+      buttons: [this.httpCalls.languageList.ok]
     });
     await alert.present();
   }
 
   async alertModalFillFields() {
     const alert = await this.alertCtrl.create({
-      header: 'Alert:',
-      message: 'Please fill all the fields.',
-      buttons: ['OK']
+      header: this.httpCalls.languageList.alert,
+      message: this.httpCalls.languageList.fill_all_fields,
+      buttons: [this.httpCalls.languageList.ok]
     });
     await alert.present();
   }
