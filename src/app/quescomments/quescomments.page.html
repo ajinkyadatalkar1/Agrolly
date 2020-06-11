@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Comments & Answers</ion-title>
+    <ion-title>{{language.comments_ans}}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="closeModal()"><ion-icon name="close"></ion-icon></ion-button>
     </ion-buttons> 
@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
-    <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="lines" refreshingText="Loading"></ion-refresher-content>
+    <ion-refresher-content [attr.pullingText]="language.pull_refresh" refreshingSpinner="lines" [attr.refreshingText]="language.loading"></ion-refresher-content>
   </ion-refresher>
 
   <ion-card *ngFor="let item of completeQues;let i = index">
@@ -20,9 +20,9 @@
     <ion-card-content>
       <ion-img *ngIf="item.image != 'NaI'" [src]="item.image" (click)="showImage(item.image)" ></ion-img>
       <br />
-      <h6>Posted By: {{item.name}}</h6>
-      <h6>Location: {{item.state}}, {{item.country}}</h6>
-      <h6>Date: {{item.date}}</h6>
+      <h6>{{language.name}}: {{item.name}}</h6>
+      <h6>{{language.location}}: {{item.state}}, {{item.country}}</h6>
+      <h6>{{language.date}}: {{item.date}}</h6>
     </ion-card-content>
 
   </ion-card>
@@ -60,7 +60,7 @@
   <ion-grid>
   <ion-row>
   <ion-col size="9" class="send">
-    <textarea [(ngModel)]="answer" placeholder="Comment"></textarea>
+    <textarea [(ngModel)]="answer" [attr.placeholder]="language.comment"></textarea>
   </ion-col>
 
   <ion-col class="send">

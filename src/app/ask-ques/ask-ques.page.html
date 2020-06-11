@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Ask a question</ion-title>
+    <ion-title>{{language.ask_a_question}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
     <ion-item>
-        <ion-textarea rows="15" placeholder="What's your question?(Mandatory)" [(ngModel)]="question" required></ion-textarea>
+        <ion-textarea rows="15" [attr.placeholder]="language.ask_a_question" [(ngModel)]="question" required></ion-textarea>
     </ion-item>
 
     <ion-item *ngIf="clickedImage !== undefined">
@@ -32,7 +32,7 @@
 
 
     <ion-item lines="none">
-        <ion-button type="submit" (click)="submitQues()" color="success">Submit</ion-button>
+        <ion-button type="submit" (click)="submitQues()" color="success">{{language.submit}}</ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
