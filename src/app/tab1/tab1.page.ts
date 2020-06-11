@@ -76,6 +76,7 @@ export class Tab1Page {
       this.language = this.httpcalls.languageList;
       this.showHideTabs.languageSubscriber();
     }, 500);
+    this.httpcalls.GetForumQuestions();
   }
 
   LogcheckSubscriber() { // use subscriber to show and hide logout button
