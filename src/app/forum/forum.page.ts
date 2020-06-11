@@ -14,10 +14,16 @@ export class ForumPage implements OnInit {
   lists: any;
   completeQues: any;
   commentLists: any;
+  language: any;
 
   constructor(private httpcalls: HttpcallsService, private modalCtrl: ModalController, private loading: LoadingController ) {
     this.httpcalls.GetForumQuestions();
     this.lists = this.httpcalls.forumList;
+    this.language = this.httpcalls.languageList;
+  }
+
+  ionViewWillEnter() {
+    this.language = this.httpcalls.languageList;
   }
 
 
@@ -41,7 +47,7 @@ export class ForumPage implements OnInit {
   async presentLoading() {
     const loading = await this.loading.create({
       spinner: 'lines',
-      message: 'Please Wait',
+      message: this.httpcalls.languageList.please_wait,
       duration: 2000
     });
     await loading.present();

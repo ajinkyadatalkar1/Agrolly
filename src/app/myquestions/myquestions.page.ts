@@ -15,16 +15,19 @@ export class MyquestionsPage implements OnInit {
   completeQues: any;
   commentLists: any;
   hightlight: any;
+  language: any;
 
   constructor(private httpcalls: HttpcallsService, private modalCtrl: ModalController, private loading: LoadingController,
               private route: Router) {
     this.httpcalls.GetUserQuestions();
     this.lists = this.httpcalls.userQuesList;
+    this.language = this.httpcalls.languageList;
   }
 
   ionViewWillEnter() { // Lifecycle event
     this.lists = this.httpcalls.userQuesList;
     this.hightlight = this.httpcalls.tapQues;
+    this.language = this.httpcalls.languageList;
   }
 
   setcolor(id: number) {
@@ -64,7 +67,7 @@ export class MyquestionsPage implements OnInit {
   async presentLoading() {
     const loading = await this.loading.create({
       spinner: 'lines',
-      message: 'Please Wait',
+      message: this.httpcalls.languageList.please_wait,
       duration: 2000
     });
     await loading.present();

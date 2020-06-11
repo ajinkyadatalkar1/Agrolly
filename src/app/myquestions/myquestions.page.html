@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>My Questions</ion-title>
+    <ion-title>{{language.my_questions}}</ion-title>
     <ion-buttons slot="end">
     </ion-buttons> 
   </ion-toolbar>
@@ -8,15 +8,15 @@
 
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
-    <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="lines" refreshingText="Loading"></ion-refresher-content>
+    <ion-refresher-content [attr.pullingText]="language.pull_refresh" refreshingSpinner="lines" [attr.refreshingText]="language.loading"></ion-refresher-content>
   </ion-refresher>
-  <h5 style="text-align: center;">Pull down to refresh</h5>
+  <h5 style="text-align: center;">{{language.pull_refresh}}</h5>
 
   <ion-list>
     <ion-item *ngFor="let item of lists | slice:0:lists.length-1" [attr.color]="setcolor(item.id)" (click)="LoadQuesAndComment(item.id)" button>
       <ion-label class="fold-lines" class="ion-text-wrap">
         <h2>{{item.question}}</h2><br />
-        <h5>Date: {{item.date}}</h5>
+        <h5>{{language.date}}: {{item.date}}</h5>
       </ion-label>
     </ion-item>
   </ion-list>

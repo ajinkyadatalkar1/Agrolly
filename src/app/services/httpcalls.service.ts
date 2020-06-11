@@ -168,7 +168,7 @@ export class HttpcallsService {
 
   async notification() {
     const toast = await this.Toast.create({
-      message: 'Someone Commented on your post, go to My Questions',
+      message: this.languageList.comment_notification,
       duration: 2000,
       position: 'top',
       translucent: true,
@@ -442,11 +442,11 @@ export class HttpcallsService {
           if (result['result'] === 'successful') {
             this.quesPostSuccessful();
           } else {
-            this.quesPostFailed(this.languageList.question_post_failed);
+            this.quesPostFailed();
           }
         }, error => {
           // console.log(error);
-          this.quesPostFailed(error);
+          this.quesPostFailed();
         }
         );
     }
@@ -462,10 +462,10 @@ export class HttpcallsService {
     toast.present();
   }
 
-  async quesPostFailed(error: string) {
+  async quesPostFailed() {
     const toast = await this.Toast.create({
-      // message: this.languageList.question_post_failed,
-      message: error,
+      message: this.languageList.question_post_failed,
+      // message: error,
       duration: 2000,
       position: 'top',
       translucent: true
@@ -524,11 +524,11 @@ export class HttpcallsService {
         if (result['success'] === 1) {
           this.commentPostSuccessful();
         } else {
-          this.commentPostFailed(this.languageList.comment_post_failed);
+          this.commentPostFailed();
         }
       }, error => {
         console.log(error);
-        this.commentPostFailed(error);
+        this.commentPostFailed();
       }
       );
   }
@@ -543,10 +543,10 @@ export class HttpcallsService {
     toast.present();
   }
 
-  async commentPostFailed(error: string) {
+  async commentPostFailed() {
     const toast = await this.Toast.create({
-      // message: this.languageList.comment_post_failed,
-      message: error,
+      message: this.languageList.comment_post_failed,
+      // message: error,
       duration: 2000,
       position: 'top',
       translucent: true

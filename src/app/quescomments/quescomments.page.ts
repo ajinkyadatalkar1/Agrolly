@@ -26,6 +26,7 @@ export class QuescommentsPage implements OnInit {
   length2: string;
   @Input('Qid') Qid;
   @Input('Key') Key;
+  language: any;
 
   clickedImage: string = undefined;
 
@@ -41,6 +42,7 @@ export class QuescommentsPage implements OnInit {
               private transfer: FileTransfer, private loadingCtrl: LoadingController, private photoVwr: PhotoViewer,
               private storage: Storage) {
     this.showAns = false;
+    this.language = this.httpcalls.languageList;
     this.timer = setInterval(() => {
       this.refreshComments();
     }, 3000);
@@ -64,7 +66,7 @@ export class QuescommentsPage implements OnInit {
 
   async transferImage() {
     const loader = await this.loadingCtrl.create({
-      message: 'Uploading....',
+      message: this.httpcalls.languageList.uploading,
     });
     await loader.present();
     clearInterval(this.timer);
@@ -130,6 +132,7 @@ export class QuescommentsPage implements OnInit {
     this.checkLogin = this.httpcalls.loggedIn;
     this.completeQues = this.httpcalls.completeQues;
     this.commentLists = this.httpcalls.commentList;
+    this.language = this.httpcalls.languageList;
   }
 
 
@@ -146,7 +149,7 @@ export class QuescommentsPage implements OnInit {
       this.httpcalls.getQuestion(this.Qid);
       // this.httpcalls.getComments(this.Qid);
     } else {
-      this.httpcalls.commentPostFailed('Cannot post an empty comment.');
+      this.httpcalls.commentPostFailed();
     }
   }
 
