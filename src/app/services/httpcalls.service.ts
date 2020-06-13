@@ -131,23 +131,23 @@ export class HttpcallsService {
   initFireBase() {
     this.fcm.getToken().then(token => {
       this.setToken(token);
-      console.log(token);
+      // console.log(token);
     });
 
     this.fcm.onTokenRefresh().subscribe(token => {
       this.setToken(token);
-      console.log(token);
+      // console.log(token);
     });
 
     this.fcm.onNotification().subscribe(data => {
-      console.log(data);
-      console.log('No of notifications: ' + this.tapQues.length);
+      // console.log(data);
+      // console.log('No of notifications: ' + this.tapQues.length);
       if (data.wasTapped) {
         // this.ngZone.run(() => this.route.navigateByUrl('/tabs/myques')).then();
         for (let i = 0 ; i < this.tapQues.length ; i++) {
           if (this.tapQues[i].NotificationId === undefined) {
             this.tapQues[i].NotificationId = data.qid;
-            console.log(this.tapQues[i].NotificationId);
+            // console.log(this.tapQues[i].NotificationId);
             break;
           }
         }
@@ -156,7 +156,7 @@ export class HttpcallsService {
         for (let i = 0 ; i < this.tapQues.length ; i++ ) {
           if (this.tapQues[i].NotificationId === undefined) {
             this.tapQues[i].NotificationId = data.qid;
-            console.log(this.tapQues[i].NotificationId);
+            // console.log(this.tapQues[i].NotificationId);
             break;
           }
         }
@@ -185,11 +185,11 @@ export class HttpcallsService {
     if (this.loggedIn && (this.id !== null || this.id !== undefined)) {
       this.http.post('http://agrolly.tech/notify.php', postData, this.httpOptionsPost).subscribe(
         (result) => {
-          console.log('Result is:' + result['result']);
+          // console.log('Result is:' + result['result']);
           if (result['result'] === 'successful') {
-            console.log('Successful');
+            // console.log('Successful');
           } else {
-            console.log('unuccessful');
+            // console.log('unuccessful');
           }
         }
       );
@@ -203,11 +203,11 @@ export class HttpcallsService {
     };
     this.http.post('http://agrolly.tech/notify.php', postData, this.httpOptionsPost).subscribe(
       (result) => {
-        console.log('Result is:' + result['result']);
+        // console.log('Result is:' + result['result']);
         if (result['result'] === 'successful') {
-          console.log('Successful');
+          // console.log('Successful');
         } else {
-          console.log('unsuccessful');
+          // console.log('unsuccessful');
         }
       }
     );
@@ -406,7 +406,7 @@ export class HttpcallsService {
     };
     this.http.post('http://agrolly.tech/mail.php', postData, this.httpOptionsPost).subscribe(
       (result) => {
-        console.log(result);
+        // console.log(result);
       });
   }
 
@@ -519,15 +519,15 @@ export class HttpcallsService {
     };
     this.http.post('http://agrolly.tech/postAnswer.php', postQuesData, this.httpOptionsPost).subscribe(
       (result) => {
-        console.log(result['user_id']);
-        console.log(result['token']);
+        // console.log(result['user_id']);
+        // console.log(result['token']);
         if (result['success'] === 1) {
           this.commentPostSuccessful();
         } else {
           this.commentPostFailed();
         }
       }, error => {
-        console.log(error);
+        // console.log(error);
         this.commentPostFailed();
       }
       );

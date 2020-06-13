@@ -50,7 +50,7 @@ export class QuescommentsPage implements OnInit {
     this.commentListsUpdated =  this.httpcalls.commentList;
     this.timer = setInterval(() => {
       this.refreshComments();
-    }, 3000);
+    }, 1000);
   }
 
   httpOptionsGet = {
@@ -70,7 +70,7 @@ export class QuescommentsPage implements OnInit {
       this.base64Image = 'data:image/jpeg;base64,' + imageData;
       this.clickedImage = this.base64Image;
     }, (err) => {
-      console.log(err);
+      // console.log(err);
       // Handle error
     });
   }
@@ -92,7 +92,7 @@ export class QuescommentsPage implements OnInit {
     };
 
     fileTransfer.upload(this.base64Image, 'http://www.agrolly.tech/commentImages.php', options).then(data => {
-      console.log(data['response']);
+      // console.log(data['response']);
       loader.dismiss();
       this.clickedImage = undefined;
       this.timer = setInterval(() => {
@@ -120,19 +120,19 @@ export class QuescommentsPage implements OnInit {
   async closeModal() {
     clearInterval(this.timer);
     this.commentLists = undefined;
+    this.httpcalls.commentList = undefined;
+    this.commentListsUpdated = undefined;
     for (let i =0 ; i < this.httpcalls.tapQues.length ; i++) {
       if (this.Qid === this.httpcalls.tapQues[i].NotificationId) {
         this.httpcalls.tapQues[i].NotificationId = undefined;
       }
     }
-
     await this.modalCtrl.dismiss(); // close the modal component
   }
 
 
 
   refreshComments() {
-
     this.http.get('http://agrolly.tech/quesComm.php?what=comment&id=' + this.Qid, this.httpOptionsGet).pipe(timeout(2000), catchError(e => {
       console.log('Comments timed out');
       return null;
@@ -141,12 +141,12 @@ export class QuescommentsPage implements OnInit {
         this.commentListsUpdated = result;
     });
 
-    this.httpcalls.getComments(this.Qid);
+   // this.httpcalls.getComments(this.Qid);
     this.length1 = JSON.stringify(this.commentLists);
-    this.length2 = JSON.stringify(this.httpcalls.commentList);
-    if (this.length1.length !== this.length2.length) {
+    this.length2 = JSON.stringify(this.commentListsUpdated);
+    if (this.length1.length !== this.length2.length && this.commentLists.qid === this.commentListsUpdated.qid) {
       this.commentLists = undefined;
-      this.commentLists = this.httpcalls.commentList;
+      this.commentLists = this.commentListsUpdated;
     }
   }
 
@@ -179,7 +179,6 @@ export class QuescommentsPage implements OnInit {
     setTimeout(() => {
      this.httpcalls.getQuestion(this.Qid);
      this.httpcalls.getComments(this.Qid);
-
      this.completeQues = this.httpcalls.completeQues;
      this.commentLists = this.httpcalls.commentList;
      event.target.complete();
