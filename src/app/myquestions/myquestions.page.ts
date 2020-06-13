@@ -4,6 +4,8 @@ import { ModalController } from '@ionic/angular';
 import { QuescommentsPage } from '../quescomments/quescomments.page';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-myquestions',
@@ -18,10 +20,13 @@ export class MyquestionsPage implements OnInit {
   language: any;
 
   constructor(private httpcalls: HttpcallsService, private modalCtrl: ModalController, private loading: LoadingController,
-              private route: Router) {
+              private route: Router, private platform: Platform ) {
     this.httpcalls.GetUserQuestions();
     this.lists = this.httpcalls.userQuesList;
     this.language = this.httpcalls.languageList;
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.route.navigateByUrl('/tabs/tab2');
+    });
   }
 
   ionViewWillEnter() { // Lifecycle event
@@ -34,12 +39,12 @@ export class MyquestionsPage implements OnInit {
     if (this.hightlight !== undefined) {
       for (let i =0; i < this.hightlight.length ; i++) {
         if (this.hightlight[i].NotificationId === id) {
-          console.log('setting color success');
+          // console.log('setting color success');
           return 'success';
         }
       }
     } else {
-      console.log('setting no success color');
+      // console.log('setting no success color');
       return null;
     }
     return null;
@@ -55,7 +60,7 @@ export class MyquestionsPage implements OnInit {
     }*/
   }
 
-  LoadQuesAndComment(id: number) {
+  LoadQuesAndComment(id) {
     this.httpcalls.getQuestion(id);
     this.httpcalls.getComments(id);
     this.presentLoading();

@@ -3,7 +3,8 @@ import { OnetimepasswordPage } from '../onetimepassword/onetimepassword.page';
 import { ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { HttpcallsService } from '../services/httpcalls.service';
-
+import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -17,8 +18,12 @@ export class ForgotpasswordPage implements OnInit {
   registerUsr: string;
   otp: string;
   language: string;
-  constructor(private otpModal: ModalController, private alert: AlertController, private httpcalls: HttpcallsService) { 
+  constructor(private otpModal: ModalController, private alert: AlertController, private httpcalls: HttpcallsService, private route: Router,
+              private platform: Platform ) {
     this.language = this.httpcalls.languageList;
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.route.navigateByUrl('/tabs/tab2');
+    });
   }
   ngOnInit() {
   }

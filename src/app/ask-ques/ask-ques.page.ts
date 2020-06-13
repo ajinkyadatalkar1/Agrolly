@@ -3,6 +3,8 @@ import { HttpcallsService } from '../services/httpcalls.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { Platform } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ask-ques',
@@ -26,8 +28,11 @@ export class AskQuesPage implements OnInit {
   };
 
   constructor(private httpCalls: HttpcallsService, private alertCtrl: AlertController, private camera: Camera,
-              private transfer: FileTransfer, private loadingCtrl: LoadingController) {
+              private transfer: FileTransfer, private loadingCtrl: LoadingController, private platform: Platform, private route: Router) {
                 this.language = this.httpCalls.languageList;
+                this.platform.backButton.subscribeWithPriority(10, () => {
+                  this.route.navigateByUrl('/tabs/tab1');
+                });
                }
   logForm() {
 
@@ -67,7 +72,7 @@ export class AskQuesPage implements OnInit {
       this.base64Image = 'data:image/jpeg;base64,' + imageData;
       this.clickedImage = this.base64Image;
     }, (err) => {
-      console.log(err);
+      // console.log(err);
       // Handle error
     });
   }
@@ -89,7 +94,7 @@ export class AskQuesPage implements OnInit {
     };
 
     fileTransfer.upload(this.base64Image, 'http://www.agrolly.tech/questionImages.php', options).then(data => {
-      console.log(data['response']);
+      // console.log(data['response']);
       loader.dismiss();
       this.clickedImage = undefined;
     }, error => {
@@ -124,4 +129,6 @@ export class AskQuesPage implements OnInit {
 
   ngOnInit() {
   }
+
+
 }

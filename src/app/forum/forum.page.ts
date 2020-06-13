@@ -3,7 +3,8 @@ import { HttpcallsService } from '../services/httpcalls.service';
 import { ModalController } from '@ionic/angular';
 import { QuescommentsPage } from '../quescomments/quescomments.page';
 import { LoadingController } from '@ionic/angular';
-
+import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-forum',
@@ -16,10 +17,15 @@ export class ForumPage implements OnInit {
   commentLists: any;
   language: any;
 
-  constructor(private httpcalls: HttpcallsService, private modalCtrl: ModalController, private loading: LoadingController ) {
+  constructor(private httpcalls: HttpcallsService, private modalCtrl: ModalController, private loading: LoadingController,
+              private route: Router, private platform: Platform ) {
     this.httpcalls.GetForumQuestions();
     this.lists = this.httpcalls.forumList;
     this.language = this.httpcalls.languageList;
+
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.route.navigateByUrl('/tabs/tab2');
+    });
   }
 
   ionViewWillEnter() {
