@@ -8,6 +8,8 @@ import { HttpcallsService } from '../services/httpcalls.service';
 import { Countries } from '../Country/countries';
 import { States } from '../States/states';
 import { Sums } from '../Sums/sums';
+import { Platform } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-tab3',
@@ -35,12 +37,16 @@ export class Tab3Page implements OnInit {
 
   constructor(private otpmodal: ModalController, private router: Router,
               private alert: AlertController, private httpcalls: HttpcallsService, private country: Countries, private state: States,
-              private city: Sums) {
+              private city: Sums, private platform: Platform) {
                 this.countries = this.country.Country;
                 this.countrySelectedIcon = '../../assets/icon/earth.svg';
                 this.showStates = false;
                 this.showCities = false;
                 this.language = this.httpcalls.languageList;
+
+                this.platform.backButton.subscribeWithPriority(10, () => {
+                  this.router.navigateByUrl('/tabs/tab2');
+                });
               }
   ngOnInit() {
   }
@@ -78,9 +84,19 @@ export class Tab3Page implements OnInit {
   }
 
   showCity() {
-    if (this.countrySelected === 'Mongolia' && this.stateSelected === 'Dornod') {
+    if (this.countrySelected === 'Mongolia' && (this.stateSelected === 'Dornod' || this.stateSelected === 'Sukhbaatar' ||
+         this.stateSelected === 'Khentii')) {
       this.showCities = true;
-      this.cities = this.city.cities.Dornod;
+      this.cities = undefined;
+      if (this.stateSelected === 'Dornod') {
+        this.cities = this.city.cities[0].Dornod;
+      } else if (this.stateSelected === 'Sukhbaatar') {
+        this.cities = this.city.cities[0].Sukhbaatar;
+      } else if (this.stateSelected === 'Khentii') {
+        this.cities = this.city.cities[0].Khentii;
+      } else {
+        this.showCities = false;
+      }
     } else {
       this.showCities = false;
       this.citySelected = null;

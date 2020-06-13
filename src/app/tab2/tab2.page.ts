@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HttpcallsService } from '../services/httpcalls.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-tab2',
@@ -13,8 +15,11 @@ export class Tab2Page {
   password: string;
   showLogoutsubscriber: Subscription;
   language: any;
-  constructor(private httpcalls: HttpcallsService, private router: Router) {
+  constructor(private httpcalls: HttpcallsService, private router: Router, private platform: Platform) {
     this.language = this.httpcalls.languageList;
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.router.navigateByUrl('/tabs/tab2');
+    });
   }
 
   login() {
