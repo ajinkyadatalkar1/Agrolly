@@ -24,7 +24,7 @@
 
           <div class="countrySelect crediantials input-block"  *ngIf="showCities">
             <ion-icon [attr.src]="countrySelectedIcon" size="large"></ion-icon>
-            <ion-select class="crediantials" [attr.placeholder]="language.city" interface="action-sheet" [(ngModel)]="citySelected" *ngIf="showStates" required>
+            <ion-select class="crediantials" [attr.placeholder]="language.city" interface="action-sheet" [(ngModel)]="citySelected" *ngIf="showStates" (ionChange)="showCity()" required>
               <ion-select-option *ngFor="let c of cities" class="fold-lines" [value]="c">{{c}}</ion-select-option>
             </ion-select>
           </div>
