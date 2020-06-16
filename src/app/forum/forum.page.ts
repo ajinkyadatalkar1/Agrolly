@@ -18,7 +18,7 @@ export class ForumPage implements OnInit {
   language: any;
 
   constructor(private httpcalls: HttpcallsService, private modalCtrl: ModalController, private loading: LoadingController,
-              private route: Router, private platform: Platform ) {
+              private route: Router, private platform: Platform) {
     this.httpcalls.GetForumQuestions();
     this.lists = this.httpcalls.forumList;
     this.language = this.httpcalls.languageList;
@@ -29,6 +29,7 @@ export class ForumPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    this.lists = this.httpcalls.forumList;
     this.language = this.httpcalls.languageList;
   }
 
@@ -59,13 +60,18 @@ export class ForumPage implements OnInit {
     await loading.present();
   }
 
-async openQues(id) {
-  const myModal = await this.modalCtrl.create({
-    component: QuescommentsPage,
-    componentProps: {Qid: id}
-  });
-  return await myModal.present();
-}
+  async openQues(id) {
+    const myModal = await this.modalCtrl.create({
+      component: QuescommentsPage,
+      componentProps: { Qid: id }
+    });
+    myModal.onDidDismiss().then(() => {
+      this.lists = this.httpcalls.forumList;
+    });
+    return await myModal.present();
+  }
+
+
 
   ngOnInit() {
     this.httpcalls.GetForumQuestions();

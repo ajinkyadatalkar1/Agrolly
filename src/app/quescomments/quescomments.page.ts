@@ -116,6 +116,11 @@ export class QuescommentsPage implements OnInit {
     this.photoVwr.show(url, 'Agrolly', {share: true});
   }
 
+  delete_ques(id) {
+    this.httpcalls.deletePost(id);
+    this.closeModal();
+  }
+
   async closeModal() {
     clearInterval(this.timer);
     this.commentLists = undefined;

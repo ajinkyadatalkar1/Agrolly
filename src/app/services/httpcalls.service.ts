@@ -562,4 +562,31 @@ export class HttpcallsService {
         this.subjectQuestionList = result;
       });
   }
+
+  /* delete post */
+  async deletePost(id) {
+    const postData = {
+      qid: id
+    };
+    this.http.post('http://agrolly.tech/deletePost.php', postData, this.httpOptionsPost).subscribe(
+      (result) => {
+        if (result['result'] === 'successful') {
+          this.GetForumQuestions();
+          this.deleteSuccess();
+          console.log('Post Deleted');
+        } else {
+          console.log('Post Delete Unsuccessful');
+        }
+      });
+  }
+
+  async deleteSuccess() {
+    const toast = await this.Toast.create({
+      message: 'Pull down to refresh page',
+      duration: 4000,
+      position: 'top',
+      translucent: true
+    });
+    toast.present();
+  }
 }
