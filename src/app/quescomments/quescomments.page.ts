@@ -9,8 +9,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { timeout, catchError } from 'rxjs/operators';
 
 
-
-
 @Component({
   selector: 'app-quescomments',
   templateUrl: './quescomments.page.html',
@@ -32,6 +30,7 @@ export class QuescommentsPage implements OnInit {
   @Input('Key') Key;
   language: any;
   clickedImage: string = undefined;
+  uid: string;
 
   options: CameraOptions = {
     quality: 80,
@@ -130,8 +129,6 @@ export class QuescommentsPage implements OnInit {
     await this.modalCtrl.dismiss(); // close the modal component
   }
 
-
-
   refreshComments() {
     this.http.get('http://agrolly.tech/quesComm.php?what=comment&id=' + this.Qid, this.httpOptionsGet).pipe(timeout(2000), catchError(e => {
       console.log('Comments timed out');
@@ -155,6 +152,7 @@ export class QuescommentsPage implements OnInit {
     this.completeQues = this.httpcalls.completeQues;
     this.commentLists = this.httpcalls.commentList;
     this.language = this.httpcalls.languageList;
+    this.uid = this.httpcalls.id;
   }
 
 
