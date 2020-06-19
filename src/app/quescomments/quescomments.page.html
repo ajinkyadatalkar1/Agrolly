@@ -14,16 +14,17 @@
 
   <ion-card *ngFor="let item of completeQues;let i = index">
     <ion-card-header>
-      <span class="ion-text-justify" style="color: #0000EE;"><h3>{{item.question}}</h3></span>
+      <ion-textarea style="color: #0000EE;font-size: 1.17em;font-weight: bold;" disabled>{{item.question}}</ion-textarea>
     </ion-card-header>
-
     <ion-card-content>
       <ion-img *ngIf="item.image != 'NaI'" [src]="item.image" (click)="showImage(item.image)" ></ion-img>
       <br />
       <h6>{{language.name}}: {{item.name}}</h6>
       <h6>{{language.location}}: {{item.state}}, {{item.country}}</h6>
       <h6>{{language.date}}: {{item.date}}</h6>
-      <ion-toolbar *ngIf="checkLogin && item.user_id == uid"> <ion-buttons slot="end"><ion-icon name="trash" (click)="delete_ques(Qid)" size="large"></ion-icon></ion-buttons> </ion-toolbar>
+      <ion-toolbar *ngIf="checkLogin && item.user_id == uid"> 
+        <ion-buttons slot="end"><ion-icon name="trash" (click)="delete_ques(Qid)" size="large"></ion-icon></ion-buttons> 
+      </ion-toolbar>
     </ion-card-content>
   </ion-card>
   <ion-list *ngFor="let item of commentLists | slice:0:commentLists.length-1;let i = index">
@@ -33,10 +34,12 @@
          <br />
           <div class="commentImage" *ngIf="commentLists[i].image != 'NaI'"><img class="thumbnail" [attr.src]="commentLists[i].image" (click)="showImage(commentLists[i].image)" /></div>
         </div>
-        <p class="stamp">{{item.name}}<br />
-        {{item.date}}</p>
-        <ion-icon name="trash" size="large" slot="end"></ion-icon>
+        <p class="stamp">
+          {{item.name}}<br />
+          {{item.date}}
+        </p>
       </div>
+      <ion-icon name="trash" *ngIf="checkLogin && item.user_id == uid" (click)="delete_comment(item.cid)" size="small" slot="end"></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>
@@ -75,3 +78,4 @@
   </ion-row>
   </ion-grid>
 </ion-footer>
+
