@@ -121,6 +121,10 @@ export class QuescommentsPage implements OnInit {
     this.closeModal();
   }
 
+  delete_comment(id) {
+    this.httpcalls.deleteComment(id);
+  }
+
   async closeModal() {
     clearInterval(this.timer);
     this.commentLists = undefined;

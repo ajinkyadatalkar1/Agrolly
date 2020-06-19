@@ -566,7 +566,8 @@ export class HttpcallsService {
   /* delete post */
   async deletePost(id) {
     const postData = {
-      qid: id
+      qid: id,
+      what: 'question'
     };
     this.http.post('http://agrolly.tech/deletePost.php', postData, this.httpOptionsPost).subscribe(
       (result) => {
@@ -576,6 +577,23 @@ export class HttpcallsService {
           console.log('Post Deleted');
         } else {
           console.log('Post Delete Unsuccessful');
+        }
+      });
+  }
+
+  async deleteComment(id) {
+    const postData = {
+      cid: id,
+      what: 'comment'
+    };
+    this.http.post('http://agrolly.tech/deletePost.php', postData, this.httpOptionsPost).subscribe(
+      (result) => {
+        if (result['result'] === 'successful') {
+          this.GetForumQuestions();
+          this.deleteSuccess();
+          console.log('Comment Deleted');
+        } else {
+          console.log('Comment Delete Unsuccessful');
         }
       });
   }
