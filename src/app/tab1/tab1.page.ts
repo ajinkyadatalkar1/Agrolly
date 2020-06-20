@@ -19,16 +19,27 @@ export class Tab1Page {
   showLogoutsubscriber: Subscription;
   showLogout: any;
   language: any;
+  menuIcon: string;
   // tslint:disable-next-line: max-line-length
   constructor( private showHideTabs: TabsPage, private httpcalls: HttpcallsService, private lang: Language, private storage: Storage,
                private Toast: ToastController, private route: Router, private menu: MenuController) {
     this.LogcheckSubscriber();
     this.language = this.httpcalls.languageList;
+    this.menuIcon = 'menu';
   }
 
-openFirst() {
+openMenu() {
     this.menu.enable(true, 'first');
     this.menu.open('first');
+    this.menuIcon = 'close';
+}
+
+closeMenu() {
+  this.menuIcon = 'menu';
+}
+
+changepasswordpage() {
+  this.route.navigateByUrl('/tabs/changepassword');
 }
 
 changeTabs() {

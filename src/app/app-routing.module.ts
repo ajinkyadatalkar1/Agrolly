@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'practice-ques2',
     loadChildren: () => import('./practice-ques2/practice-ques2.module').then( m => m.PracticeQues2PageModule)
+  },
+  {
+    path: 'changepassword',
+    loadChildren: () => import('./changepassword/changepassword.module').then( m => m.ChangepasswordPageModule)
   }
 ];
 @NgModule({
