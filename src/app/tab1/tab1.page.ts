@@ -39,6 +39,7 @@ closeMenu() {
 }
 
 changepasswordpage() {
+  this.menu.close('first');
   this.route.navigateByUrl('/tabs/changepassword');
 }
 
