@@ -1,19 +1,14 @@
-<!--
-<ion-header>
+<ion-header no-border>
   <ion-toolbar>
-    <ion-title>
-      The FRM CLUB
-    </ion-title>
     <ion-buttons *ngIf="showLogout" slot="end">
-      <ion-tab-button (click)="logout()">
-        <ion-icon name="walk"></ion-icon>
-        <ion-label>Logout</ion-label>
+      <ion-tab-button (click)="openFirst()">
+        <ion-icon size="large" name="menu"></ion-icon>
       </ion-tab-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
--->
-<ion-content>
+
+<ion-content class="mainContent"> 
 <div class="centerAll">
    <div class="bannerImage" >
     <img src='../../assets/logo_small.svg' />
@@ -47,6 +42,26 @@
 </div>
 </ion-content>
 
+
+
+<ion-menu side="start" menuId="first" contentId="main">
+  <ion-header>
+    <ion-toolbar color="secondary">
+      <ion-title>Options</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="has-header">
+  <ion-list>
+      <ion-item button><ion-label>Profile</ion-label><ion-icon slot="end" name="person"></ion-icon></ion-item>
+      <ion-item (click)="alert('hi')" button><ion-label>Reset Password</ion-label><ion-icon slot="end" name="key"></ion-icon></ion-item>
+      <ion-item (click)="logout()" button><ion-label>Logout</ion-label><ion-icon slot="end" name="walk"></ion-icon></ion-item>
+  </ion-list>
+</ion-content>
+</ion-menu>
+<ion-router-outlet id="main"></ion-router-outlet>
+
+
+
 <div>
   <ion-tab-bar slot="bottom" class="languageBar">
       <ion-tab-button (click)="english()">
@@ -59,4 +74,4 @@
         Português
       </ion-tab-button>
     </ion-tab-bar>
-  </div>
+</div>

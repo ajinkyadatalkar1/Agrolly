@@ -6,6 +6,8 @@ import { Language } from '../language/language';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
+
 
 
 @Component({
@@ -19,13 +21,17 @@ export class Tab1Page {
   language: any;
   // tslint:disable-next-line: max-line-length
   constructor( private showHideTabs: TabsPage, private httpcalls: HttpcallsService, private lang: Language, private storage: Storage,
-               private Toast: ToastController, private route: Router) {
+               private Toast: ToastController, private route: Router, private menu: MenuController) {
     this.LogcheckSubscriber();
     this.language = this.httpcalls.languageList;
   }
 
+openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
+}
 
-  changeTabs() {
+changeTabs() {
     this.showHideTabs.showLoginTab = this.httpcalls.showLoginTab;
     this.showHideTabs.showRegisterTab = this.httpcalls.showRegisterTab;
     this.showHideTabs.showMyQuestionsTab = this.httpcalls.showMyQuestionsTab;
@@ -33,28 +39,28 @@ export class Tab1Page {
     this.showHideTabs.showFrm1Tab = false;
   }
 
-  english() {
+english() {
     this.httpcalls.languageList = this.lang.English[0];
     this.language = this.httpcalls.languageList;
     this.showHideTabs.languageSubscriber();
     this.saveLanguagePreferance('English');
   }
 
-  mongolian() {
+mongolian() {
     this.httpcalls.languageList = this.lang.Mongolian[0];
     this.language = this.httpcalls.languageList;
     this.showHideTabs.languageSubscriber();
     this.saveLanguagePreferance('Mongolian');
   }
 
-  portuguese() {
+portuguese() {
     this.httpcalls.languageList = this.lang.Portuguese[0];
     this.language = this.httpcalls.languageList;
     this.showHideTabs.languageSubscriber();
     this.saveLanguagePreferance('Portuguese');
   }
 
-  saveLanguagePreferance(setLang) {
+saveLanguagePreferance(setLang) {
     this.storage.set('language', setLang);
     this.langToast();
   }
@@ -69,7 +75,7 @@ export class Tab1Page {
     toast.present();
   }
 
-  ionViewWillEnter() { // Lifecycle event
+ionViewWillEnter() { // Lifecycle event
     setTimeout(() => {
       this.LogcheckSubscriber();
       this.changeTabs();
@@ -79,13 +85,14 @@ export class Tab1Page {
     this.httpcalls.GetForumQuestions();
   }
 
-  LogcheckSubscriber() { // use subscriber to show and hide logout button
+LogcheckSubscriber() { // use subscriber to show and hide logout button
     this.showLogoutsubscriber = this.httpcalls.checkLogin().subscribe((data) => {
       this.showLogout = data;
     });
   }
 
-  logout() {
+logout() {
+    this.menu.close('first');
     this.httpcalls.Logout();
     this.LogcheckSubscriber();
     this.showHideTabs.setDefaultTabs();

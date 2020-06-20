@@ -45,7 +45,7 @@ import { ShowquestionsPage } from './showquestions/showquestions.page';
     Countries,
     States,
     Sums,
-    StoreNotifications
+    StoreNotifications,
   ],
   bootstrap: [AppComponent],
 })
