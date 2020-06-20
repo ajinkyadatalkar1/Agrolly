@@ -573,10 +573,9 @@ export class HttpcallsService {
       (result) => {
         if (result['result'] === 'successful') {
           this.GetForumQuestions();
-          this.deleteSuccess();
-          console.log('Post Deleted');
+          this.showToast('Post Deleted');
         } else {
-          console.log('Post Delete Unsuccessful');
+          this.showToast('Post Delete Unsuccessful');
         }
       });
   }
@@ -590,17 +589,36 @@ export class HttpcallsService {
       (result) => {
         if (result['result'] === 'successful') {
           this.GetForumQuestions();
-          this.deleteSuccess();
-          console.log('Comment Deleted');
+          this.showToast('Comment Deleted');
         } else {
-          console.log('Comment Delete Unsuccessful');
+          this.showToast('Comment Delete Unsuccessful');
         }
       });
   }
 
-  async deleteSuccess() {
+  /* change password */
+  async changepassword(curPassword, newPassword) {
+    const postData = {
+      cur_password: curPassword,
+      new_password: newPassword,
+      uid: this.id,
+      uemail: this.email
+    };
+    this.http.post('http://agrolly.tech/changepassword.php', postData, this.httpOptionsPost).subscribe(
+      (result) => {
+        if (result['result'] === 'successful') {
+          this.showToast('Password change successful');
+        } else {
+          this.showToast('Failed to change password');
+        }
+      });
+  }
+
+  /* Toast */
+
+  async showToast(msg: string) {
     const toast = await this.Toast.create({
-      message: 'Pull down to refresh page',
+      message: msg,
       duration: 4000,
       position: 'top',
       translucent: true
