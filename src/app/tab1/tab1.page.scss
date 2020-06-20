@@ -3,7 +3,12 @@
   overflow: hidden;
 }
 
-ion-content {
+ion-toolbar {
+  --background: url("../../assets/background.jpg") no-repeat center/cover fixed;
+}
+
+
+ion-content.mainContent {
   --background: url("../../assets/background.jpg") no-repeat center/cover fixed;
 }
 
