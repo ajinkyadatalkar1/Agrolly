@@ -15,6 +15,13 @@
   <ion-card *ngFor="let item of completeQues;let i = index">
     <ion-card-header>
       <ion-textarea style="color: #0000EE;font-size: 1.17em;font-weight: bold;" disabled>{{item.question}}</ion-textarea>
+      <ion-toolbar *ngIf="showEditor">
+        <ion-textarea [attr.placeholder]="item.question" [(ngModel)]="updatedQues"></ion-textarea>
+        <ion-buttons slot="end">
+          <ion-button (click)="edit_ques()"><ion-icon name="close" size="large"></ion-icon></ion-button>
+          <ion-button (click)="update_ques()"><ion-icon name="send" size="large"></ion-icon></ion-button>
+        </ion-buttons>
+      </ion-toolbar>  
     </ion-card-header>
     <ion-card-content>
       <ion-img *ngIf="item.image != 'NaI'" [src]="item.image" (click)="showImage(item.image)" ></ion-img>
@@ -23,7 +30,10 @@
       <h6>{{language.location}}: {{item.state}}, {{item.country}}</h6>
       <h6>{{language.date}}: {{item.date}}</h6>
       <ion-toolbar *ngIf="checkLogin && item.user_id == uid"> 
-        <ion-buttons slot="end"><ion-icon name="trash" (click)="delete_ques(Qid)" size="large"></ion-icon></ion-buttons> 
+        <ion-buttons slot="end">
+          <ion-button (click)="edit_ques()"><ion-icon src="../../assets/icon/pencil.svg" size="large"></ion-icon></ion-button>
+          <ion-button (click)="delete_ques(Qid)"><ion-icon name="trash" size="large"></ion-icon></ion-button>
+        </ion-buttons> 
       </ion-toolbar>
     </ion-card-content>
   </ion-card>
