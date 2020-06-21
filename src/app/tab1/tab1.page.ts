@@ -43,6 +43,11 @@ changepasswordpage() {
   this.route.navigateByUrl('/tabs/changepassword');
 }
 
+profile() {
+  this.menu.close('first');
+  this.route.navigateByUrl('/tabs/profile');
+}
+
 changeTabs() {
     this.showHideTabs.showLoginTab = this.httpcalls.showLoginTab;
     this.showHideTabs.showRegisterTab = this.httpcalls.showRegisterTab;

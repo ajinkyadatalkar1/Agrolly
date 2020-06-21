@@ -20,6 +20,9 @@ export class HttpcallsService {
   email: string;
   id: string;
   password: string;
+  country: string;
+  state: string;
+  city: string;
 
   // change tabs based on login
   showHomeTab = true;
@@ -103,6 +106,32 @@ export class HttpcallsService {
       }
     });
 
+    storage.get('country').then((val) => {
+      if (val !== '' && val !== null && val !== undefined) {
+        this.country = val;
+        // console.log("name is:" + this.name);
+      } else {
+        storage.remove('country');
+      }
+    });
+
+    storage.get('state').then((val) => {
+      if (val !== '' && val !== null && val !== undefined) {
+        this.state = val;
+        // console.log("name is:" + this.name);
+      } else {
+        storage.remove('state');
+      }
+    });
+
+    storage.get('city').then((val) => {
+      if (val !== '' && val !== null && val !== undefined) {
+        this.city = val;
+        // console.log("name is:" + this.name);
+      } else {
+        storage.remove('city');
+      }
+    });
 
     /*********** firebase cloud messaging ****************/
 
@@ -247,10 +276,16 @@ export class HttpcallsService {
           this.name = result['name'];
           this.id = result['user_id'];
           this.email = email;
+          this.country = result['country'];
+          this.state = result['state'];
+          this.city = result['city'];
           this.LoginToast();
           this.storage.set('email', email);
           this.storage.set('name', this.name);
           this.storage.set('id', this.id);
+          this.storage.set('country', this.country);
+          this.storage.set('state', this.state);
+          this.storage.set('city', this.city);
           this.GetUserQuestions();
           this.initFireBase();
         } else {
@@ -610,6 +645,37 @@ export class HttpcallsService {
           this.showToast('Password change successful');
         } else {
           this.showToast('Failed to change password');
+        }
+      });
+  }
+
+  /* Update Profile */
+
+  async update_profile(name, city, state, country, password) {
+    const postData = {
+      upassword: password,
+      uid: this.id,
+      uemail: this.email,
+      ucity: city,
+      ustate: state,
+      ucountry: country,
+      uname: name
+    };
+    this.http.post('http://agrolly.tech/profile.php', postData, this.httpOptionsPost).subscribe(
+      (result) => {
+        if (result['result'] === 'successful') {
+          this.showToast('Profile updated successfully');
+          this.name = name;
+          this.city = city;
+          this.state = state;
+          this.country = country;
+          this.storage.set('name', name);
+          this.storage.set('city', city);
+          this.storage.set('state', state);
+          this.storage.set('country', country);
+          this.route.navigateByUrl('/tabs/tab1');
+        } else {
+          this.showToast('Failed to update profile');
         }
       });
   }
