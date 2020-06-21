@@ -16,6 +16,7 @@ export class ForumPage implements OnInit {
   completeQues: any;
   commentLists: any;
   language: any;
+  country: string;
 
   constructor(private httpcalls: HttpcallsService, private modalCtrl: ModalController, private loading: LoadingController,
               private route: Router, private platform: Platform) {
@@ -26,13 +27,23 @@ export class ForumPage implements OnInit {
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.route.navigateByUrl('/tabs/tab2');
     });
+
+    this.setCountry();
   }
 
   ionViewWillEnter() {
     this.lists = this.httpcalls.forumList;
     this.language = this.httpcalls.languageList;
+    this.setCountry();
   }
 
+  setCountry() {
+    if (this.httpcalls.country !== undefined || this.httpcalls.country !== null || this.httpcalls.country !== '') {
+      this.country = this.httpcalls.country;
+    } else {
+      this.country = 'Mongolia';
+    }
+  }
 
   refresh(event) {
     setTimeout(() => {
