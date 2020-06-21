@@ -31,6 +31,8 @@ export class QuescommentsPage implements OnInit {
   language: any;
   clickedImage: string = undefined;
   uid: string;
+  showEditor: boolean;
+  updatedQues: string;
 
   options: CameraOptions = {
     quality: 80,
@@ -47,6 +49,10 @@ export class QuescommentsPage implements OnInit {
     this.language = this.httpcalls.languageList;
     this.commentLists = this.httpcalls.commentList;
     this.commentListsUpdated =  this.httpcalls.commentList;
+
+    this.showEditor = false;
+    this.updatedQues = undefined;
+
     this.timer = setInterval(() => {
       this.refreshComments();
     }, 1000);
@@ -119,6 +125,15 @@ export class QuescommentsPage implements OnInit {
   delete_ques(id) {
     this.httpcalls.deletePost(id);
     this.closeModal();
+  }
+
+  edit_ques() {
+    this.showEditor = !this.showEditor;
+  }
+
+  update_ques() {
+    this.httpcalls.update_ques(this.Qid, this.updatedQues);
+    this.showEditor = !this.showEditor;
   }
 
   delete_comment(id) {

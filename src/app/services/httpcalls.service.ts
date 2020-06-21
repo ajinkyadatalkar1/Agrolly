@@ -509,7 +509,7 @@ export class HttpcallsService {
 
   /* Get Forum Questions */
   GetForumQuestions() {
-    this.http.get('http://agrolly.tech/forum.php', this.httpOptionsGet).subscribe(
+    this.http.get('http://agrolly.tech/forum2.php', this.httpOptionsGet).subscribe(
       (result) => {
         this.forumList = result;
       });
@@ -680,8 +680,26 @@ export class HttpcallsService {
       });
   }
 
-  /* Toast */
+  /* Update question */
+  async update_ques(qid, question) {
+    const postData = {
+      uid: this.id,
+      uqid: qid,
+      uquestion: question
+    };
+    this.http.post('http://agrolly.tech/updatequestion.php', postData, this.httpOptionsPost).subscribe(
+      (result) => {
+        if (result['result'] === 'successful') {
+          this.getQuestion(qid);
+          this.showToast('Post updated successfully, Please refresh');
+        } else {
+          this.showToast('Failed to update post');
+        }
+      });
+  }
 
+
+  /* Toast */
   async showToast(msg: string) {
     const toast = await this.Toast.create({
       message: msg,
