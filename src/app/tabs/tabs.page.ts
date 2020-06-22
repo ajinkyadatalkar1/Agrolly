@@ -15,10 +15,7 @@ export class TabsPage {
   showRegisterTab = true;
   showMyQuestionsTab = false;
   showAskQuestionsTab = false;
-  weeklyForcastTab = false;
-  showFrm2Tab = false;
   loginStatus = false;
-
   languageList: any;
   languagesubscriber: Subscription;
 
@@ -28,8 +25,6 @@ export class TabsPage {
     this.showRegisterTab = this.httpcallsService.showRegisterTab;
     this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;
     this.showAskQuestionsTab = this.httpcallsService.showAskQuestionsTab;
-    this.weeklyForcastTab = false;
-    this.showFrm2Tab = false;
     this.checkLogin();
     this.languageSubscriber();
     this.languageList = httpcallsService.languageList;
@@ -48,8 +43,6 @@ export class TabsPage {
     this.showRegisterTab = this.httpcallsService.showRegisterTab;
     this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;
     this.showAskQuestionsTab = this.httpcallsService.showAskQuestionsTab;
-    this.weeklyForcastTab = false;
-    this.showFrm2Tab = false;
   }
 
   checkLogin() {
@@ -67,8 +60,6 @@ export class TabsPage {
     this.showRegisterTab = this.httpcallsService.showRegisterTab;
     this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;
     this.showAskQuestionsTab = this.httpcallsService.showAskQuestionsTab;
-    this.weeklyForcastTab = true;
-    this.showFrm2Tab = false;
   }
 
   onFrm2Clicked() {
@@ -77,8 +68,6 @@ export class TabsPage {
     this.showRegisterTab = this.httpcallsService.showRegisterTab;
     this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;
     this.showAskQuestionsTab = this.httpcallsService.showAskQuestionsTab;
-    this.weeklyForcastTab = false;
-    this.showFrm2Tab = true;
   }
 
   onLoginRegisterClicked() {
@@ -87,6 +76,5 @@ export class TabsPage {
     this.showRegisterTab = this.httpcallsService.showRegisterTab;
     this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;
     this.showAskQuestionsTab = this.httpcallsService.showAskQuestionsTab;
-    this.weeklyForcastTab = false;
   }
 }

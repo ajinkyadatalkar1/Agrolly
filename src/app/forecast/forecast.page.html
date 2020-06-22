@@ -1,9 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>forecast</ion-title>
+    <ion-title>Forecast</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-label *ngIf="!loginStatus">Location information not available, Please Login</ion-label>
 
+  <ion-list *ngIf="loginStatus">
+    <ion-item [routerLink]="['/tabs/weeklyforcast']" button>
+      Weekly
+    </ion-item>
+    <ion-item [routerLink]="['/tabs/annualforecast']" button>
+      Anually
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpcallsService } from '../services/httpcalls.service';
 
 @Component({
   selector: 'app-forecast',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forecast.page.scss'],
 })
 export class ForecastPage implements OnInit {
-
-  constructor() { }
+  loginStatus: boolean;
+  constructor(private httpcalls: HttpcallsService) {
+    this.loginStatus = this.httpcalls.loggedIn;
+  }
 
   ngOnInit() {
   }
 
+  ionViewWillEnter() { // Lifecycle event
+    this.loginStatus = this.httpcalls.loggedIn;
+    if (this.loginStatus) {
+      this.httpcalls.getLocation();
+    }
+  }
 }

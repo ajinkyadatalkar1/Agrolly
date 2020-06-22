@@ -48,6 +48,26 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'annualforecast',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../annualforecast/annualforecast.module').then(m => m.AnnualforecastPageModule)
+          }
+        ]
+      },
+      {
+        path: 'forecast',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../forecast/forecast.module').then(m => m.ForecastPageModule)
+          }
+        ]
+      },
+      {
         path: 'forum',
         children: [
           {
