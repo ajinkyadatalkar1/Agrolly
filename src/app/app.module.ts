@@ -26,11 +26,10 @@ import { StoreNotifications } from './notificationStore/storenotifications';
 import { OnetimepasswordPage } from './onetimepassword/onetimepassword.page';
 import { QuescommentsPage } from './quescomments/quescomments.page';
 import { FormsModule } from '@angular/forms';
-import { ShowquestionsPage } from './showquestions/showquestions.page';
 
 @NgModule({
-  declarations: [AppComponent, OnetimepasswordPage, QuescommentsPage, ShowquestionsPage],
-  entryComponents: [OnetimepasswordPage, QuescommentsPage, ShowquestionsPage],
+  declarations: [AppComponent, OnetimepasswordPage, QuescommentsPage],
+  entryComponents: [OnetimepasswordPage, QuescommentsPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot(), FormsModule],
   providers: [
     StatusBar,

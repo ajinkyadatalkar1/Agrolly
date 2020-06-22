@@ -3,15 +3,15 @@ export class Sums {
         {
             Dornod:
                 [
-                    'Chuluun khoroot (Ereentsav)',
+                    'Chuluun khoroot',
                     'Dashbalbar',
                     'Bayandun',
-                    'Bayanuul (Javartkhoshuu)',
+                    'Bayanuul',
                     'Gurvan zagal',
                     'Tsagaan Ovoo',
                     'Sergelen',
                     'Choibalsan',
-                    'Bayantumen (Tsagaanders)',
+                    'Bayantumen',
                     'Kherlen',
                     'Bulgan',
                     'Hulunbuir',

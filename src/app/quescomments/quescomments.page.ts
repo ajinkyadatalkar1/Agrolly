@@ -181,7 +181,7 @@ export class QuescommentsPage implements OnInit {
 
 
   postAnswer() {
-    if (this.answer !== undefined || this.clickedImage !== undefined ) {
+    if (this.answer !== undefined || this.answer !== null || this.answer !== '' || this.clickedImage !== undefined ) {
       this.imageFilename = this.httpcalls.name + Date.now() + '.jpg';
       if (this.clickedImage !== undefined) {
         this.transferImage();
