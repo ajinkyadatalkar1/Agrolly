@@ -5,14 +5,50 @@
 </ion-header>
 
 <ion-content>
-<ion-label *ngIf="!loginStatus">Location information not available, Please Login</ion-label>
 
-<ion-list>
-  <ion-item button>
-    Weekly
-  </ion-item>
-  <ion-item button>
-    Anually
-  </ion-item>
-</ion-list>
+  <ion-list *ngFor="let item of days; let i = index;">
+    <ion-item>
+      <div>
+        {{item}}<br />
+        <ion-grid slot="end">
+          <ion-row>
+            <ion-col size="8">
+              Max Temp: {{maxTemp[i]}}
+            </ion-col>
+            <ion-col>
+              <div>
+                Day:
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                Night:
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col  size="8">
+              Min Temp: {{minTemp[i]}}
+            </ion-col>
+            <ion-col>
+              <div>
+                <ion-icon slot="end" [attr.src]="'../assets/icon/weather/' + icon[i*2] + '.svg'" size="large"
+                  color="primary"></ion-icon>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                <ion-icon slot="end" [attr.src]="'../assets/icon/weather/' + icon[i*2+1] + '.svg'" size="large"
+                  color="primary"> {{icon[i*2]}}</ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <div class="narration">
+          <p>Day: {{narration[i*2]}} </p><br />
+          <p>Night: {{narration[i*2+1]}}</p>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
 </ion-content>

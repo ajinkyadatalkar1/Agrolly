@@ -24,15 +24,5 @@
           <ion-icon name="md-chatbubbles"></ion-icon>
           <ion-label>{{languageList.ask_a_question}}</ion-label>
     </ion-tab-button>
-
-    <ion-tab-button tab="weeklyforcast" *ngIf="weeklyForcastTab" (click)="onWeeklyForcastClicked()">
-        <ion-icon name="partly-sunny"></ion-icon>
-        <ion-label>{{languageList.weather}}</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="frm2" *ngIf="showFrm2Tab" (click)="onFrm2Clicked()">
-      <ion-icon name="nutrition"></ion-icon>
-      <ion-label>{{languageList.crop_management}}</ion-label>
-    </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

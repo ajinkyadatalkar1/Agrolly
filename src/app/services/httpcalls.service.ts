@@ -26,6 +26,7 @@ export class HttpcallsService {
   longitude: string;
   locationIq: string;
   weatherUrl: string;
+  annualforecast: any;
 
   // change tabs based on login
   showHomeTab = true;
@@ -45,12 +46,13 @@ export class HttpcallsService {
   commentList: any;
   completeQues: any;
 
-  // for subjective list of questions
-  topicList: any;
-  topicList2: any;
-  subjectSelected: string;
-  subjectQuestionList: any;
-
+  // Weekly Forecast
+  weeklyforecast: object;
+  weekDays: object;
+  minTemp: object;
+  maxTemp: object;
+  weatherIcon: object;
+  narration: object;
 
   // Language lists
   languageList: any;
@@ -710,6 +712,11 @@ export class HttpcallsService {
     this.http.get(this.weatherUrl).subscribe(
       (result) => {
         console.log(result);
+        this.weekDays = result['dayOfWeek'];
+        this.maxTemp = result['temperatureMax'];
+        this.minTemp = result['temperatureMin'];
+        this.weatherIcon = result['daypart'][0]['iconCode'];
+        this.narration = result['daypart'][0]['narrative'];
       });
   }
 

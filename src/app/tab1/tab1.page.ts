@@ -53,7 +53,6 @@ changeTabs() {
     this.showHideTabs.showRegisterTab = this.httpcalls.showRegisterTab;
     this.showHideTabs.showMyQuestionsTab = this.httpcalls.showMyQuestionsTab;
     this.showHideTabs.showAskQuestionsTab = this.httpcalls.showAskQuestionsTab;
-    this.showHideTabs.weeklyForcastTab = false;
   }
 
 english() {
