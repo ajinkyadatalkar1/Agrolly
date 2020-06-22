@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Weekly Forcast</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-label *ngIf="!loginStatus">Location information not available, Please Login</ion-label>
+
+<ion-list>
+  <ion-item button>
+    Weekly
+  </ion-item>
+  <ion-item button>
+    Anually
+  </ion-item>
+</ion-list>
+</ion-content>
