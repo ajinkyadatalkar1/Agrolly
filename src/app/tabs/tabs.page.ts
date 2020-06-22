@@ -15,7 +15,7 @@ export class TabsPage {
   showRegisterTab = true;
   showMyQuestionsTab = false;
   showAskQuestionsTab = false;
-  showFrm1Tab = false;
+  weeklyForcastTab = false;
   showFrm2Tab = false;
   loginStatus = false;
 
@@ -28,7 +28,7 @@ export class TabsPage {
     this.showRegisterTab = this.httpcallsService.showRegisterTab;
     this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;
     this.showAskQuestionsTab = this.httpcallsService.showAskQuestionsTab;
-    this.showFrm1Tab = false;
+    this.weeklyForcastTab = false;
     this.showFrm2Tab = false;
     this.checkLogin();
     this.languageSubscriber();
@@ -48,7 +48,7 @@ export class TabsPage {
     this.showRegisterTab = this.httpcallsService.showRegisterTab;
     this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;
     this.showAskQuestionsTab = this.httpcallsService.showAskQuestionsTab;
-    this.showFrm1Tab = false;
+    this.weeklyForcastTab = false;
     this.showFrm2Tab = false;
   }
 
@@ -61,13 +61,13 @@ export class TabsPage {
     }
   }
 
-  onFrm1Clicked() {
+  onWeeklyForcastClicked() {
     this.showHomeTab = true;
     this.showLoginTab = this.httpcallsService.showLoginTab;
     this.showRegisterTab = this.httpcallsService.showRegisterTab;
     this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;
     this.showAskQuestionsTab = this.httpcallsService.showAskQuestionsTab;
-    this.showFrm1Tab = true;
+    this.weeklyForcastTab = true;
     this.showFrm2Tab = false;
   }
 
@@ -77,7 +77,7 @@ export class TabsPage {
     this.showRegisterTab = this.httpcallsService.showRegisterTab;
     this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;
     this.showAskQuestionsTab = this.httpcallsService.showAskQuestionsTab;
-    this.showFrm1Tab = false;
+    this.weeklyForcastTab = false;
     this.showFrm2Tab = true;
   }
 
@@ -87,6 +87,6 @@ export class TabsPage {
     this.showRegisterTab = this.httpcallsService.showRegisterTab;
     this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;
     this.showAskQuestionsTab = this.httpcallsService.showAskQuestionsTab;
-    this.showFrm1Tab = false;
+    this.weeklyForcastTab = false;
   }
 }

@@ -38,22 +38,12 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'frm1',
+        path: 'weeklyforcast',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../frm1/frm1.module').then(m => m.Frm1PageModule)
-          }
-        ]
-      },
-      {
-        path: 'frm2',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../frm2/frm2.module').then(m => m.Frm2PageModule)
+              import('../weeklyforcast/weeklyforcast.module').then(m => m.WeeklyforcastPageModule)
           }
         ]
       },
@@ -84,26 +74,6 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../ask-ques/ask-ques.module').then(m => m.AskQuesPageModule)
-          }
-        ]
-      },
-      {
-        path: 'pracques',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../practice-ques/practice-ques.module').then(m => m.PracticeQuesPageModule)
-          }
-        ]
-      },
-      {
-        path: 'pracques2',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../practice-ques2/practice-ques2.module').then(m => m.PracticeQues2PageModule)
           }
         ]
       },

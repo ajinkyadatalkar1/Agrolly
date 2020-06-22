@@ -22,16 +22,15 @@
        </ion-button>
      </ion-row>
      <ion-row>
-       <ion-button [routerLink]="['/tabs/frm1']" routerLinkActive="router-link-active" class="examType" color="success" disabled>
+       <ion-button [routerLink]="['/tabs/weeklyforcast']" routerLinkActive="router-link-active" class="examType" color="success">
         {{language.weather}}  <ion-icon name="partly-sunny"></ion-icon>
        </ion-button>
      </ion-row>
      <ion-row>
-       <ion-button [routerLink]="['/tabs/frm2']" class="examType" color="success"  disabled>
+       <ion-button class="examType" color="success"  disabled>
         {{language.crop_management}}  <ion-icon name="nutrition"></ion-icon>
        </ion-button>
      </ion-row>
-     
      <ion-row *ngIf="showLogout">
       <ion-button (click)="logout()" class="examType" color="warning">
         {{language.logout}}  <ion-icon name="walk"></ion-icon>

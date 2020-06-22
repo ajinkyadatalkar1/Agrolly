@@ -7,7 +7,6 @@ import { Storage } from '@ionic/storage';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { Language } from '../language/language';
 import { FCM } from '@ionic-native/fcm/ngx';
-import { ValueAccessor } from '@ionic/angular/dist/directives/control-value-accessors/value-accessor';
 import { StoreNotifications } from '../notificationStore/storenotifications';
 
 
@@ -23,6 +22,10 @@ export class HttpcallsService {
   country: string;
   state: string;
   city: string;
+  latitude: string;
+  longitude: string;
+  locationIq: string;
+  weatherUrl: string;
 
   // change tabs based on login
   showHomeTab = true;
@@ -30,7 +33,6 @@ export class HttpcallsService {
   showRegisterTab = true;
   showMyQuestionsTab = false;
   showAskQuestionsTab = false;
-  showFrm1Tab = false;
   loggedIn = false;
 
   // for forum or misc or off topic questions
@@ -127,7 +129,7 @@ export class HttpcallsService {
     storage.get('city').then((val) => {
       if (val !== '' && val !== null && val !== undefined) {
         this.city = val;
-        // console.log("name is:" + this.name);
+        console.log("city is:" + this.city);
       } else {
         storage.remove('city');
       }
@@ -139,8 +141,6 @@ export class HttpcallsService {
 
     /**************** FCM *****************************/
 
-    this.GetTopics();
-    this.GetTopics2();
     this.GetForumQuestions();
   }
 
@@ -148,6 +148,19 @@ export class HttpcallsService {
     headers: new HttpHeaders({
       'Content-type': 'text/html',
     })
+  };
+
+  httpOptionsGetWeather = {
+    headers: new HttpHeaders({
+      'content-type': 'application/x-www-form-urlencoded',
+    })
+  };
+
+  httpOptionsGetLocation = {
+    // headers: new HttpHeaders({
+      async: 'true',
+      crossDomain: 'true',
+    // })
   };
 
   httpOptionsPost = {
@@ -296,7 +309,6 @@ export class HttpcallsService {
           this.showRegisterTab = true;
           this.showMyQuestionsTab = false;
           this.showAskQuestionsTab = false;
-          this.showFrm1Tab = false;
           this.loggedIn = false;
         }
       });
@@ -311,7 +323,6 @@ export class HttpcallsService {
     this.showRegisterTab = true;
     this.showMyQuestionsTab = false;
     this.showAskQuestionsTab = false;
-    this.showFrm1Tab = false;
     this.loggedIn = false;
     this.storage.remove('email');
     this.storage.remove('name');
@@ -445,21 +456,6 @@ export class HttpcallsService {
       });
   }
 
-  /* Load topics for practice questions */
-
-  GetTopics() {
-    this.http.get('http://caokumtech.com/topics.php', this.httpOptionsGet).subscribe(
-      (result) => {
-        this.topicList = result;
-      });
-  }
-
-  GetTopics2() {
-    this.http.get('http://caokumtech.com/topics2.php', this.httpOptionsGet).subscribe(
-      (result) => {
-        this.topicList2 = result;
-      });
-  }
 
   /* Ask Questions Page */
   post_question(question: string, imageName: string) {
@@ -589,15 +585,6 @@ export class HttpcallsService {
     toast.present();
   }
 
-
-  /* Load questions subject wise */
-  GetSubjectQuestions() {
-    this.http.get('http://caokumtech.com/subjectQuestions.php?subject=' + this.subjectSelected, this.httpOptionsGet).subscribe(
-      (result) => {
-        this.subjectQuestionList = result;
-      });
-  }
-
   /* delete post */
   async deletePost(id) {
     const postData = {
@@ -698,6 +685,33 @@ export class HttpcallsService {
       });
   }
 
+  /* weekly forcast */
+  async getLocation() {
+    console.log(this.city);
+    if (this.city !== '' || this.city !== undefined || this.city !== null) {
+      this.locationIq = 'https://us1.locationiq.com/v1/search.php?key=fe209a3cc4a25a&q=' + this.city + ',' + this.state + ','
+      + this.country + '&format=json';
+    } else {
+      this.locationIq = 'https://us1.locationiq.com/v1/search.php?key=fe209a3cc4a25a&q=' + this.state + ','
+      + this.country + '&format=json';
+    }
+
+    this.http.get(this.locationIq).subscribe(
+      (result) => {
+        this.latitude = result[0]['lat'];
+        this.longitude = result[0]['lon'];
+        this.getForecast();
+      });
+  }
+
+  async getForecast() {
+    this.weatherUrl = 'https://api.weather.com/v3/wx/forecast/daily/5day?geocode='
+      + this.latitude + ',' + this.longitude + '&format=json&units=m&language=en-US&apiKey=da328055e2e940d8b28055e2e9e0d851';
+    this.http.get(this.weatherUrl).subscribe(
+      (result) => {
+        console.log(result);
+      });
+  }
 
   /* Toast */
   async showToast(msg: string) {

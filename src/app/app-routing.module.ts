@@ -11,24 +11,24 @@ const routes: Routes = [
     loadChildren: () => import('./quescomments/quescomments.module').then( m => m.QuescommentsPageModule)
   },
   {
-    path: 'showquestions',
-    loadChildren: () => import('./showquestions/showquestions.module').then( m => m.ShowquestionsPageModule)
-  },
-  {
-    path: 'frm2',
-    loadChildren: () => import('./frm2/frm2.module').then( m => m.Frm2PageModule)
-  },
-  {
-    path: 'practice-ques2',
-    loadChildren: () => import('./practice-ques2/practice-ques2.module').then( m => m.PracticeQues2PageModule)
-  },
-  {
     path: 'changepassword',
     loadChildren: () => import('./changepassword/changepassword.module').then( m => m.ChangepasswordPageModule)
   },
   {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'weeklyforcast',
+    loadChildren: () => import('./weeklyforcast/weeklyforcast.module').then( m => m.WeeklyforcastPageModule)
+  },
+  {
+    path: 'forecast',
+    loadChildren: () => import('./forecast/forecast.module').then( m => m.ForecastPageModule)
+  },
+  {
+    path: 'annualforecast',
+    loadChildren: () => import('./annualforecast/annualforecast.module').then( m => m.AnnualforecastPageModule)
   }
 ];
 @NgModule({
