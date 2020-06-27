@@ -40,6 +40,11 @@ export class ProfilePage implements OnInit {
     this.load_data();
    }
 
+   ionViewDidEnter() {
+    this.language = this.httpcalls.languageList;
+    this.load_data();
+   }
+
    showCountryIcon() {
     this.countrySelectedIcon = '../../assets/icon/' + this.countrySelected + '.svg';
     this.stateSelected = '';
@@ -53,6 +58,8 @@ export class ProfilePage implements OnInit {
     this.httpcalls.update_profile(this.name, this.citySelected, this.stateSelected, this.countrySelected, this.password);
     this.password = null;
     this.load_data();
+    this.httpcalls.latitude = undefined;
+    this.httpcalls.longitude = undefined;
   }
 
   load_data() {

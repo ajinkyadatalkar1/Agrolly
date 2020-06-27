@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Weekly Forcast</ion-title>
+    <ion-title>{{language.weekly}} {{language.forecast}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,40 +13,47 @@
         <ion-grid slot="end">
           <ion-row>
             <ion-col size="8">
-              Max Temp: {{maxTemp[i]}}
+              <div *ngIf="maxTemp[i] != null">{{language.max_temp}}: {{maxTemp[i]}} °C</div>
+              <div *ngIf="maxTemp[i] == null">{{language.max_temp}}: N/A</div>
             </ion-col>
             <ion-col>
               <div>
-                Day:
+                {{language.Day}}:
               </div>
             </ion-col>
             <ion-col>
               <div>
-                Night:
+                {{language.Night}}:
               </div>
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col  size="8">
-              Min Temp: {{minTemp[i]}}
+            <ion-col size="8">
+              <div *ngIf="minTemp[i] != null">{{language.min_temp}}: {{minTemp[i]}} °C</div>
+              <div *ngIf="minTemp[i] == null">{{language.min_temp}}: N/A</div>
             </ion-col>
             <ion-col>
-              <div>
+              <div *ngIf="icon[i*2] != null">
                 <ion-icon slot="end" [attr.src]="'../assets/icon/weather/' + icon[i*2] + '.svg'" size="large"
                   color="primary"></ion-icon>
               </div>
+              <div *ngIf="icon[i*2] == null">N/A</div>
             </ion-col>
             <ion-col>
-              <div>
+              <div *ngIf="icon[i*2+1] != null">
                 <ion-icon slot="end" [attr.src]="'../assets/icon/weather/' + icon[i*2+1] + '.svg'" size="large"
                   color="primary"> {{icon[i*2]}}</ion-icon>
               </div>
+              <div *ngIf="icon[i*2+1] == null">N/A</div>
             </ion-col>
           </ion-row>
         </ion-grid>
         <div class="narration">
-          <p>Day: {{narration[i*2]}} </p><br />
-          <p>Night: {{narration[i*2+1]}}</p>
+          <p *ngIf="narration[i*2] != null">{{language.Day}}: {{narration[i*2]}} </p>
+          <p *ngIf="narration[i*2] == null">{{language.Day}: N/A </p>
+          <br />
+          <p *ngIf="narration[i*2+1] != null">{{language.Night}}: {{narration[i*2+1]}}</p>
+          <p *ngIf="narration[i*2+1] == null">{{language.Night}}: N/A</p>
         </div>
       </div>
     </ion-item>

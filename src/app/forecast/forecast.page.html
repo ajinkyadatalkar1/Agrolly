@@ -1,18 +1,83 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Forecast</ion-title>
+    <ion-title>{{language.forecast}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-label *ngIf="!loginStatus">Location information not available, Please Login</ion-label>
-
-  <ion-list *ngIf="loginStatus">
-    <ion-item [routerLink]="['/tabs/weeklyforcast']" button>
-      Weekly
+  
+  <ion-list>
+    <ion-item color="warning">
+      <h3><b>{{language.hrs_24_fcast}} </b></h3>
     </ion-item>
-    <ion-item [routerLink]="['/tabs/annualforecast']" button>
-      Anually
+
+
+    <ion-item inset="true" color="success" lines="none">
+      <div class="padding">
+        <b>{{currentForecast["daypart_name"]}} ({{language.now}})</b><br />
+        <div>Temperature: {{currentForecast["temp"]}}°C</div>
+        <div class="narration" *ngIf="currentForecast['qualifier'] != null">
+          <p>Forecast: {{currentForecast["qualifier"]}}</p>
+        </div>
+      </div>
+      <ion-icon slot="end" [attr.src]="'../assets/icon/weather/' + currentForecast['icon_code'] + '.svg'"
+      color="light"></ion-icon>
+    </ion-item>
+
+    <ion-item inset="true" color="success" lines="none">
+      <div class="padding">
+        <b>{{currentForecast6["daypart_name"]}}</b><br />
+        <div>Temperature: {{currentForecast6["temp"]}}°C</div>
+        <div class="narration" *ngIf="currentForecast6['qualifier'] != null">
+          <p>Forecast: {{currentForecast6["qualifier"]}}</p>
+        </div>
+      </div>
+      <ion-icon slot="end" [attr.src]="'../assets/icon/weather/' + currentForecast6['icon_code'] + '.svg'"
+      color="light"></ion-icon>
+    </ion-item>
+
+
+    <ion-item inset="true" color="success" lines="none">
+      <div class="padding">
+        <b>{{currentForecast12["daypart_name"]}}</b><br />
+        <div>Temperature: {{currentForecast12["temp"]}}°C</div>
+        <div class="narration" *ngIf="currentForecast12['qualifier'] != null">
+          <p>Forecast: {{currentForecast12["qualifier"]}}</p>
+        </div>
+      </div>
+      <ion-icon slot="end" [attr.src]="'../assets/icon/weather/' + currentForecast12['icon_code'] + '.svg'"
+      color="light"></ion-icon>
+    </ion-item>
+
+
+    <ion-item inset="true" color="success">
+      <div class="padding">
+        <b>{{currentForecast18["daypart_name"]}}</b><br />
+        <div>Temperature: {{currentForecast18["temp"]}}°C</div>
+        <div class="narration" *ngIf="currentForecast18['qualifier'] != null">
+          <p>Forecast: {{currentForecast18["qualifier"]}}</p>
+        </div>
+      </div>
+      <ion-icon slot="end" [attr.src]="'../assets/icon/weather/' + currentForecast18['icon_code'] + '.svg'"
+      color="light"></ion-icon>
+    </ion-item>
+
+    <ion-item [routerLink]="['/tabs/weeklyforcast']">
+      <div style="margin-top: 20px; margin-bottom: 20px;">
+        {{language.weekly}}
+      </div>
+      <ion-icon slot="end" size="small" name="ios-arrow-forward"></ion-icon>
+    </ion-item>
+    <ion-item [routerLink]="['/tabs/annualforecast']">
+      <div style="margin-top: 5px; margin-bottom: 5px;">
+        {{language.annually}} <br />
+        <div class="info">
+          <p>*Annual weather forecast is available only for certain cities in Mongolia at the moment</p>
+        </div>
+      </div>
+      <ion-icon slot="end" size="small" name="ios-arrow-forward"></ion-icon>
     </ion-item>
   </ion-list>
+
 </ion-content>

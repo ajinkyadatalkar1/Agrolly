@@ -3,10 +3,13 @@
   overflow: hidden;
 }
 
-ion-toolbar {
-  --background: url("../../assets/background.jpg") no-repeat center/cover fixed;
+.listbg {
+  background: transparent;
 }
 
+ion-toolbar {
+  --background: #f7f3f2;
+}
 
 ion-content.mainContent {
   --background: url("../../assets/background.jpg") no-repeat center/cover fixed;
@@ -17,8 +20,9 @@ ion-content.mainContent {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: fit-content;
   vertical-align: middle;
+  padding-top: 5em;
 }
 
 .bannerImage {
@@ -72,7 +76,7 @@ ion-content.mainContent {
   }
 
   .mainButtons ion-button {
-    width: 700px;
+    width: 300px;
   }
 }
 

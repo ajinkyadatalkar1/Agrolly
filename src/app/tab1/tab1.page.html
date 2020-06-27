@@ -1,14 +1,17 @@
-<ion-header no-border>
+<!-- <ion-header no-border>
   <ion-toolbar>
-    <ion-buttons *ngIf="showLogout" slot="end">
-      <ion-tab-button (click)="openMenu()">
-        <ion-icon size="large" [attr.name]="menuIcon"></ion-icon>
-      </ion-tab-button>
-    </ion-buttons>
+<ion-buttons *ngIf="showLogout" slot="end">
+
+</ion-buttons>
   </ion-toolbar>
 </ion-header>
-
+-->
 <ion-content class="mainContent"> 
+<ion-list slot="fixed" class="listbg" *ngIf="showLogout">
+  <ion-item lines="none" color="none">
+  <ion-icon size="large" slot="end" [attr.name]="menuIcon" (click)="openMenu()"></ion-icon>
+  </ion-item>
+</ion-list>
 <div class="centerAll">
    <div class="bannerImage" >
     <img src='../../assets/logo_small.svg' />
@@ -45,14 +48,14 @@
 <ion-menu side="start" (ionDidClose)="closeMenu()" menuId="first" contentId="main">
   <ion-header>
     <ion-toolbar color="secondary">
-      <ion-title>Options</ion-title>
+      <ion-title>{{language.Options}}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content class="has-header">
   <ion-list>
-      <ion-item (click)="profile()" button><ion-label>Profile</ion-label><ion-icon slot="end" name="person"></ion-icon></ion-item>
-      <ion-item (click)="changepasswordpage()" button><ion-label>Change Password</ion-label><ion-icon slot="end" name="key"></ion-icon></ion-item>
-      <ion-item (click)="logout()" button><ion-label>Logout</ion-label><ion-icon slot="end" name="walk"></ion-icon></ion-item>
+      <ion-item (click)="profile()" button><ion-label>{{language.profile}}</ion-label><ion-icon slot="end" name="person"></ion-icon></ion-item>
+      <ion-item (click)="changepasswordpage()" button><ion-label>{{language.Change_Password}}</ion-label><ion-icon slot="end" name="key"></ion-icon></ion-item>
+      <ion-item (click)="logout()" button><ion-label>{{language.logout2}}</ion-label><ion-icon slot="end" name="walk"></ion-icon></ion-item>
   </ion-list>
 </ion-content>
 <ion-router-outlet id="main"></ion-router-outlet>

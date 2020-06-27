@@ -4,7 +4,7 @@
       <div class="small_logo">
         <img class="logo" src="../../assets/logo_small.svg" /><h2>{{language.agrolly}}</h2>
         </div>
-        <p>Only Edit the fields you want to change</p>
+        <p>{{language.Edit_msg}}</p>
         <input type="text" [attr.placeholder]="language.full_name" class="crediantials input-block" [(ngModel)]="name"/>
           <div class="countrySelect crediantials input-block">
             <ion-icon [attr.src]="countrySelectedIcon" size="large"></ion-icon>
@@ -26,8 +26,8 @@
               <ion-select-option *ngFor="let c of cities" class="fold-lines" [value]="c">{{c}}</ion-select-option>
             </ion-select>
           </div>
-        <input type="password" placeholder="Enter current password to apply changes" class="crediantials input-block" [(ngModel)]="password" required/>
-        <ion-button class="crediantials" (click)="update()">Update Profile</ion-button>
+        <input type="password" [attr.placeholder]="language.cur_pass_apply_changes" class="crediantials input-block" [(ngModel)]="password" required/>
+        <ion-button class="crediantials" (click)="update()"><b>{{language.update_profile}}</b> <ion-icon name="person"></ion-icon></ion-button>
     </div>
   </div>
 </ion-content>

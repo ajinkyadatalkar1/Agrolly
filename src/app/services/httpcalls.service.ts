@@ -25,7 +25,9 @@ export class HttpcallsService {
   latitude: string;
   longitude: string;
   locationIq: string;
-  weatherUrl: string;
+  weeklyWeatherUrl: string;
+  hourlyWeatherUrl: string;
+  annualWeatherUrl: string;
   annualforecast: any;
 
   // change tabs based on login
@@ -54,6 +56,15 @@ export class HttpcallsService {
   weatherIcon: object;
   narration: object;
 
+  // Hourly Forecast
+  currentForecast: object;
+  currentForecast6: object;
+  currentForecast12: object;
+  currentForecast18: object;
+
+  // Annual Forecast
+  annualForecast: object;
+
   // Language lists
   languageList: any;
 
@@ -65,6 +76,9 @@ export class HttpcallsService {
   constructor(private http: HttpClient, private route: Router, private Toast: ToastController, private storage: Storage, private screenOrientation: ScreenOrientation, private lang: Language,
               private fcm: FCM, private ngZone: NgZone, private navCtrl: NavController, private notificationId: StoreNotifications) {
     this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+
+    this.latitude = undefined;
+    this.longitude = undefined;
 
     this.tapQues = this.notificationId.Notifications;
     this.languageList = this.lang.English[0];
@@ -126,15 +140,17 @@ export class HttpcallsService {
       } else {
         storage.remove('state');
       }
+      this.getLocation();
     });
 
     storage.get('city').then((val) => {
       if (val !== '' && val !== null && val !== undefined) {
         this.city = val;
-        console.log("city is:" + this.city);
+        // console.log("city is:" + this.city);
       } else {
         storage.remove('city');
       }
+      this.getLocation();
     });
 
     /*********** firebase cloud messaging ****************/
@@ -157,6 +173,7 @@ export class HttpcallsService {
       'content-type': 'application/x-www-form-urlencoded',
     })
   };
+
 
   httpOptionsGetLocation = {
     // headers: new HttpHeaders({
@@ -270,6 +287,9 @@ export class HttpcallsService {
   checkLogin() {
     return new Observable(observer => {
       observer.next(this.loggedIn);
+      this.getForecast();
+      this.getForecastHourly();
+      this.getForecastAnnual();
     });
   }
 
@@ -281,6 +301,7 @@ export class HttpcallsService {
     this.http.post('http://agrolly.tech/login.php', postData, this.httpOptionsPost).subscribe(
       (result) => {
         if (result['result'] === 'successful') {
+          this.getLocation();
           // console.log(result);
           this.showLoginTab = false;
           this.showRegisterTab = false;
@@ -597,9 +618,9 @@ export class HttpcallsService {
       (result) => {
         if (result['result'] === 'successful') {
           this.GetForumQuestions();
-          this.showToast('Post Deleted');
+          this.showToast(this.languageList.post_deleted);
         } else {
-          this.showToast('Post Delete Unsuccessful');
+          this.showToast(this.languageList.post_delete_unsuccess);
         }
       });
   }
@@ -613,9 +634,9 @@ export class HttpcallsService {
       (result) => {
         if (result['result'] === 'successful') {
           this.GetForumQuestions();
-          this.showToast('Comment Deleted');
+          this.showToast(this.languageList.comment_deleted);
         } else {
-          this.showToast('Comment Delete Unsuccessful');
+          this.showToast(this.languageList.comment_delete_unsuccessful);
         }
       });
   }
@@ -631,9 +652,9 @@ export class HttpcallsService {
     this.http.post('http://agrolly.tech/changepassword.php', postData, this.httpOptionsPost).subscribe(
       (result) => {
         if (result['result'] === 'successful') {
-          this.showToast('Password change successful');
+          this.showToast(this.languageList.password_changed);
         } else {
-          this.showToast('Failed to change password');
+          this.showToast(this.languageList.password_change_failed);
         }
       });
   }
@@ -653,7 +674,7 @@ export class HttpcallsService {
     this.http.post('http://agrolly.tech/profile.php', postData, this.httpOptionsPost).subscribe(
       (result) => {
         if (result['result'] === 'successful') {
-          this.showToast('Profile updated successfully');
+          this.showToast(this.languageList.profile_update_successful);
           this.name = name;
           this.city = city;
           this.state = state;
@@ -663,8 +684,9 @@ export class HttpcallsService {
           this.storage.set('state', state);
           this.storage.set('country', country);
           this.route.navigateByUrl('/tabs/tab1');
+          this.getLocation();
         } else {
-          this.showToast('Failed to update profile');
+          this.showToast(this.languageList.profile_update_failed);
         }
       });
   }
@@ -680,17 +702,17 @@ export class HttpcallsService {
       (result) => {
         if (result['result'] === 'successful') {
           this.getQuestion(qid);
-          this.showToast('Post updated successfully, Please refresh');
+          this.showToast(this.languageList.post_update_successful);
         } else {
-          this.showToast('Failed to update post');
+          this.showToast(this.languageList.post_update_failed);
         }
       });
   }
 
   /* weekly forcast */
   async getLocation() {
-    console.log(this.city);
-    if (this.city !== '' || this.city !== undefined || this.city !== null) {
+    // console.log(this.city);
+    if (this.city !== '' && this.city !== undefined && this.city !== null) {
       this.locationIq = 'https://us1.locationiq.com/v1/search.php?key=fe209a3cc4a25a&q=' + this.city + ',' + this.state + ','
       + this.country + '&format=json';
     } else {
@@ -702,21 +724,47 @@ export class HttpcallsService {
       (result) => {
         this.latitude = result[0]['lat'];
         this.longitude = result[0]['lon'];
-        this.getForecast();
-      });
+        setTimeout(() => {
+          this.getForecast();
+          this.getForecastHourly();
+        }, 500);
+    });
   }
 
-  async getForecast() {
-    this.weatherUrl = 'https://api.weather.com/v3/wx/forecast/daily/5day?geocode='
-      + this.latitude + ',' + this.longitude + '&format=json&units=m&language=en-US&apiKey=da328055e2e940d8b28055e2e9e0d851';
-    this.http.get(this.weatherUrl).subscribe(
+  async getForecast() { // weekly
+    this.weeklyWeatherUrl = 'https://api.weather.com/v3/wx/forecast/daily/5day?geocode='
+      + this.latitude + ',' + this.longitude + '&format=json&units=m&language=' + this.languageList.code
+      + '&apiKey=da328055e2e940d8b28055e2e9e0d851';
+    this.http.get(this.weeklyWeatherUrl).subscribe(
       (result) => {
-        console.log(result);
+        // console.log(result);
         this.weekDays = result['dayOfWeek'];
         this.maxTemp = result['temperatureMax'];
         this.minTemp = result['temperatureMin'];
         this.weatherIcon = result['daypart'][0]['iconCode'];
         this.narration = result['daypart'][0]['narrative'];
+      });
+  }
+
+  async getForecastHourly() {
+    this.hourlyWeatherUrl = 'https://api.weather.com/v1/geocode/' + this.latitude + '/' + this.longitude +
+    '/forecast/intraday/3day.json?units=m&language=' + this.languageList.code + '&apiKey=da328055e2e940d8b28055e2e9e0d851';
+    this.http.get(this.hourlyWeatherUrl).subscribe(
+      (result) => {
+        this.currentForecast = result['forecasts'][0];
+        // console.log(result['forecasts']);
+        this.currentForecast6 = result['forecasts'][1];
+        this.currentForecast12 = result['forecasts'][2];
+        this.currentForecast18 = result['forecasts'][3];
+      });
+  }
+
+  async getForecastAnnual() {
+    this.annualWeatherUrl = 'http://www.agrolly.tech/annualForecast.php';
+    this.http.get(this.annualWeatherUrl).subscribe(
+      (result) => {
+        this.annualForecast = result;
+        // console.log('Annual: ' + this.annualForecast[0]['Date.fcst']);
       });
   }
 
