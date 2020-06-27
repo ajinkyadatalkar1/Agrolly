@@ -79,6 +79,8 @@ portuguese() {
 saveLanguagePreferance(setLang) {
     this.storage.set('language', setLang);
     this.langToast();
+    this.httpcalls.getForecast();
+    this.httpcalls.getForecastHourly();
   }
 
   async langToast() {
