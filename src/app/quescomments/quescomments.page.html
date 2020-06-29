@@ -12,7 +12,7 @@
     <ion-refresher-content [attr.pullingText]="language.pull_refresh" refreshingSpinner="lines" [attr.refreshingText]="language.loading"></ion-refresher-content>
   </ion-refresher>
 
-  <ion-card *ngFor="let item of completeQues;let i = index">
+  <ion-card color="light" *ngFor="let item of completeQues;let i = index">
     <ion-card-header>
       <ion-textarea style="color: #0000EE;font-size: 1.17em;font-weight: bold;" disabled>{{item.question}}</ion-textarea>
       <ion-toolbar *ngIf="showEditor">

@@ -5,11 +5,14 @@
 </ion-header>
 
 <ion-content>
-  <ion-label *ngIf="!loginStatus">Location information not available, Please Login</ion-label>
   
   <ion-list>
     <ion-item color="warning">
-      <h3><b>{{language.hrs_24_fcast}} </b></h3>
+      <div>
+        <h3><b>{{language.hrs_24_fcast}} </b></h3>
+        <h6 *ngIf="state">{{city}} {{state}} {{country}}</h6>
+        <h6 *ngIf="!state">Current Location</h6>
+      </div>
     </ion-item>
 
 

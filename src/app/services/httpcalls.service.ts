@@ -30,6 +30,13 @@ export class HttpcallsService {
   annualWeatherUrl: string;
   annualforecast: any;
 
+  /* Crops variables */
+  cropsPlaces: string;
+  cropsList: string;
+  cropsPlacesData: object;
+  cropsListData: object;
+
+
   // change tabs based on login
   showHomeTab = true;
   showLoginTab = true;
@@ -79,6 +86,9 @@ export class HttpcallsService {
 
     this.latitude = undefined;
     this.longitude = undefined;
+
+    this.getCropsPlaces();
+    this.getCropsList();
 
     this.tapQues = this.notificationId.Notifications;
     this.languageList = this.lang.English[0];
@@ -301,7 +311,6 @@ export class HttpcallsService {
     this.http.post('http://agrolly.tech/login.php', postData, this.httpOptionsPost).subscribe(
       (result) => {
         if (result['result'] === 'successful') {
-          this.getLocation();
           // console.log(result);
           this.showLoginTab = false;
           this.showRegisterTab = false;
@@ -324,6 +333,9 @@ export class HttpcallsService {
           this.storage.set('city', this.city);
           this.GetUserQuestions();
           this.initFireBase();
+          this.getLocation();
+          this.getForecast();
+
         } else {
           // console.log(result);
           this.LoginFailed();
@@ -685,6 +697,9 @@ export class HttpcallsService {
           this.storage.set('country', country);
           this.route.navigateByUrl('/tabs/tab1');
           this.getLocation();
+          this.getForecastHourly();
+          this.getForecast(); // weekly
+          this.getForecastAnnual();
         } else {
           this.showToast(this.languageList.profile_update_failed);
         }
@@ -768,11 +783,28 @@ export class HttpcallsService {
       });
   }
 
+  /* Crops */
+  async getCropsPlaces() {
+    this.cropsPlaces = 'http://www.agrolly.tech/crop_places.php';
+    this.http.get(this.cropsPlaces).subscribe(
+      (result) => {
+        this.cropsPlacesData = result;
+      });
+  }
+
+  async getCropsList() {
+    this.cropsList = 'http://www.agrolly.tech/crop_places.php';
+    this.http.get(this.cropsList).subscribe(
+      (result) => {
+        this.cropsListData = result;
+      });
+  }
+
   /* Toast */
   async showToast(msg: string) {
     const toast = await this.Toast.create({
       message: msg,
-      duration: 4000,
+      duration: 3000,
       position: 'top',
       translucent: true
     });
