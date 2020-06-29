@@ -68,6 +68,36 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'cropmanagement',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../cropmanagement/cropmanagement.module').then(m => m.CropmanagementPageModule)
+          }
+        ]
+      },
+      {
+        path: 'cropcities',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../crop-cities/crop-cities.module').then(m => m.CropCitiesPageModule)
+          }
+        ]
+      },
+      {
+        path: 'cropsowing',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../cropsowing/cropsowing.module').then(m => m.CropsowingPageModule)
+          }
+        ]
+      },
+      {
         path: 'forum',
         children: [
           {

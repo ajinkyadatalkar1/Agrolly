@@ -9,14 +9,34 @@
     <ion-refresher-content [attr.pullingText]="language.pull_refresh" refreshingSpinner="lines" [attr.refreshingText]="language.loading"></ion-refresher-content>
   </ion-refresher>
   <h5 style="text-align: center;">{{language.pull_refresh}}</h5>
-  <ion-list *ngFor="let item of lists | slice:0:lists.length-1">
-    <ion-item (click)="LoadQuesAndComment(item.id)"  *ngIf="item.country === country" button>
-      <ion-label class="fold-lines" class="ion-text-wrap">
-        <h2>{{item.question}}</h2>
-        <h5>{{language.name}}: {{item.name}}</h5>
-        <h5>{{language.location}}: {{item.state}}, {{item.country}}</h5>
-        <h5>{{language.date}}: {{item.date}}</h5>
-      </ion-label>
+  <div *ngFor="let item of lists | slice:0:lists.length-1"(click)="LoadQuesAndComment(item.id)">
+    <ion-item *ngIf="item.country === country" >
+      <ion-card class="card-gradient">
+        <ion-card-header>
+          <textarea rows="3" disabled readonly >{{item.question}}</textarea>
+          <textarea disabled readonly rows="1">...</textarea>
+        </ion-card-header>
+        <ion-card-content>
+          <h5>{{language.name}}: {{item.name}}</h5>
+          <h5>{{language.location}}: {{item.state}}, {{item.country}}</h5>
+          <h5>{{language.date}}: {{item.date}}</h5>
+        </ion-card-content>
+        <ion-item lines="none">
+          <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <ion-icon name="book"></ion-icon>
+              <ion-text color="medium"> Read More </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-icon name="md-chatbubbles"></ion-icon>
+              <ion-text color="medium"> Comments </ion-text>
+            </ion-col>
+          </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-card>
+      <ion-icon name="ios-arrow-forward"></ion-icon>  
     </ion-item>
-  </ion-list>
+  </div>
 </ion-content>

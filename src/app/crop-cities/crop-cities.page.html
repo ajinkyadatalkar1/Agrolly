@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>cropCities</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <div class="stars">
+        *Data on only some cities in Mongolia is available
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item lines="none">
+          <ion-select interface="action-sheet" [attr.placeholder]="language.city" [(ngModel)]="city">
+            <ion-select-option value="Dashbalbar">Dashbalbar</ion-select-option>
+            <ion-select-option value="Bayabdun">Bayabdun</ion-select-option>
+            <ion-select-option value="GurvanZagal">GurvanZagal</ion-select-option>
+            <ion-select-option value="Bayanuul">Bayanuul</ion-select-option>
+            <ion-select-option value="Ereentsav">Ereentsav</ion-select-option>
+            <ion-select-option value="Kherlen.Khentii">Kherlen/Khentii</ion-select-option>
+            <ion-select-option value="Bulgan">Bulgan</ion-select-option>
+            <ion-select-option value="Hulunbuir">Hulunbuir</ion-select-option>
+            <ion-select-option value="Morun">Morun</ion-select-option>
+            <ion-select-option value="Undurkhaan">Undurkhaan</ion-select-option>
+            <ion-select-option value="Delgerkhaan">Delgerkhaan</ion-select-option>
+            <ion-select-option value="Tsenkhermandal">Tsenkhermandal</ion-select-option>
+            <ion-select-option value="Jargaltkhaan">Jargaltkhaan</ion-select-option>
+            <ion-select-option value="Batnorov">Batnorov</ion-select-option>
+            <ion-select-option value="Bayan.Ovoo">Bayan Ovoo</ion-select-option>
+          </ion-select>
+          <ion-icon size="large" slot="end" src="../assets/icon/Mongolia.svg"></ion-icon>
+        </ion-item>
+        <ion-item lines="none" *ngIf="city != undefined && userSelectMonth != undefined">
+          <ion-button (click)="fetchData()" color="success"><b>{{language.fetch_data}}</b><ion-icon name="download" size="small"></ion-icon></ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

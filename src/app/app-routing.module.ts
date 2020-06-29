@@ -29,6 +29,18 @@ const routes: Routes = [
   {
     path: 'annualforecast',
     loadChildren: () => import('./annualforecast/annualforecast.module').then( m => m.AnnualforecastPageModule)
+  },
+  {
+    path: 'cropmanagement',
+    loadChildren: () => import('./cropmanagement/cropmanagement.module').then( m => m.CropmanagementPageModule)
+  },
+  {
+    path: 'crop-cities',
+    loadChildren: () => import('./crop-cities/crop-cities.module').then( m => m.CropCitiesPageModule)
+  },
+  {
+    path: 'cropsowing',
+    loadChildren: () => import('./cropsowing/cropsowing.module').then( m => m.CropsowingPageModule)
   }
 ];
 @NgModule({

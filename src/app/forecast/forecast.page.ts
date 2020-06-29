@@ -17,6 +17,9 @@ export class ForecastPage implements OnInit {
   currentForecast12: object;
   currentForecast18: object;
   language: any;
+  city: string;
+  state: string;
+  country: string;
   constructor(private httpcalls: HttpcallsService, private platform: Platform, private route: Router) {
     this.loginStatus = this.httpcalls.loggedIn;
     this.currentForecast = this.httpcalls.currentForecast;
@@ -40,5 +43,8 @@ export class ForecastPage implements OnInit {
     this.currentForecast12 = this.httpcalls.currentForecast12;
     this.currentForecast18 = this.httpcalls.currentForecast18;
     this.language = this.httpcalls.languageList;
+    this.city = this.httpcalls.city;
+    this.state = this.httpcalls.state;
+    this.country = this.httpcalls.country;
   }
 }

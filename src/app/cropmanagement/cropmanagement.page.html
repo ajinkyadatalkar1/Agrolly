@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crop Management</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <ion-card-header>
+    <div class="stars">
+      * Data for only 17 vegetables is available at the moment.
+    </div>
+    <div class="stars">
+      ** Data is available only for some cities in Mongolia.
+    </div>
+  </ion-card-header>
+</ion-card>
+<ion-list>
+  <ion-item [routerLink]="['/tabs/cropcities']" button>
+    Vegetables currently being grown
+    <ion-icon slot="end" name="ios-arrow-forward"></ion-icon>
+  </ion-item>
+  <ion-item [routerLink]="['/tabs/cropsowing']" button>
+    Weather forecast based sowing
+    <ion-icon slot="end" name="ios-arrow-forward"></ion-icon>
+  </ion-item>
+</ion-list>
+</ion-content>
