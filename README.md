@@ -37,7 +37,7 @@ English, Brazil, Mongolian.
 ## Demo video 
 
 ## The architecture
-
+![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Arquitecture.png?raw=true/20x10 "Architecture")
 ## Long Description
 
 ## Project roadmap
