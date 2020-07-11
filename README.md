@@ -12,12 +12,9 @@ Agrolly is a mobile app to help rural household farmers in developing countries 
 5. Project roadmap
 6. Getting started
 7. Running the tests
-8. Live demo
-9. Built with
-10. Contributing
-11. Authors
-12. License
-13. Acknowledgments
+8. Built with
+9. Authors
+10. License
 
 ## Short description
 ### What's the problem?
@@ -68,4 +65,6 @@ English, Portuguese (Brazil), Mongolian.
 * Helen TSAI - Web Developer
 * Chimka Munkhbayar - Mongolian Deployment
 
-
+## License
+This project is licensed under the Apache 2 License - see the [ LICENSE ](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/LICENSE) 
+for details.
