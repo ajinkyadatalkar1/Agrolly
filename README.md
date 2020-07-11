@@ -29,28 +29,42 @@ Household farmers in many emerging countries encounter a massive burden of econo
 * Real-time weather monitoring (text and visual).
 * Provide Long-Term Weather Forecast (temperature and rainfall). 
 * Crop selection based on the forthcoming forecast. 
-* Crop risk assessing by identifying weather problem area.
+* Crop risk assessment by identifying weather problem areas.
 
 ## What are the Languages available?
-English, Brazil, Mongolian.
+English, Portuguese (Brazil), Mongolian.
 
 ## Demo video 
 
+[![Demo Video](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Youtube_video.jpgn.jpg)](https://www.youtube.com/watch?v=VT4RKHwQ1hQ&t=65s "DEMO VIDEO")
+
 ## The architecture
 ![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Arquitecture.png?raw=true/20x10 "Architecture")
+1. the IBM’s “the weather company” to display hourly and weekly forecasts based on the location of the user.
+2. We collect the weather information for the past 5 years from NASA and we generate annual predictions with the help of the IBM Watson studio.
+3. For more information related regression , please read our article:
+
+
 ## Long Description
 
 ## Project roadmap
 ![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Agrolly_Road_Map.PNG?raw=true/40x20 "Roadmap")
+* For the 1st Phase, we focused on given farmers tools and knowledge to fight against changes in the weather. 
+* The 2nd phase is planned to focus on the interactions between farmers so they can increase their relationship. This will enable them to know what others are planting and explore their options. We are also planning to integrate some tools so the farmers can leverage their know-how, such as the expert advice feature will allow farmers to get in touch with specialists and trends in the agriculture sector.
+* Our 3rd goal is to connect small farmers with banks and customers, by implementing QR code for food traceability and farming credit score algorithms.
 
 ## Getting started
 
 ## Built with
+* IBM Cloud Object Storage
+* IBM Watson Studio
+* IBM Watson Assistant (Currently Implementing/ future scope)
+* The Weather Company
 
 ## Authors
-* Ajinkya...
-* Manoela Morais - R program
-* Helen - Web
-* CHimka - Mongolian Deployment
+* Ajinkya Datalkar - Product & Sotware Developer, System Design
+* Manoela Morais - Data Intelligence (R program) & Project Management
+* Helen TSAI - Web Developer
+* Chimka Munkhbayar - Mongolian Deployment
 
 
