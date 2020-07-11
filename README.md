@@ -1,5 +1,5 @@
 # Agrolly 
-http://www.agrollytech.com
+http://www.agrolly.tech
 
 ## What is an Agrolly? ##
 Agrolly is a mobile app to help rural household farmers in developing countries to tackle the challenges of climate change effectively and to increase potential financial credits availability for oneself. Using Agrolly, rural household farmers can connect and learn from each other by building a national-level network. Household farmers can also use Agrolly for integrated analysis of climate, especially for the weather, water, and soil for productive produce. Therefore, farmers will be able to efficiently scheme a plantation process and prevent disaster risks caused by extreme weather conditions. Besides, national and local banks and financial institutes can leverage Agrolly to effectively calculate the relative risks and then make monetary credits and loans more inclusive for rural household farmers.   
