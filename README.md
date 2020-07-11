@@ -44,8 +44,9 @@ English, Portuguese (Brazil), Mongolian.
 2. We collect the weather information for the past 5 years from NASA and we generate annual predictions with the help of the IBM Watson studio.
 3. For more information related regression , please read our article:
 
-
 ## Long Description
+
+[Long Description Document Link](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Long%20Description%20Pitch%20Agrolly.docx)
 
 ## Project roadmap
 ![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Agrolly_Road_Map.PNG?raw=true/40x20 "Roadmap")
