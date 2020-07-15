@@ -41,7 +41,7 @@ English, Portuguese (*Brazil*), Mongolian.
 ![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Arquitecture.png?raw=true/20x10"Architecture")
 1. the IBM’s **The Weather Company** to display hourly and weekly forecasts based on the location of the user.
 2. We collect the weather information for the past 5 years from **NASA** and we generate annual predictions with the help of the IBM Watson studio.
-3. For more information related regression , please read [our article here](Agrolly/blob/master/Draft%20Forecast%20Article%20-%20Partial%20Study..pdf)
+3. For more information related regression , please read [our article here](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Draft%20Forecast%20Article%20-%20Partial%20Study..pdf)
 4. We use FAO's guideline for the Risk Mangament caulcualtion for more information see [**guideline here**](http://www.fao.org/3/s2022e/s2022e00.htm#Contents)
 
 ## Long Description
