@@ -67,15 +67,15 @@ English, Portuguese (*Brazil*), Mongolian.
 * Install node.js
 * Install Ionic and Cordova
 * This app makes use of 18 plugins all of which need to be installed in order to compile the app or run on localhost
-    1)  Photo Viewer Plugin (https://ionicframework.com/docs/native/photo-viewer)
-    2)  Android Permission Management Plugin (https://ionicframework.com/docs/native/android-permissions)
-    3)  AndroidX Plugin (https://ionicframework.com/docs/native/firebase-x)
-    4)  AndroidX Adapter Plugin (Should automatically install when you install firebase plugin)
-    5)  Camera Plugin (https://ionicframework.com/docs/native/camera)
-    6)  Device Plugin (https://ionicframework.com/docs/native/device)
-    7)  Firebase Cloud Messaging Plugin (https://ionicframework.com/docs/native/fcm)
-    8)  File Plugin (https://ionicframework.com/docs/native/file)
-    9)  File Manager Plugin (https://ionicframework.com/docs/native/file-transfer)
+    01) Photo Viewer Plugin (https://ionicframework.com/docs/native/photo-viewer)
+    02) Android Permission Management Plugin (https://ionicframework.com/docs/native/android-permissions)
+    03) AndroidX Plugin (https://ionicframework.com/docs/native/firebase-x)
+    04) AndroidX Adapter Plugin (Should automatically install when you install firebase plugin)
+    05) Camera Plugin (https://ionicframework.com/docs/native/camera)
+    06) Device Plugin (https://ionicframework.com/docs/native/device)
+    07) Firebase Cloud Messaging Plugin (https://ionicframework.com/docs/native/fcm)
+    08) File Plugin (https://ionicframework.com/docs/native/file)
+    09) File Manager Plugin (https://ionicframework.com/docs/native/file-transfer)
     10) Full Screen Plugin (https://ionicframework.com/docs/native/android-full-screen)
             * Available only on Android for devices with notch/ not supported on iOS
     11) Keyboard Plugin (https://ionicframework.com/docs/native/keyboard)
@@ -88,21 +88,21 @@ English, Portuguese (*Brazil*), Mongolian.
     18) Google Services Plugin (Will be automatically installed when installing Firebase)
 
 * Once the plugins are installed the platforms are needed to be added:
-    1) In order to add the Android Platform run the following command:
+    01) In order to add the Android Platform run the following command:
         <code>ionic cordova platform add android</code>
-    2) In order to add the iOS Platform run the following command:
+    02) In order to add the iOS Platform run the following command:
         <code>ionic cordova platform add ios</code>
 
 * Running the app:
-    1) To run the app on a local node server:
+    01) To run the app on a local node server:
         <code>ionic serve</code>
-    2) To run the app on an Android device:
+    02) To run the app on an Android device:
         <code>ionic cordova run android --device</code>
-    3) To run the app on Android emulator:
+    03) To run the app on Android emulator:
         <code>ionic cordova run android</code>
 
 * Building packages:
-    1) To build an Android package:
+    01) To build an Android package:
         <code>ionic cordova build android</code>
 
 ## IBM Cloud Services <a name="IBM-Cloud-Services"></a>
