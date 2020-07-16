@@ -39,7 +39,7 @@ English, Portuguese (*Brazil*), Mongolian.
 
 ## How it works <a name="How-it-works"></a>
 ![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Arquitecture.png?raw=true/20x10"Architecture")
-1. the IBM’s **The Weather Company** to display hourly and weekly forecasts based on the location of the user.
+1. App uses IBM’s **The Weather Company** to display hourly and weekly forecasts based on the location of the user.
 2. We collect the weather information for the past 5 years from **NASA** and we generate annual predictions with the help of the IBM Watson studio.
 3. For more information related regression , please read [our article here](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Draft%20Forecast%20Article%20-%20Partial%20Study..pdf)
 4. We use FAO's guideline for the Risk Mangament caulcualtion for more information see [**guideline here**](http://www.fao.org/3/s2022e/s2022e00.htm#Contents)
@@ -89,22 +89,22 @@ English, Portuguese (*Brazil*), Mongolian.
 
 * Once the plugins are installed the platforms are needed to be added:
     1) In order to add the Android Platform run the following command:
-        ionic cordova platform add android
+        <code>ionic cordova platform add android</code>
     2) In order to add the iOS Platform run the following command:
-        ionic cordova platform add ios
+        <code>ionic cordova platform add ios</code>
 
 * Running the app:
     1) To run the app on a local node server:
-        ionic serve
+        <code>ionic serve</code>
     2) To run the app on an Android device:
-        ionic cordova run android --device
+        <code>ionic cordova run android --device</code>
     3) To run the app on Android emulator:
-        ionic cordova run android
+        <code>ionic cordova run android</code>
 
 * Building packages:
     1) To build an Android package:
-        ionic cordova build android
-        
+        <code>ionic cordova build android</code>
+
 ## IBM Cloud Services <a name="IBM-Cloud-Services"></a>
 * [IBM Cloud Object Storage](https://www.ibm.com/cloud/object-storage)
 * [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio)
@@ -117,7 +117,7 @@ We then started testing the APP features with a selected 15 farmers in the Mongo
 * Start Date: 01/June/2020
 * Region: Mongolia (Dornord Province)
 * Currently real users :[15 users]( https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Pilot%20Mongolia%20Users.png)
-* Currently Situation: OnGoing. Colecting data.
+* Currently Situation: OnGoing. Collecting data.
 
 ## Authors <a name="Authors"></a>
 * Ajinkya Datalkar - Product & Sotware Developer, System Design [*See Linkedin*](https://www.linkedin.com/in/ajinkya-datalkar/)
