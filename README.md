@@ -104,7 +104,6 @@ English, Portuguese (*Brazil*), Mongolian.
 * Building packages:
     1) To build an Android package:
         ionic cordova build android
-    2)
 ## IBM Cloud Services <a name="IBM-Cloud-Services"></a>
 * [IBM Cloud Object Storage](https://www.ibm.com/cloud/object-storage)
 * [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio)
