@@ -88,21 +88,21 @@ English, Portuguese (*Brazil*), Mongolian.
     18. Google Services Plugin (Will be automatically installed when installing Firebase)
 
 * Once the plugins are installed the platforms are needed to be added:
-    01. In order to add the Android Platform run the following command:
+    01. In order to add the Android Platform run the following command:<br />
         <code>ionic cordova platform add android</code>
-    02. In order to add the iOS Platform run the following command:
+    02. In order to add the iOS Platform run the following command:<br />
         <code>ionic cordova platform add ios</code>
 
 * Running the app:
-    01. To run the app on a local node server:
+    01. To run the app on a local node server:<br />
         <code>ionic serve</code>
-    02. To run the app on an Android device:
+    02. To run the app on an Android device:<br />
         <code>ionic cordova run android --device</code>
-    03. To run the app on Android emulator:
+    03. To run the app on Android emulator:<br />
         <code>ionic cordova run android</code>
 
 * Building packages:
-    01. To build an Android package:
+    01. To build an Android package:<br />
         <code>ionic cordova build android</code>
 
 ## IBM Cloud Services <a name="IBM-Cloud-Services"></a>
