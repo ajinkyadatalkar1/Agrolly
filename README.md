@@ -67,15 +67,15 @@ English, Portuguese (*Brazil*), Mongolian.
 * Install node.js
 * Install Ionic and Cordova
 * This app makes use of 18 plugins all of which need to be installed in order to compile the app or run on localhost
-    01. Photo Viewer Plugin (https://ionicframework.com/docs/native/photo-viewer)
-    02. Android Permission Management Plugin (https://ionicframework.com/docs/native/android-permissions)
-    03. AndroidX Plugin (https://ionicframework.com/docs/native/firebase-x)
-    04. AndroidX Adapter Plugin (Should automatically install when you install firebase plugin)
-    05. Camera Plugin (https://ionicframework.com/docs/native/camera)
-    06. Device Plugin (https://ionicframework.com/docs/native/device)
-    07. Firebase Cloud Messaging Plugin (https://ionicframework.com/docs/native/fcm)
-    08. File Plugin (https://ionicframework.com/docs/native/file)
-    09. File Manager Plugin (https://ionicframework.com/docs/native/file-transfer)
+     1. Photo Viewer Plugin (https://ionicframework.com/docs/native/photo-viewer)
+     2. Android Permission Management Plugin (https://ionicframework.com/docs/native/android-permissions)
+     3. AndroidX Plugin (https://ionicframework.com/docs/native/firebase-x)
+     4. AndroidX Adapter Plugin (Should automatically install when you install firebase plugin)
+     5. Camera Plugin (https://ionicframework.com/docs/native/camera)
+     6. Device Plugin (https://ionicframework.com/docs/native/device)
+     7. Firebase Cloud Messaging Plugin (https://ionicframework.com/docs/native/fcm)
+     8. File Plugin (https://ionicframework.com/docs/native/file)
+     9. File Manager Plugin (https://ionicframework.com/docs/native/file-transfer)
     10. Full Screen Plugin (https://ionicframework.com/docs/native/android-full-screen)
             * Available only on Android for devices with notch/ not supported on iOS
     11. Keyboard Plugin (https://ionicframework.com/docs/native/keyboard)
