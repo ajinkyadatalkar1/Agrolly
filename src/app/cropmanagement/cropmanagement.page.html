@@ -5,24 +5,105 @@
 </ion-header>
 
 <ion-content>
-<ion-card>
-  <ion-card-header>
-    <div class="stars">
-      * Data for only 17 vegetables is available at the moment.
-    </div>
-    <div class="stars">
-      ** Data is available only for some cities in Mongolia.
-    </div>
-  </ion-card-header>
-</ion-card>
-<ion-list>
-  <ion-item [routerLink]="['/tabs/cropcities']" button>
-    Vegetables currently being grown
-    <ion-icon slot="end" name="ios-arrow-forward"></ion-icon>
-  </ion-item>
-  <ion-item [routerLink]="['/tabs/cropsowing']" button>
-    Weather forecast based sowing
-    <ion-icon slot="end" name="ios-arrow-forward"></ion-icon>
-  </ion-item>
-</ion-list>
+  <ion-card>
+    <ion-card-header>
+      <div class="stars">
+        * Data for only 17 vegetables is available at the moment.
+      </div>
+      <div class="stars">
+        ** Data is available only for some cities in Mongolia.
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item lines="none">
+          <ion-datetime (ionChange)="getDate()" [attr.placeholder]="language.sowing_month" min="2020-06" max="2021-06"
+            displayFormat="MMMM-YYYY" display-timezone="utc" [(ngModel)]="userSelectMonth"></ion-datetime>
+          <ion-icon size="large" slot="end" src="../assets/icon/calendar-outline.svg"></ion-icon>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-select interface="action-sheet" [attr.placeholder]="language.city" [(ngModel)]="city">
+            <ion-select-option value="Dashbalbar">Dashbalbar</ion-select-option>
+            <ion-select-option value="Bayabdun">Bayabdun</ion-select-option>
+            <ion-select-option value="GurvanZagal">GurvanZagal</ion-select-option>
+            <ion-select-option value="Bayanuul">Bayanuul</ion-select-option>
+            <ion-select-option value="Ereentsav">Ereentsav</ion-select-option>
+            <ion-select-option value="Kherlen Khentii">Kherlen Khentii</ion-select-option>
+            <ion-select-option value="Bulgan">Bulgan</ion-select-option>
+            <ion-select-option value="Hulunbuir">Hulunbuir</ion-select-option>
+            <ion-select-option value="Morun">Morun</ion-select-option>
+            <ion-select-option value="Undurkhaan">Undurkhaan</ion-select-option>
+            <ion-select-option value="Delgerkhaan">Delgerkhaan</ion-select-option>
+            <ion-select-option value="Tsenkhermandal">Tsenkhermandal</ion-select-option>
+            <ion-select-option value="Jargaltkhaan">Jargaltkhaan</ion-select-option>
+            <ion-select-option value="Batnorov">Batnorov</ion-select-option>
+            <ion-select-option value="Bayan.Ovoo">Bayan.Ovoo</ion-select-option>
+          </ion-select>
+          <ion-icon size="large" slot="end" src="../assets/icon/Mongolia.svg"></ion-icon>
+        </ion-item>
+        <ion-item lines="none" *ngIf="city != undefined && userSelectMonth != undefined">
+          <ion-button class="fetchData" (click)="listCrops()" color="success"><b>{{language.fetch_data}}</b>
+            <ion-icon name="download" size="small"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-item lines="none" *ngFor="let item of cropsListData; let i = index;">
+      <div style="width: 100%;">
+        <ion-item-divider color="secondary">
+          <ion-label><b>{{item["Crop_English"]}} / {{item["Crop_Mongolian"]}}</b></ion-label>
+        </ion-item-divider>
+        <ion-grid>
+            <ion-label><b>Crop Requirements:</b></ion-label>
+          <ion-row>
+            <ion-col size="6">
+              <ion-icon name="thermometer" size="small" color="warning"></ion-icon>
+              {{language.max_temp}}: {{item["Geral_air_Temp_max"]}} °C
+            </ion-col>
+            <ion-col size="6">
+              <ion-icon name="thermometer" size="small" color="warning"></ion-icon>
+              {{language.min_temp}}: {{item["Geral_air_Temp_min"]}} °C
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="7">
+              <ion-icon name="water" size="small" color="primary"></ion-icon>
+              {{language.water_needed}}: {{item["water_ovehall_2_stages"]}} mm 
+            </ion-col>
+            <ion-col size="5">
+              <ion-icon name="home" size="small" color="success"></ion-icon>
+              {{language.cover}}: {{item["Cover"]}}
+            </ion-col>
+          </ion-row>
+          <hr />
+            <ion-label *ngIf="forecastMatch"><b>Forecast Match:</b></ion-label>
+            <ion-row *ngIf="forecastMatch">
+              <ion-col size="6">
+                <ion-button mode='ios' [attr.color]="monthMaxTemp > item['Geral_air_Temp_max']? 'danger': 'success'" size="small" strong>
+                  <ion-icon name="thermometer" size="small"></ion-icon>
+                  {{language.max_temp}}: {{monthMaxTemp}} °C
+                  </ion-button>
+              </ion-col>
+              <ion-col size="6">
+                <ion-button mode='ios' [attr.color]="monthMinTemp < item['Geral_air_Temp_max']? 'danger': 'success'" size="small" strong>
+                <ion-icon name="thermometer" size="small"></ion-icon>
+                {{language.min_temp}}: {{monthMinTemp}} °C
+                </ion-button>                
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="forecastMatch">
+              <ion-col size="12">
+                <ion-button mode='ios' [attr.color]="rainfall < item['water_ovehall_2_stages'] ? 'danger': 'success'" strong>
+                  <ion-icon name="water" size="small"></ion-icon>
+                  {{language.rain_forecast}}: {{rainfall}} mm 
+                </ion-button>
+              </ion-col>
+            </ion-row>
+        </ion-grid>
+       </div>
+    </ion-item>
+  </ion-list>
 </ion-content>
