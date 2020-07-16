@@ -8,15 +8,15 @@ Agrolly is a mobile app to help rural household farmers in developing countries 
 
 ## Contents 
 
-1. [Short Description](#Short-Description)
-2. [Demo Video](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/README.md/##Demo-Video)
-3. [How it works](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/README.md/##How-it-works)
-4. [Long Description](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/README.md/##Long-Description)
-5. [Project Roadmap](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/README.md/##Project-Roadmap)
-6. [Getting Started](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/README.md/##Getting-Started)
-7. [Running the tests](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/README.md/##Running-the-tests)
-8. [IBM Cloud Services](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/README.md/##IBM-Cloud-Services)
-9. [Authors](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/README.md/##Authors)
+01. [Short Description](#Short-Description)
+02. [Demo Video](#Demo-Video)
+03. [How it works](#How-it-works)
+04. [Long Description](#Long-Description)
+05. [Project Roadmap](#Project-Roadmap)
+06. [Getting Started](#Getting-Started)
+07. [IBM Cloud Services](#IBM-Cloud-Services)
+08. [Deployment/Pilot](#Pilot)
+09. [Authors](#Authors)
 10. [License](#License)
 
 ## Short Description <a name="Short-Description"></a>
@@ -34,26 +34,26 @@ Household farmers in many emerging countries encounter a massive burden of econo
 ### What are the Languages available?
 English, Portuguese (*Brazil*), Mongolian.
 
-## Demo Video 
+## Demo Video <a name="Demo-Video"></a>
 [![Demo Video](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Youtube_video.jpgn.jpg)](https://www.youtube.com/watch?v=VT4RKHwQ1hQ&t=65s "DEMO VIDEO")
 
-## How it works
+## How it works <a name="How-it-works"></a>
 ![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Arquitecture.png?raw=true/20x10"Architecture")
 1. the IBM’s **The Weather Company** to display hourly and weekly forecasts based on the location of the user.
 2. We collect the weather information for the past 5 years from **NASA** and we generate annual predictions with the help of the IBM Watson studio.
 3. For more information related regression , please read [our article here](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Draft%20Forecast%20Article%20-%20Partial%20Study..pdf)
 4. We use FAO's guideline for the Risk Mangament caulcualtion for more information see [**guideline here**](http://www.fao.org/3/s2022e/s2022e00.htm#Contents)
 
-## Long Description
+## Long Description <a name="Long-Description"></a>
 [Long Description Document Link](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Long%20Description%20Pitch%20Agrolly.docx)
 
-## Project Roadmap
-![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Agrolly_Road_Map.PNG?raw=true/20x10"Roadmap")
+## Project Roadmap <a name="Project-Roadmap"></a>
+![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Agrolly_Road_Map.PNG?raw=true)
 * For the 1st Phase, we focused on given farmers tools and knowledge to fight against changes in the weather. 
 * The 2nd phase is planned to focus on the interactions between farmers so they can increase their relationship. This will enable them to know what others are planting and explore their options. We are also planning to integrate some tools so the farmers can leverage their know-how, such as the expert advice feature will allow farmers to get in touch with specialists and trends in the agriculture sector.
 * Our 3rd goal is to connect small farmers with banks and customers, by implementing QR code for food traceability and farming credit score algorithms.
 
-## Getting Started
+## Getting Started <a name="Getting-Started"></a>
 
 #### Prerequisite
 * Register for an [IBM Cloud account](https://www.ibm.com/account/reg/us-en/signup?formid=urx-42793&eventid=cfc-2020).
@@ -65,13 +65,21 @@ English, Portuguese (*Brazil*), Mongolian.
 #### Run it
 * Download the Github code.
 
-## IBM Cloud Services
+## IBM Cloud Services <a name="IBM-Cloud-Services"></a>
 * [IBM Cloud Object Storage](https://www.ibm.com/cloud/object-storage)
 * [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio)
 * [IBM Watson Assistant](https://www.ibm.com/cloud/watson-assistant/) (Currently Implementing/ future scope)
 * [The Weather Company API](https://callforcode.weather.com/)
 
-## Authors
+## Deployment/Pilot <a name="Pilot"></a>
+In order to create the APP, we did previous research with the farmers to identify their main concerns and needs. The mains focus areas that we found were the lack of access to rainfall and bank loans.
+We then started testing the APP features with a selected 15 farmers in the Mongolian householder farmers to identify any gaps in the user interface and improvements need in the APP.
+* Start Date: 01/June/2020
+* Region: Mongolia (Dornord Province)
+* Currently real users :[15 users]( https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Pilot%20Mongolia%20Users.png)
+* Currently Situation: OnGoing. Colecting data.
+
+## Authors <a name="Authors"></a>
 * Ajinkya Datalkar - Product & Sotware Developer, System Design [*See Linkedin*](https://www.linkedin.com/in/ajinkya-datalkar/)
 * Manoela Morais - Data Intelligence (R program) & Project Management [*See Linkedin*](https://www.linkedin.com/in/manoelamorais/)
 * Helen TSAI - Web Developer [*See Linkedin*](https://www.linkedin.com/in/helen-tsai-teyi/)
