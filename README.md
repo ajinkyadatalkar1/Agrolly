@@ -87,7 +87,7 @@ English, Portuguese (*Brazil*), Mongolian.
     17) Sql Lite Storage Plugin (https://ionicframework.com/docs/angular/storage)
     18) Google Services Plugin (Will be automatically installed when installing Firebase)
 
-* Once the plugins are installed the platforms need to added:
+* Once the plugins are installed the platforms are needed to be added:
     1) In order to add the Android Platform run the following command:
         ionic cordova platform add android
     2) In order to add the iOS Platform run the following command:
@@ -104,6 +104,7 @@ English, Portuguese (*Brazil*), Mongolian.
 * Building packages:
     1) To build an Android package:
         ionic cordova build android
+        
 ## IBM Cloud Services <a name="IBM-Cloud-Services"></a>
 * [IBM Cloud Object Storage](https://www.ibm.com/cloud/object-storage)
 * [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio)
