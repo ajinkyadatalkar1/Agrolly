@@ -67,7 +67,6 @@ English, Portuguese (*Brazil*), Mongolian.
 * Install node.js
 * Install Ionic and Cordova
 * This app makes use of 18 plugins all of which need to be installed in order to compile the app or run on localhost
-
      1. Photo Viewer Plugin (https://ionicframework.com/docs/native/photo-viewer)
      2. Android Permission Management Plugin (https://ionicframework.com/docs/native/android-permissions)
      3. AndroidX Plugin (https://ionicframework.com/docs/native/firebase-x)
@@ -89,14 +88,12 @@ English, Portuguese (*Brazil*), Mongolian.
     18. Google Services Plugin (Will be automatically installed when installing Firebase)
 
 * Once the plugins are installed the platforms are needed to be added:
-
     01. In order to add the Android Platform run the following command:
         <code>ionic cordova platform add android</code>
     02. In order to add the iOS Platform run the following command:
         <code>ionic cordova platform add ios</code>
 
 * Running the app:
-
     01. To run the app on a local node server:
         <code>ionic serve</code>
     02. To run the app on an Android device:
