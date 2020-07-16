@@ -89,6 +89,10 @@ export class Language {
             week: 'Week',
             rain: 'Rain',
             precipitation: 'Precipitation',
+            water_needed: 'Water Needed',
+            cover: 'Cover',
+            rain_forecast: 'Rain Forecast',
+            sowing_month: 'Select Sowing Month',
         }
     ];
 
@@ -182,6 +186,10 @@ export class Language {
             week: 'долоо хоног',
             rain: 'Бороо',
             precipitation: 'Хур тунадас',
+            water_needed: 'Ус',
+            cover: 'Бүтээлэг',
+            rain_forecast: 'Бороо орох',
+            sowing_month: 'Үрслүүлэх сар',
         }
     ];
 
@@ -217,6 +225,7 @@ export class Language {
             email_address: 'Incluir o seu endereço de e-mail',
             country: 'Selecione o seu País',
             state: 'Selecione o seu estado',
+            city: 'Cidade',
             submit: 'Enviar',
             otp: 'Senha para usar uma única vez',
             comment_notification: 'Alguém comentou em sua postagem, veja a resposta no aplicativo em: "Minhas perguntas"',
@@ -269,9 +278,15 @@ export class Language {
             profile_update_failed: 'Falha na atualização das informações',
             post_update_successful: 'Publicação atualizada com sucesso',
             post_update_failed: 'Falha na atualização da Publicação',
-            max_temp: 'Temp. Máx.',
+            max_temp: 'Temp. Máx',
             min_temp: 'Temp. Mínima',
             week: 'Semana',
+            rain: 'Chuva',
+            precipitation: 'Precipitação',
+            water_needed: 'Água Requerida',
+            cover: 'Cobrir?',
+            rain_forecast: 'Previsão de chuva',
+            sowing_month: 'Mês de Início do Plantio',
         }
     ];
 }

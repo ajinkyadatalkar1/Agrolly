@@ -86,8 +86,6 @@ export class HttpcallsService {
 
     this.latitude = undefined;
     this.longitude = undefined;
-
-    this.getCropsPlaces();
     this.getCropsList();
 
     this.tapQues = this.notificationId.Notifications;
@@ -793,10 +791,11 @@ export class HttpcallsService {
   }
 
   async getCropsList() {
-    this.cropsList = 'http://www.agrolly.tech/crop_places.php';
+    this.cropsList = 'http://www.agrolly.tech/crop_list.php';
     this.http.get(this.cropsList).subscribe(
       (result) => {
         this.cropsListData = result;
+        console.log(result[0]);
       });
   }
 
