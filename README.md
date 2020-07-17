@@ -67,25 +67,25 @@ English, Portuguese (*Brazil*), Mongolian.
 * Install node.js
 * Install Ionic and Cordova
 * This app makes use of 18 plugins all of which need to be installed in order to compile the app or run on localhost
-     1. Photo Viewer Plugin (https://ionicframework.com/docs/native/photo-viewer)
-     2. Android Permission Management Plugin (https://ionicframework.com/docs/native/android-permissions)
-     3. AndroidX Plugin (https://ionicframework.com/docs/native/firebase-x)
-     4. AndroidX Adapter Plugin (Should automatically install when you install firebase plugin)
-     5. Camera Plugin (https://ionicframework.com/docs/native/camera)
-     6. Device Plugin (https://ionicframework.com/docs/native/device)
-     7. Firebase Cloud Messaging Plugin (https://ionicframework.com/docs/native/fcm)
-     8. File Plugin (https://ionicframework.com/docs/native/file)
-     9. File Manager Plugin (https://ionicframework.com/docs/native/file-transfer)
-    10. Full Screen Plugin (https://ionicframework.com/docs/native/android-full-screen)
+     1. Photo Viewer Plugin <br /> (https://ionicframework.com/docs/native/photo-viewer)
+     2. Android Permission Management Plugin <br /> (https://ionicframework.com/docs/native/android-permissions)
+     3. AndroidX Plugin <br /> (https://ionicframework.com/docs/native/firebase-x)
+     4. AndroidX Adapter Plugin <br /> (Should automatically install when you install firebase plugin)
+     5. Camera Plugin <br /> (https://ionicframework.com/docs/native/camera)
+     6. Device Plugin <br /> (https://ionicframework.com/docs/native/device)
+     7. Firebase Cloud Messaging Plugin <br /> (https://ionicframework.com/docs/native/fcm)
+     8. File Plugin <br /> (https://ionicframework.com/docs/native/file)
+     9. File Manager Plugin <br /> (https://ionicframework.com/docs/native/file-transfer)
+    10. Full Screen Plugin <br /> (https://ionicframework.com/docs/native/android-full-screen) <br />
             * Available only on Android for devices with notch/ not supported on iOS
-    11. Keyboard Plugin (https://ionicframework.com/docs/native/keyboard)
-    12. Webview Plugin (https://ionicframework.com/docs/native/ionic-webview)
-    13. Screen Orientation Plugin (https://ionicframework.com/docs/native/screen-orientation)
-    14. Splash Screen Plugin (https://ionicframework.com/docs/native/splash-screen)
-    15. Statusbar Plugin (https://ionicframework.com/docs/native/status-bar)
-    16. Vibration Plugin (https://ionicframework.com/docs/native/vibration)
-    17. Sql Lite Storage Plugin (https://ionicframework.com/docs/angular/storage)
-    18. Google Services Plugin (Will be automatically installed when installing Firebase)
+    11. Keyboard Plugin <br /> (https://ionicframework.com/docs/native/keyboard)
+    12. Webview Plugin <br /> (https://ionicframework.com/docs/native/ionic-webview)
+    13. Screen Orientation Plugin <br /> (https://ionicframework.com/docs/native/screen-orientation)
+    14. Splash Screen Plugin <br /> (https://ionicframework.com/docs/native/splash-screen)
+    15. Statusbar Plugin <br /> (https://ionicframework.com/docs/native/status-bar)
+    16. Vibration Plugin <br /> (https://ionicframework.com/docs/native/vibration)
+    17. Sql Lite Storage Plugin <br /> (https://ionicframework.com/docs/angular/storage)
+    18. Google Services Plugin <br /> (Will be automatically installed when installing Firebase)
 
 * Once the plugins are installed the platforms are needed to be added:
     01. In order to add the Android Platform run the following command:<br />
