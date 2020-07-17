@@ -66,7 +66,7 @@ English, Portuguese (*Brazil*), Mongolian.
 * Download the Github code
 * Install node.js
 * Install Ionic and Cordova
-* This app makes use of 18 plugins all of which need to be installed in order to compile the app or run on localhost
+* This app makes use of 18 plugins all of which are needed to be installed in order to compile the app or run on localhost
      1. Photo Viewer Plugin <br /> (https://ionicframework.com/docs/native/photo-viewer)
      2. Android Permission Management Plugin <br /> (https://ionicframework.com/docs/native/android-permissions)
      3. AndroidX Plugin <br /> (https://ionicframework.com/docs/native/firebase-x)
