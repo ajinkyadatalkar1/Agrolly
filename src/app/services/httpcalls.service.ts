@@ -30,6 +30,9 @@ export class HttpcallsService {
   annualWeatherUrl: string;
   annualforecast: any;
 
+  poPlaces: object;
+  poValue: object;
+
   /* Crops variables */
   cropsPlaces: string;
   cropsList: string;
@@ -87,6 +90,8 @@ export class HttpcallsService {
     this.latitude = undefined;
     this.longitude = undefined;
     this.getCropsList();
+    this.getPoValue();
+    this.getPoPlaces();
 
     this.tapQues = this.notificationId.Notifications;
     this.languageList = this.lang.English[0];
@@ -777,7 +782,7 @@ export class HttpcallsService {
     this.http.get(this.annualWeatherUrl).subscribe(
       (result) => {
         this.annualForecast = result;
-        // console.log('Annual: ' + this.annualForecast[0]['Date.fcst']);
+        console.log('Annual: ' + this.annualForecast[0]['Date.fcst']);
       });
   }
 
@@ -791,11 +796,26 @@ export class HttpcallsService {
   }
 
   async getCropsList() {
-    this.cropsList = 'http://www.agrolly.tech/crop_list.php';
+    this.cropsList = 'http://www.agrolly.tech/cropdata.php';
     this.http.get(this.cropsList).subscribe(
       (result) => {
         this.cropsListData = result;
-        console.log(result[0]);
+      });
+  }
+
+  async getPoValue() {
+    this.cropsList = 'http://www.agrolly.tech/po_value.php';
+    this.http.get(this.cropsList).subscribe(
+      (result) => {
+        this.poValue = result;
+      });
+  }
+
+  async getPoPlaces() {
+    this.cropsList = 'http://www.agrolly.tech/po_places.php';
+    this.http.get(this.cropsList).subscribe(
+      (result) => {
+        this.poPlaces = result[0];
       });
   }
 

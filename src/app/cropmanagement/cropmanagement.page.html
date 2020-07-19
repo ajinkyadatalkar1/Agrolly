@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Crop Management</ion-title>
+    <ion-title>{{language.crop_management}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,7 +8,7 @@
   <ion-card>
     <ion-card-header>
       <div class="stars">
-        * Data for only 17 vegetables is available at the moment.
+        * Data for only 40 vegetables is available at the moment.
       </div>
       <div class="stars">
         ** Data is available only for some cities in Mongolia.
@@ -17,10 +17,11 @@
     <ion-card-content>
       <ion-list>
         <ion-item lines="none">
-          <ion-datetime (ionChange)="getDate()" [attr.placeholder]="language.sowing_month" min="2020-06" max="2021-06"
+          <ion-datetime (ionChange)="getDate()" [attr.placeholder]="language.sowing_month" min="2020-06" max="2021-04"
             displayFormat="MMMM-YYYY" display-timezone="utc" [(ngModel)]="userSelectMonth"></ion-datetime>
           <ion-icon size="large" slot="end" src="../assets/icon/calendar-outline.svg"></ion-icon>
         </ion-item>
+
         <ion-item lines="none">
           <ion-select interface="action-sheet" [attr.placeholder]="language.city" [(ngModel)]="city">
             <ion-select-option value="Dashbalbar">Dashbalbar</ion-select-option>
@@ -41,20 +42,38 @@
           </ion-select>
           <ion-icon size="large" slot="end" src="../assets/icon/Mongolia.svg"></ion-icon>
         </ion-item>
+
+        <ion-item lines="none">
+          <ion-select interface="action-sheet" placeholder="Select Vegetables" [(ngModel)]="vegetable">
+            <ion-select-option>All</ion-select-option>
+            <ion-select-option *ngFor="let item of cropsListData; let i = index;">{{item["Crop_English"]}} / {{item["Crop_Mongolian"]}}</ion-select-option>
+          </ion-select>
+          <ion-icon slot="end" size="large" name="nutrition" color="warning"></ion-icon>
+        </ion-item>
+
         <ion-item lines="none" *ngIf="city != undefined && userSelectMonth != undefined">
           <ion-button class="fetchData" (click)="listCrops()" color="success"><b>{{language.fetch_data}}</b>
             <ion-icon name="download" size="small"></ion-icon>
           </ion-button>
         </ion-item>
+
+        <ion-item *ngIf="monthMinTemp == 100 && forecastMatch">
+            <ion-col size="12">
+                <ion-icon name="warning" size="small" color="danger"></ion-icon>
+                 Error due to network instability, please <b>REVISIT THIS PAGE</b> and <b>PRESS FETCH DATA AGAIN</b>.
+            </ion-col>
+        </ion-item>
       </ion-list>
     </ion-card-content>
   </ion-card>
 
-  <ion-list>
-    <ion-item lines="none" *ngFor="let item of cropsListData; let i = index;">
+  <ion-list *ngIf="forecastMatch && monthMinTemp != 100">
+    <div *ngFor="let item of cropsListData; let i = index;">
+    <ion-item lines="none"  *ngIf="vegetable == item['Crop_English']+ ' / ' + item['Crop_Mongolian'] || vegetable == 'All'">
+      <ion-card class="veggieCard">
       <div style="width: 100%;">
         <ion-item-divider color="secondary">
-          <ion-label><b>{{item["Crop_English"]}} / {{item["Crop_Mongolian"]}}</b></ion-label>
+          <ion-label><b>{{item["Crop_English"]}} / {{item["Crop_Mongolian"]}} / {{item["Crop_Portuguese"]}}</b></ion-label>
         </ion-item-divider>
         <ion-grid>
             <ion-label><b>Crop Requirements:</b></ion-label>
@@ -69,26 +88,68 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="7">
+            <ion-col size="12">
               <ion-icon name="water" size="small" color="primary"></ion-icon>
-              {{language.water_needed}}: {{item["water_ovehall_2_stages"]}} mm 
+              {{language.water_needed}} in {{monthList[month]}}: {{waterNeeded[i]}} mm 
             </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-icon name="water" size="small" color="primary"></ion-icon>
+              {{language.water_needed}} in {{monthList[month+1]}}: {{waterNeeded2[i]}} mm 
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-icon name="water" size="small" color="primary"></ion-icon>
+              {{language.water_needed}} in {{monthList[month+2]}}: {{waterNeeded3[i]}} mm 
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
             <ion-col size="5">
               <ion-icon name="home" size="small" color="success"></ion-icon>
               {{language.cover}}: {{item["Cover"]}}
             </ion-col>
           </ion-row>
+          <ion-row>
+            <ion-col>
+            <ion-icon size="small" name="speedometer" color="primary"></ion-icon>
+            Maturity: {{item["Total.growing.period_days_min"]}} to {{item["Total.growing.period_days_max"]}} days
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="waterNeeded[i]==0">
+            <ion-col size="12">
+                <ion-button mode='ios' color="danger" strong>
+                <ion-icon size="small" name="leaf"></ion-icon>
+                Harvest season over
+                </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="waterNeeded[i] < 0">
+            <ion-col size="12">
+                <ion-button mode='ios' color="danger" strong>
+                <ion-icon name="warning" size="small"></ion-icon>
+                Climate unsuitable for growing
+                </ion-button>
+            </ion-col>
+          </ion-row>
+
           <hr />
+          <div *ngIf="waterNeeded[i] != 0">
             <ion-label *ngIf="forecastMatch"><b>Forecast Match:</b></ion-label>
             <ion-row *ngIf="forecastMatch">
               <ion-col size="6">
-                <ion-button mode='ios' [attr.color]="monthMaxTemp > item['Geral_air_Temp_max']? 'danger': 'success'" size="small" strong>
+                <ion-button mode='ios' [attr.color]="monthMaxTemp > item['Geral_air_Temp_max'] + 2 || monthMaxTemp < item['Geral_air_Temp_min']? 'danger': 'success'" size="small" strong>
                   <ion-icon name="thermometer" size="small"></ion-icon>
                   {{language.max_temp}}: {{monthMaxTemp}} °C
                   </ion-button>
               </ion-col>
               <ion-col size="6">
-                <ion-button mode='ios' [attr.color]="monthMinTemp < item['Geral_air_Temp_max']? 'danger': 'success'" size="small" strong>
+                <ion-button mode='ios' [attr.color]="monthMinTemp < item['Geral_air_Temp_min'] - 2? 'danger': 'success'" size="small" strong>
                 <ion-icon name="thermometer" size="small"></ion-icon>
                 {{language.min_temp}}: {{monthMinTemp}} °C
                 </ion-button>                
@@ -96,14 +157,17 @@
             </ion-row>
             <ion-row *ngIf="forecastMatch">
               <ion-col size="12">
-                <ion-button mode='ios' [attr.color]="rainfall < item['water_ovehall_2_stages'] ? 'danger': 'success'" strong>
+                <ion-button mode='ios' [attr.color]="rainfall < waterNeeded[i]-10 ? 'danger': 'success'" strong>
                   <ion-icon name="water" size="small"></ion-icon>
                   {{language.rain_forecast}}: {{rainfall}} mm 
                 </ion-button>
               </ion-col>
             </ion-row>
+            </div>
         </ion-grid>
        </div>
+      </ion-card>
     </ion-item>
+  </div>
   </ion-list>
 </ion-content>
