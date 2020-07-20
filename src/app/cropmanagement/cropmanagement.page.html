@@ -8,7 +8,7 @@
   <ion-card>
     <ion-card-header>
       <div class="stars">
-        * Data for only 40 vegetables is available at the moment.
+        * Data displayed follows FAO regulations.
       </div>
       <div class="stars">
         ** Data is available only for some cities in Mongolia.
@@ -17,7 +17,7 @@
     <ion-card-content>
       <ion-list>
         <ion-item lines="none">
-          <ion-datetime (ionChange)="getDate()" [attr.placeholder]="language.sowing_month" min="2020-06" max="2021-04"
+          <ion-datetime (ionChange)="getDate()" [attr.placeholder]="language.sowing_month" min="2020-07" max="2021-04"
             displayFormat="MMMM-YYYY" display-timezone="utc" [(ngModel)]="userSelectMonth"></ion-datetime>
           <ion-icon size="large" slot="end" src="../assets/icon/calendar-outline.svg"></ion-icon>
         </ion-item>
@@ -90,21 +90,21 @@
           <ion-row>
             <ion-col size="12">
               <ion-icon name="water" size="small" color="primary"></ion-icon>
-              {{language.water_needed}} in {{monthList[month]}}: {{waterNeeded[i]}} mm 
+              {{language.water_needed}} in {{monthList[month]}}: {{waterNeeded[i] < 0 ? 0.01 : waterNeeded[i]}} mm 
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
               <ion-icon name="water" size="small" color="primary"></ion-icon>
-              {{language.water_needed}} in {{monthList[month+1]}}: {{waterNeeded2[i]}} mm 
+              {{language.water_needed}} in {{monthList[month+1]}}: {{waterNeeded2[i] < 0 ? 0.01 : waterNeeded2[i]}} mm 
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
               <ion-icon name="water" size="small" color="primary"></ion-icon>
-              {{language.water_needed}} in {{monthList[month+2]}}: {{waterNeeded3[i]}} mm 
+              {{language.water_needed}} in {{monthList[month+2]}}: {{waterNeeded3[i] < 0 ? 0.01 : waterNeeded3[i]}} mm 
             </ion-col>
           </ion-row>
 
@@ -159,10 +159,29 @@
               <ion-col size="12">
                 <ion-button mode='ios' [attr.color]="rainfall < waterNeeded[i]-10 ? 'danger': 'success'" strong>
                   <ion-icon name="water" size="small"></ion-icon>
-                  {{language.rain_forecast}}: {{rainfall}} mm 
+                  {{language.rain_forecast}} for {{monthList[month]}}: {{rainfall}} mm 
                 </ion-button>
               </ion-col>
             </ion-row>
+
+            <ion-row *ngIf="forecastMatch">
+              <ion-col size="12">
+                <ion-button mode='ios' [attr.color]="rainfall2 < waterNeeded2[i]-10 ? 'danger': 'success'" strong>
+                  <ion-icon name="water" size="small"></ion-icon>
+                  {{language.rain_forecast}} for {{monthList[month+1]}}: {{rainfall2}} mm 
+                </ion-button>
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="forecastMatch">
+              <ion-col size="12">
+                <ion-button mode='ios' [attr.color]="rainfall3 < waterNeeded3[i]-10 ? 'danger': 'success'" strong>
+                  <ion-icon name="water" size="small"></ion-icon>
+                  {{language.rain_forecast}} for {{monthList[month+2]}}: {{rainfall3}} mm
+                </ion-button>
+              </ion-col>
+            </ion-row>
+
             </div>
         </ion-grid>
        </div>
