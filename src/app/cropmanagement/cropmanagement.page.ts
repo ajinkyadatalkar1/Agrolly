@@ -23,6 +23,8 @@ export class CropmanagementPage implements OnInit {
   monthMaxTemp = 0;
   monthMinTemp = 100;
   rainfall = 0;
+  rainfall2 = 0;
+  rainfall3 = 0;
   city: string;
 
   // tslint:disable-next-line: max-line-length
@@ -69,6 +71,8 @@ export class CropmanagementPage implements OnInit {
   listCrops() {
     this.forecastMatch = 'show';
     this.rainfall = 0;
+    this.rainfall2 = 0;
+    this.rainfall3 = 0;
     this.monthMaxTemp = 0;
     this.monthMinTemp = 100;
     this.waterNeeded = [];
@@ -81,7 +85,7 @@ export class CropmanagementPage implements OnInit {
       const month = date.getMonth();
       const year = date.getFullYear();
 
-      if (this.month === month && this.year === year) {
+      if (this.monthList[this.month] === this.monthList[month] && this.year === year) {
         if (this.monthMaxTemp < this.annualForecast[i]['TEMPMAX_fcast_' + this.city]) {
           this.monthMaxTemp = this.annualForecast[i]['TEMPMAX_fcast_' + this.city];
         }
@@ -92,16 +96,21 @@ export class CropmanagementPage implements OnInit {
         this.rainfall += this.annualForecast[i]['SNfcast_' + this.city + '.mean'];
         this.tempMedian += this.annualForecast[i]['TEMPMEDIA_fcast_' + this.city];
       }
-    
-      if (this.monthList[this.month] === this.monthList[this.month + 1]) {
+
+      if (this.monthList[month] === this.monthList[this.month + 1]) {
+        this.rainfall2 += this.annualForecast[i]['SNfcast_' + this.city + '.mean'];
         this.tempMedian2 += this.annualForecast[i]['TEMPMEDIA_fcast_' + this.city];
       }
 
-      if (this.monthList[this.month] === this.monthList[this.month + 2]) {
+      if (this.monthList[month] === this.monthList[this.month + 2]) {
+        this.rainfall3 += this.annualForecast[i]['SNfcast_' + this.city + '.mean'];
         this.tempMedian3 += this.annualForecast[i]['TEMPMEDIA_fcast_' + this.city];
       }
     }
     this.rainfall = Math.floor(this.rainfall);
+    this.rainfall2 = Math.floor(this.rainfall2);
+    this.rainfall3 = Math.floor(this.rainfall3);
+
     this.tempMedian = this.tempMedian / 30;
     this.tempMedian2 = this.tempMedian2 / 30;
     this.tempMedian3 = this.tempMedian3 / 30;
@@ -114,28 +123,33 @@ export class CropmanagementPage implements OnInit {
       if (this.httpcalls.poPlaces[this.city] === 'N_' + this.httpcalls.poValue[i]['city_long'] ) {
         for (let j = 0; j < Object.keys(this.cropsListData).length ; j++) {
 
-
-          // tslint:disable-next-line: max-line-length
-          this.waterNeeded[j] = (this.httpcalls.poValue[i]['N_' + month] * (0.46 * this.tempMedian + 8) * this.cropsListData[j]['kc_month1']) * 30;
-          if (this.waterNeeded[j] < 0) {
-            this.waterNeeded[j] = 0.001;
+          this.month2 = month + 2;
+          if (this.month2 === 13) {
+            this.month2 = 1;
           }
+          if (this.month2 === 14) {
+            this.month2 = 2;
+          }
+
+          this.month3 = month + 3;
+          if (this.month3 === 13) {
+            this.month3 = 1;
+          }
+          if (this.month3 === 14) {
+            this.month3 = 2;
+          }
+          // tslint:disable-next-line: max-line-length
+          this.waterNeeded[j] = (this.httpcalls.poValue[i]['N_' + (month + 1)] * (0.46 * this.tempMedian + 8) * this.cropsListData[j]['kc_month1']) * 30;
           this.waterNeeded[j] = Math.floor(this.waterNeeded[j]);
 
 
           // tslint:disable-next-line: max-line-length
-          this.waterNeeded2[j] = (this.httpcalls.poValue[i]['N_' + month] * (0.46 * this.tempMedian + 8) * this.cropsListData[j]['kc_month2']) * 30;
-          if (this.waterNeeded2[j] < 0) {
-            this.waterNeeded2[j] = 0.001;
-          }
+          this.waterNeeded2[j] = (this.httpcalls.poValue[i]['N_' + (this.month2)] * (0.46 * this.tempMedian + 8) * this.cropsListData[j]['kc_month2']) * 30;
           this.waterNeeded2[j] = Math.floor(this.waterNeeded2[j]);
 
 
           // tslint:disable-next-line: max-line-length
-          this.waterNeeded3[j] = (this.httpcalls.poValue[i]['N_' + month] * (0.46 * this.tempMedian + 8) * this.cropsListData[j]['kc_month3']) * 30;
-          if (this.waterNeeded3[j] < 0) {
-            this.waterNeeded3[j] = 0.001;
-          }
+          this.waterNeeded3[j] = (this.httpcalls.poValue[i]['N_' + (this.month3)] * (0.46 * this.tempMedian + 8) * this.cropsListData[j]['kc_month3']) * 30;
           this.waterNeeded3[j] = Math.floor(this.waterNeeded3[j]);
         }
         break;
