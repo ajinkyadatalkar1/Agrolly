@@ -49,8 +49,10 @@ English, Portuguese (*Brazil*), Mongolian.
 
 ## Project Roadmap <a name="Project-Roadmap"></a>
 ![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Agrolly_Road_Map.PNG?raw=true)
-* For the 1st Phase, we focused on given farmers tools and knowledge to fight against changes in the weather. 
+* For the 1st Phase, we focused on given farmers tools and knowledge to fight against changes in the weather.
+  We are testing with some of the Mongolian farmers to identify user interface opportunities.
 * The 2nd phase is planned to focus on the interactions between farmers so they can increase their relationship. This will enable them to know what others are planting and explore their options. We are also planning to integrate some tools so the farmers can leverage their know-how, such as the expert advice feature will allow farmers to get in touch with specialists and trends in the agriculture sector.
+We plan in this phase to deploy  APP testing in Brasil - Parana. We already have done some contacts with local authorities. 
 * Our 3rd goal is to connect small farmers with banks and customers, by implementing QR code for food traceability and farming credit score algorithms.
 
 ## Getting Started <a name="Getting-Started"></a>
