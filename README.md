@@ -12,12 +12,13 @@ Agrolly is a mobile app to help rural household farmers in developing countries 
 02. [Demo Video](#Demo-Video)
 03. [How it works](#How-it-works)
 04. [Long Description](#Long-Description)
-05. [Project Roadmap](#Project-Roadmap)
-06. [Getting Started](#Getting-Started)
-07. [IBM Cloud Services](#IBM-Cloud-Services)
-08. [Deployment/Pilot](#Pilot)
-09. [Authors](#Authors)
-10. [License](#License)
+05. [Innovation/Competition](#Innovation)
+06. [Project Roadmap](#Project-Roadmap)
+07. [Getting Started](#Getting-Started)
+08. [IBM Cloud Services](#IBM-Cloud-Services)
+09. [Deployment/Pilot](#Pilot)
+10. [Authors](#Authors)
+11. [License](#License)
 
 ## Short Description <a name="Short-Description"></a>
 
@@ -46,6 +47,9 @@ English, Portuguese (*Brazil*), Mongolian.
 
 ## Long Description <a name="Long-Description"></a>
 [Long Description Document Link](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Long%20Description%20Pitch%20Agrolly.docx)
+
+## Innovation/Competition <a name="Innovation"></a>
+![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/competitor%20chart.png?raw=true)
 
 ## Project Roadmap <a name="Project-Roadmap"></a>
 ![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Agrolly_Road_Map.PNG?raw=true)
