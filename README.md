@@ -30,7 +30,7 @@ Household farmers in many emerging countries encounter a massive burden of econo
 * Real-time weather monitoring (*text and visual*).
 * Provide Long-Term Weather Forecast (*temperature and rainfall*). 
 * Crop selection based on the forthcoming forecast. 
-* Crop risk assessment by identifying weather problem areas.
+* Crop risk assessment by identifying weather problem areas in advance (before it started).
 
 ### What are the Languages available?
 English, Portuguese (*Brazil*), Mongolian.
@@ -50,6 +50,9 @@ English, Portuguese (*Brazil*), Mongolian.
 
 ## Innovation/Competition <a name="Innovation"></a>
 ![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/competitor%20chart.png?raw=true)
+#### What to plant? 
+Many familiar farmers face this question when they needed to decide some months ahead which crop to plant. Mainly decisions are based on the type of crops that work and last year's forecast. There is not a tool int the market that helps farmers to improve their decision.  
+Some government and non-profit organizations such as FAO and the Brazilian government, each year provide a list os recommendations based on the weather forecast. However, it is no constantly updated, is in the paper base, sometimes several sheets per crop. Unlikely, those small farmers would use this information, because of the lack of knowledge and access to such information. Agrolly provides an interactive, visual risk crop assessment to help these farmers in making better decisions. #CropRisk #ClimaRisk
 
 ## Project Roadmap <a name="Project-Roadmap"></a>
 ![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Agrolly_Road_Map.PNG?raw=true)
