@@ -11,7 +11,7 @@
       <div>
         <h3><b>{{language.hrs_24_fcast}} </b></h3>
         <h6 *ngIf="state">{{city}} {{state}} {{country}}</h6>
-        <h6 *ngIf="!state">Current Location</h6>
+        <h6 *ngIf="!state">{{language.current_location}}</h6>
       </div>
     </ion-item>
 
