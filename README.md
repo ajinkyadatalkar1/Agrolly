@@ -12,12 +12,13 @@ Agrolly is a mobile app to help rural household farmers in developing countries 
 02. [Demo Video](#Demo-Video)
 03. [How it works](#How-it-works)
 04. [Long Description](#Long-Description)
-05. [Project Roadmap](#Project-Roadmap)
-06. [Getting Started](#Getting-Started)
-07. [IBM Cloud Services](#IBM-Cloud-Services)
-08. [Deployment/Pilot](#Pilot)
-09. [Authors](#Authors)
-10. [License](#License)
+05. [Innovation/Competition](#Innovation)
+06. [Project Roadmap](#Project-Roadmap)
+07. [Getting Started](#Getting-Started)
+08. [IBM Cloud Services](#IBM-Cloud-Services)
+09. [Deployment/Pilot](#Pilot)
+10. [Authors](#Authors)
+11. [License](#License)
 
 ## Short Description <a name="Short-Description"></a>
 
@@ -29,7 +30,7 @@ Household farmers in many emerging countries encounter a massive burden of econo
 * Real-time weather monitoring (*text and visual*).
 * Provide Long-Term Weather Forecast (*temperature and rainfall*). 
 * Crop selection based on the forthcoming forecast. 
-* Crop risk assessment by identifying weather problem areas.
+* Crop risk assessment by identifying weather problem areas in advance (before it started).
 
 ### What are the Languages available?
 English, Portuguese (*Brazil*), Mongolian.
@@ -47,10 +48,18 @@ English, Portuguese (*Brazil*), Mongolian.
 ## Long Description <a name="Long-Description"></a>
 [Long Description Document Link](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Long%20Description%20Pitch%20Agrolly.docx)
 
+## Innovation/Competition <a name="Innovation"></a>
+![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/competitor%20chart.png?raw=true)
+#### What to plant? 
+Many familiar farmers face this question when they needed to decide some months ahead which crop to plant. Mainly decisions are based on the type of crops that work and last year's forecast. There is not a tool int the market that helps farmers to improve their decision.  
+Some government and non-profit organizations such as FAO and the Brazilian government, each year provide a list os recommendations based on the weather forecast. However, it is no constantly updated, is in the paper base, sometimes several sheets per crop. Unlikely, those small farmers would use this information, because of the lack of knowledge and access to such information. Agrolly provides an interactive, visual risk crop assessment to help these farmers in making better decisions. #CropRisk #ClimaRisk
+
 ## Project Roadmap <a name="Project-Roadmap"></a>
 ![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Agrolly_Road_Map.PNG?raw=true)
-* For the 1st Phase, we focused on given farmers tools and knowledge to fight against changes in the weather. 
+* For the 1st Phase, we focused on given farmers tools and knowledge to fight against changes in the weather.
+  We are testing with some of the Mongolian farmers to identify user interface opportunities.
 * The 2nd phase is planned to focus on the interactions between farmers so they can increase their relationship. This will enable them to know what others are planting and explore their options. We are also planning to integrate some tools so the farmers can leverage their know-how, such as the expert advice feature will allow farmers to get in touch with specialists and trends in the agriculture sector.
+We plan in this phase to deploy  APP testing in Brasil - Parana. We already have done some contacts with local authorities. 
 * Our 3rd goal is to connect small farmers with banks and customers, by implementing QR code for food traceability and farming credit score algorithms.
 
 ## Getting Started <a name="Getting-Started"></a>
