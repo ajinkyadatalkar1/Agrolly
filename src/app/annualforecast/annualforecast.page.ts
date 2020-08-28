@@ -107,6 +107,6 @@ export class AnnualforecastPage implements OnInit {
       }
       i++;
     }
-    console.log(this.annualForecast[10]['SNfcast_' + this.city + '.mean']);
+    // console.log(this.annualForecast[10]['SNfcast_' + this.city + '.mean']);
   }
 }

@@ -155,7 +155,7 @@ export class QuescommentsPage implements OnInit {
 
   refreshComments() {
     this.http.get('http://agrolly.tech/quesComm.php?what=comment&id=' + this.Qid, this.httpOptionsGet).pipe(timeout(2000), catchError(e => {
-      console.log('Comments timed out');
+      // console.log('Comments timed out');
       return null;
     })).subscribe(
       (result) => {

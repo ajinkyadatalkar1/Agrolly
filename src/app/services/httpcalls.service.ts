@@ -782,7 +782,7 @@ export class HttpcallsService {
     this.http.get(this.annualWeatherUrl).subscribe(
       (result) => {
         this.annualForecast = result;
-        console.log('Annual: ' + this.annualForecast[0]['Date.fcst']);
+        // console.log('Annual: ' + this.annualForecast[0]['Date.fcst']);
       });
   }
 

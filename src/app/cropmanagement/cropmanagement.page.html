@@ -46,7 +46,7 @@
         <ion-item lines="none">
           <ion-select interface="action-sheet" placeholder="Select Vegetables" [(ngModel)]="vegetable">
             <ion-select-option>All</ion-select-option>
-            <ion-select-option *ngFor="let item of cropsListData; let i = index;">{{item["Crop_English"]}} / {{item["Crop_Mongolian"]}}</ion-select-option>
+            <ion-select-option *ngFor="let item of cropsListData; let i = index;">{{item["Crop_English"]}} / {{item["Crop_Mongolian"]}} / {{item["Crop_Portuguese"]}}</ion-select-option>
           </ion-select>
           <ion-icon slot="end" size="large" name="nutrition" color="warning"></ion-icon>
         </ion-item>
@@ -69,7 +69,7 @@
 
   <ion-list *ngIf="forecastMatch && monthMinTemp != 100">
     <div *ngFor="let item of cropsListData; let i = index;">
-    <ion-item lines="none"  *ngIf="vegetable == item['Crop_English']+ ' / ' + item['Crop_Mongolian'] || vegetable == 'All'">
+    <ion-item lines="none"  *ngIf="vegetable == item['Crop_English']+ ' / ' + item['Crop_Mongolian'] + ' / ' + item['Crop_Portuguese']|| vegetable == 'All'">
       <ion-card class="veggieCard">
       <div style="width: 100%;">
         <ion-item-divider color="secondary">
@@ -90,34 +90,34 @@
           <ion-row>
             <ion-col size="12">
               <ion-icon name="water" size="small" color="primary"></ion-icon>
-              {{language.water_needed}} in {{monthList[month]}}: {{waterNeeded[i] < 0 ? 0.01 : waterNeeded[i]}} mm 
+              {{language.water_needed}} {{language.in}} {{language[monthList[month]]}}: {{waterNeeded[i] < 0 ? 0.01 : waterNeeded[i]}} mm 
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
               <ion-icon name="water" size="small" color="primary"></ion-icon>
-              {{language.water_needed}} in {{monthList[month+1]}}: {{waterNeeded2[i] < 0 ? 0.01 : waterNeeded2[i]}} mm 
+              {{language.water_needed}} {{language.in}} {{language[monthList[month+1]]}}: {{waterNeeded2[i] < 0 ? 0.01 : waterNeeded2[i]}} mm 
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
               <ion-icon name="water" size="small" color="primary"></ion-icon>
-              {{language.water_needed}} in {{monthList[month+2]}}: {{waterNeeded3[i] < 0 ? 0.01 : waterNeeded3[i]}} mm 
+              {{language.water_needed}} {{language.in}} {{language[monthList[month+2]]}}: {{waterNeeded3[i] < 0 ? 0.01 : waterNeeded3[i]}} mm 
             </ion-col>
           </ion-row>
 
           <ion-row>
-            <ion-col size="5">
+            <ion-col size="12">
               <ion-icon name="home" size="small" color="success"></ion-icon>
-              {{language.cover}}: {{item["Cover"]}}
+              {{language.cover}} : {{language[item["Cover"]]}}
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
             <ion-icon size="small" name="speedometer" color="primary"></ion-icon>
-            Maturity: {{item["Total.growing.period_days_min"]}} to {{item["Total.growing.period_days_max"]}} days
+            {{language.maturity}}: {{item["Total.growing.period_days_min"]}} - {{item["Total.growing.period_days_max"]}} {{language.days}}
             </ion-col>
           </ion-row>
           <ion-row *ngIf="waterNeeded[i]==0">
@@ -133,7 +133,7 @@
             <ion-col size="12">
                 <ion-button mode='ios' color="danger" strong>
                 <ion-icon name="warning" size="small"></ion-icon>
-                Climate unsuitable for growing
+                {{language.climate_unsuitable}}
                 </ion-button>
             </ion-col>
           </ion-row>
@@ -159,7 +159,7 @@
               <ion-col size="12">
                 <ion-button mode='ios' [attr.color]="rainfall < waterNeeded[i]-10 ? 'danger': 'success'" strong>
                   <ion-icon name="water" size="small"></ion-icon>
-                  {{language.rain_forecast}} for {{monthList[month]}}: {{rainfall}} mm 
+                  {{language.rain_forecast}} {{language.for}} {{language[monthList[month]]}}: {{rainfall}} mm 
                 </ion-button>
               </ion-col>
             </ion-row>
@@ -168,7 +168,7 @@
               <ion-col size="12">
                 <ion-button mode='ios' [attr.color]="rainfall2 < waterNeeded2[i]-10 ? 'danger': 'success'" strong>
                   <ion-icon name="water" size="small"></ion-icon>
-                  {{language.rain_forecast}} for {{monthList[month+1]}}: {{rainfall2}} mm 
+                  {{language.rain_forecast}} {{language.for}} {{language[monthList[month+1]]}}: {{rainfall2}} mm 
                 </ion-button>
               </ion-col>
             </ion-row>
@@ -177,7 +177,7 @@
               <ion-col size="12">
                 <ion-button mode='ios' [attr.color]="rainfall3 < waterNeeded3[i]-10 ? 'danger': 'success'" strong>
                   <ion-icon name="water" size="small"></ion-icon>
-                  {{language.rain_forecast}} for {{monthList[month+2]}}: {{rainfall3}} mm
+                  {{language.rain_forecast}} {{language.for}} {{language[monthList[month+2]]}}: {{rainfall3}} mm
                 </ion-button>
               </ion-col>
             </ion-row>
