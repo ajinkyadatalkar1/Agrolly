@@ -15,6 +15,7 @@ ion-content.mainContent {
   --background: url("../../assets/background.jpg") no-repeat center/cover fixed;
 }
 
+
 .centerAll {
   display: flex;
   flex-direction: column;
@@ -31,6 +32,13 @@ ion-content.mainContent {
   align-items: center;
   justify-content: center;
   width: 50%;
+}
+
+ion-button {
+  min-width: 300px;
+  max-width: 600px;
+  height: 50px;
+  margin-top: 20px;
 }
 
 .languageBar {
@@ -58,8 +66,9 @@ ion-content.mainContent {
   }
 
   .mainButtons ion-button {
-    width: 700px;
+    width: 900px;
   }
+
 }
 
 @media only screen and (min-width: 414px) and (max-width: 767px) {
@@ -88,6 +97,8 @@ ion-content.mainContent {
     font-weight: bold;
     font-size: large;
   }
+
+
 
   .mainButtons ion-grid{
     width: fit-content;
