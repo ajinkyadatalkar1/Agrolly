@@ -45,7 +45,7 @@
 </ion-content>
 
 
-<ion-menu side="start" (ionDidClose)="closeMenu()" menuId="first" contentId="main">
+<ion-menu side="start" (ionDidClose)="closeMenu()" menuId="first" contentId="main" *ngIf="showLogout">
   <ion-header>
     <ion-toolbar color="secondary">
       <ion-title>{{language.Options}}</ion-title>

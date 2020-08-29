@@ -100,6 +100,6 @@
     <preference name="FadeSplashScreenDuration" value="100" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
-    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="true" />
     <preference name="SplashScreenDelay" value="8000" />
 </widget>
