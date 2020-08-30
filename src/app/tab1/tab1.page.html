@@ -35,8 +35,8 @@
        </ion-button>
      </ion-row>
      <ion-row *ngIf="showLogout">
-      <ion-button (click)="logout()" class="examType" color="warning">
-        {{language.logout}}  <ion-icon name="walk"></ion-icon>
+      <ion-button class="examType" color="success">
+        Expert Advice  <ion-icon name="mail-open"></ion-icon>
       </ion-button>
     </ion-row>
    </ion-grid>
@@ -52,10 +52,10 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="has-header">
-  <ion-list>
-      <ion-item (click)="profile()" button><ion-label>{{language.profile}}</ion-label><ion-icon slot="end" name="person"></ion-icon></ion-item>
-      <ion-item (click)="changepasswordpage()" button><ion-label>{{language.Change_Password}}</ion-label><ion-icon slot="end" name="key"></ion-icon></ion-item>
-      <ion-item (click)="logout()" button><ion-label>{{language.logout2}}</ion-label><ion-icon slot="end" name="walk"></ion-icon></ion-item>
+  <ion-list *ngIf="showLogout">
+      <ion-item *ngIf="showLogout" (click)="profile()" button><ion-label>{{language.profile}}</ion-label><ion-icon slot="end" name="person"></ion-icon></ion-item>
+      <ion-item *ngIf="showLogout" (click)="changepasswordpage()" button><ion-label>{{language.Change_Password}}</ion-label><ion-icon slot="end" name="key"></ion-icon></ion-item>
+      <ion-item *ngIf="showLogout" (click)="logout()" button><ion-label>{{language.logout2}}</ion-label><ion-icon slot="end" name="walk"></ion-icon></ion-item>
   </ion-list>
 </ion-content>
 <ion-router-outlet id="main"></ion-router-outlet>
