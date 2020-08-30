@@ -41,13 +41,17 @@ closeMenu() {
 }
 
 changepasswordpage() {
+  if (this.showLogout) {
   this.menu.close('first');
   this.route.navigateByUrl('/tabs/changepassword');
+  }
 }
 
 profile() {
-  this.menu.close('first');
-  this.route.navigateByUrl('/tabs/profile');
+  if (this.showLogout) {
+    this.menu.close('first');
+    this.route.navigateByUrl('/tabs/profile');
+  }
 }
 
 changeTabs() {
