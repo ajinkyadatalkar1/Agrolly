@@ -39,7 +39,7 @@ English, Portuguese (*Brazil*), Mongolian.
 [![Demo Video](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Youtube_video.jpgn.jpg)](https://www.youtube.com/watch?v=VT4RKHwQ1hQ&t=65s "DEMO VIDEO")
 
 ## How it works <a name="How-it-works"></a>
-![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Arquitecture.png?raw=true/20x10"Architecture")
+![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Arquitecture.PNG?raw=true/20x10"Architecture")
 1. App uses IBM’s **The Weather Company** to display hourly and weekly forecasts based on the location of the user.
 2. We collect the weather information for the past 5 years from **NASA** and we generate annual predictions with the help of the IBM Watson studio.
 3. For more information related regression , please read [our article here](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Draft%20Forecast%20Article%20-%20Partial%20Study..pdf)
