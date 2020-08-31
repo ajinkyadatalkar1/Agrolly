@@ -54,13 +54,20 @@ English, Portuguese (*Brazil*), Mongolian.
 Many familiar farmers face this question when they needed to decide some months ahead which crop to plant. Mainly decisions are based on the type of crops that work and last year's forecast. There is not a tool int the market that helps farmers to improve their decision.  
 Some government and non-profit organizations such as FAO and the Brazilian government, each year provide a list os recommendations based on the weather forecast. However, it is no constantly updated, is in the paper base, sometimes several sheets per crop. Unlikely, those small farmers would use this information, because of the lack of knowledge and access to such information. Agrolly provides an interactive, visual risk crop assessment to help these farmers in making better decisions. #CropRisk #ClimaRisk
 
+*Sample of the APP visual risk crop assessment:*
+<div align="center">
+        <img width="45%" src="Sample APP- Risk assesment Forecast.png" alt="About screen" title="About screen"</img>
+        <img height="0" width="8px">
+
+</div>
+
 ## Project Roadmap <a name="Project-Roadmap"></a>
 ![picture alt](https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Agrolly_Road_Map.PNG?raw=true)
 * For the 1st Phase, we focused on given farmers tools and knowledge to fight against changes in the weather.
   We are testing with some of the Mongolian farmers to identify user interface opportunities.
 * The 2nd phase is planned to focus on the interactions between farmers so they can increase their relationship. This will enable them to know what others are planting and explore their options. We are also planning to integrate some tools so the farmers can leverage their know-how, such as the expert advice feature will allow farmers to get in touch with specialists and trends in the agriculture sector.
 We plan in this phase to deploy  APP testing in Brasil - Parana. We already have done some contacts with local authorities. 
-* Our 3rd goal is to connect small farmers with banks and customers, by implementing QR code for food traceability and farming credit score algorithms.
+* Our 3rd goal is to connect small farmers with banks and customers, by implementing QR code for food traceability and farming credit score algorithms. We also plan to expand the risk mgm for deceases and market risks.
 
 ## Getting Started <a name="Getting-Started"></a>
 
