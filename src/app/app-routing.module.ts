@@ -41,6 +41,10 @@ const routes: Routes = [
   {
     path: 'cropsowing',
     loadChildren: () => import('./cropsowing/cropsowing.module').then( m => m.CropsowingPageModule)
+  },
+  {
+    path: 'expertadvice',
+    loadChildren: () => import('./expertadvice/expertadvice.module').then( m => m.ExpertadvicePageModule)
   }
 ];
 @NgModule({
