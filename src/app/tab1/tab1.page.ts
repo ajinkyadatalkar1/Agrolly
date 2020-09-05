@@ -26,8 +26,7 @@ export class Tab1Page {
     this.LogcheckSubscriber();
     this.language = this.httpcalls.languageList;
     this.menuIcon = 'menu';
-   /* console.log('height' + window.innerHeight);
-    console.log('width' + window.innerWidth);*/
+    this.greeting_call();
   }
 
 openMenu() {
