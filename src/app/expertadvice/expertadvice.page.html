@@ -1,9 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>expertadvice</ion-title>
+    <ion-title>Virtual Assistant</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-grid>
+    <ion-row *ngFor="let item of chatlogObj; let i = index;">
+        <ion-col size="8" [attr.offset]="chatlogObj[i].msg[0] == 'watson' ? 0 : 4">
+          <ion-card [attr.color]="chatlogObj[i].msg[0] == 'watson' ? 'warning' : 'success'">
+            <ion-card-content>
+              <strong>{{chatlogObj[i].msg[1]}}</strong>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

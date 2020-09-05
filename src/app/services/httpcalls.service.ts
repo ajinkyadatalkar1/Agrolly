@@ -842,11 +842,11 @@ export class HttpcallsService {
 
     this.http.post('http://agrolly.tech/watsonApi.php', postData, this.httpOptionsPost).subscribe(
       (result) => {
-          this.chatLog.push(['watson', result[0]['text']]);
+          this.chatLog.push(result[0]['text']);
           this.chatLogObj = this.chatLog.map((response) => {
             return {
               name: 'watson',
-              msg: response
+              msg : response,
             };
           });
           console.log('result: ' + JSON.stringify(this.chatLogObj));
