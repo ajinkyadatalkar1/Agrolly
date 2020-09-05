@@ -78,6 +78,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'expertadvice',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../expertadvice/expertadvice.module').then(m => m.ExpertadvicePageModule)
+          }
+        ]
+      },
+      {
         path: 'cropcities',
         children: [
           {

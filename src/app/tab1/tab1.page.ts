@@ -26,8 +26,8 @@ export class Tab1Page {
     this.LogcheckSubscriber();
     this.language = this.httpcalls.languageList;
     this.menuIcon = 'menu';
-    console.log('height' + window.innerHeight);
-    console.log('width' + window.innerWidth);
+   /* console.log('height' + window.innerHeight);
+    console.log('width' + window.innerWidth);*/
   }
 
 openMenu() {
@@ -60,6 +60,10 @@ changeTabs() {
     this.showHideTabs.showMyQuestionsTab = this.httpcalls.showMyQuestionsTab;
     this.showHideTabs.showAskQuestionsTab = this.httpcalls.showAskQuestionsTab;
   }
+
+greeting_call() {
+  this.httpcalls.greetingApiCall();
+}
 
 english() {
     this.httpcalls.languageList = this.lang.English[0];

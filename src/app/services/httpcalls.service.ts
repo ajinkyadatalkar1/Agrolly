@@ -9,7 +9,6 @@ import { Language } from '../language/language';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { StoreNotifications } from '../notificationStore/storenotifications';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -81,12 +80,15 @@ export class HttpcallsService {
   // notification
   tapQues: any;
 
+  // watson chat
+  chatLog: string[][] = [];
+  chatLogObj: object;
+
 
   // tslint:disable-next-line: max-line-length
   constructor(private http: HttpClient, private route: Router, private Toast: ToastController, private storage: Storage, private screenOrientation: ScreenOrientation, private lang: Language,
               private fcm: FCM, private ngZone: NgZone, private navCtrl: NavController, private notificationId: StoreNotifications) {
     this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
-
     this.latitude = undefined;
     this.longitude = undefined;
     this.getCropsList();
@@ -829,5 +831,25 @@ export class HttpcallsService {
       translucent: true
     });
     toast.present();
+  }
+
+  /* IBM Watson Assistant API calls */
+
+  async greetingApiCall() {
+    const postData = {
+      greetings: history,
+    };
+
+    this.http.post('http://agrolly.tech/watsonApi.php', postData, this.httpOptionsPost).subscribe(
+      (result) => {
+          this.chatLog.push(['watson', result[0]['text']]);
+          this.chatLogObj = this.chatLog.map((response) => {
+            return {
+              name: 'watson',
+              msg: response
+            };
+          });
+          console.log('result: ' + JSON.stringify(this.chatLogObj));
+      });
   }
 }
