@@ -27,10 +27,12 @@ import { OnetimepasswordPage } from './onetimepassword/onetimepassword.page';
 import { QuescommentsPage } from './quescomments/quescomments.page';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [AppComponent, OnetimepasswordPage, QuescommentsPage],
   entryComponents: [OnetimepasswordPage, QuescommentsPage],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot(), FormsModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot(),
+     FormsModule],
   providers: [
     StatusBar,
     SplashScreen,
