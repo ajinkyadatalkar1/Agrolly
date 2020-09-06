@@ -1,23 +1,23 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Virtual Assistant</ion-title>
+    <ion-title><ion-icon src='../../assets/icon/hardware-chip.svg' size="large"></ion-icon> Virtual Assistant</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [scrollEvents]="true" #responses>
 
-      <ion-grid>
-        <ion-row *ngFor="let item of chatlogobj; let i = index;" reloadMsg>
-            <ion-col *ngIf="chatnameobj[i] == 'watson'" size="9">
-              <ion-card color="danger">
+      <ion-grid color="none">
+        <ion-row color="none" *ngFor="let item of chatlogobj; let i = index;">
+            <ion-col color="none" *ngIf="chatnameobj[i] == 'watson'" size="9">
+              <ion-card color="primary">
                 <ion-card-content>
                   <strong>{{chatlogobj[i]}}</strong>
                 </ion-card-content>
               </ion-card>
             </ion-col>
 
-            <ion-col *ngIf="chatnameobj[i] == 'user'" size="9" offset="3">
-              <ion-card color="success">
+            <ion-col color="none" *ngIf="chatnameobj[i] == 'user'" size="9" offset="3">
+              <ion-card color="warning">
                 <ion-card-content>
                   <strong>{{chatlogobj[i]}}</strong>
                 </ion-card-content>
@@ -31,7 +31,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="9">
-        <ion-input placeholder="What's your query?" [(ngModel)]="query"></ion-input>
+        <ion-input placeholder="What's your query?" (ionFocus)="updateScroll()" [(ngModel)]="query"></ion-input>
       </ion-col>
       <ion-col size="3">
         <ion-button color="success" (click)="response()">Send <ion-icon name="paper-plane"></ion-icon></ion-button>
