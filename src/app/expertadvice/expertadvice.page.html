@@ -5,15 +5,37 @@
 </ion-header>
 
 <ion-content>
+
+      <ion-grid>
+        <ion-row *ngFor="let item of chatlogobj; let i = index;" reloadMsg>
+            <ion-col *ngIf="chatnameobj[i] == 'watson'" size="9">
+              <ion-card color="danger">
+                <ion-card-content>
+                  <strong>{{chatlogobj[i]}}</strong>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+
+            <ion-col *ngIf="chatnameobj[i] == 'user'" size="9" offset="3">
+              <ion-card color="success">
+                <ion-card-content>
+                  <strong>{{chatlogobj[i]}}</strong>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+
+</ion-content>
+<ion-footer>
   <ion-grid>
-    <ion-row *ngFor="let item of chatlogObj; let i = index;">
-        <ion-col size="8" [attr.offset]="chatlogObj[i].msg[0] == 'watson' ? 0 : 4">
-          <ion-card [attr.color]="chatlogObj[i].msg[0] == 'watson' ? 'warning' : 'success'">
-            <ion-card-content>
-              <strong>{{chatlogObj[i].msg[1]}}</strong>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
+    <ion-row>
+      <ion-col size="9">
+        <ion-input placeholder="What's your query?" [(ngModel)]="query"></ion-input>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button color="success" (click)="response()">Send <ion-icon name="paper-plane"></ion-icon></ion-button>
+      </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
+</ion-footer>
