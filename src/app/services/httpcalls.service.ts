@@ -81,9 +81,8 @@ export class HttpcallsService {
   tapQues: any;
 
   // watson chat
-  chatLog: string[][] = [];
-  chatLogObj: object;
-
+  chatName: string[] = [];
+  chatLog: string[] = [];
 
   // tslint:disable-next-line: max-line-length
   constructor(private http: HttpClient, private route: Router, private Toast: ToastController, private storage: Storage, private screenOrientation: ScreenOrientation, private lang: Language,
@@ -837,19 +836,37 @@ export class HttpcallsService {
 
   async greetingApiCall() {
     const postData = {
-      greetings: history,
+      category: 'greeter',
+      greetings: 'hi',
     };
 
     this.http.post('http://agrolly.tech/watsonApi.php', postData, this.httpOptionsPost).subscribe(
       (result) => {
-          this.chatLog.push(result[0]['text']);
-          this.chatLogObj = this.chatLog.map((response) => {
-            return {
-              name: 'watson',
-              msg : response,
-            };
-          });
-          console.log('result: ' + JSON.stringify(this.chatLogObj));
+        this.chatName.push('watson');
+        this.chatLog.push(result[0]['text']);
+        console.log('result: ' + this.chatName[0]);
+        console.log('result: ' + this.chatLog[0]);
       });
+  }
+
+  async quesAndans(query: string) {
+    const postData = {
+      category: 'userResponse',
+      question: query
+    };
+
+    this.http.post('http://agrolly.tech/watsonApi.php', postData, this.httpOptionsPost).subscribe(
+      (result) => {
+          this.chatName.push('watson');
+          this.chatLog.push(result[0]['text']);
+      });
+  }
+
+  WatsonResposeCheckObserver() {
+   return new Observable (observer => {
+      observer.next(this.chatName);
+      console.log("response received");
+    }
+   );
   }
 }
