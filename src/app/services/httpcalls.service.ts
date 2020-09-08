@@ -732,11 +732,11 @@ export class HttpcallsService {
   async getLocation() {
     // console.log(this.city);
     if (this.city !== '' && this.city !== undefined && this.city !== null) {
-      this.locationIq = 'https://us1.locationiq.com/v1/search.php?key=pk.b96df78962921345a1f13e31a76f7c7f'
+      this.locationIq = 'https://us1.locationiq.com/v1/search.php?key=fe209a3cc4a25a&q='
       + this.city + ',' + this.state + ','
       + this.country + '&format=json';
     } else {
-      this.locationIq = 'https://us1.locationiq.com/v1/search.php?key=pk.b96df78962921345a1f13e31a76f7c7f' + this.state + ','
+      this.locationIq = 'https://us1.locationiq.com/v1/search.php?key=fe209a3cc4a25a&q=' + this.state + ','
       + this.country + '&format=json';
     }
 
