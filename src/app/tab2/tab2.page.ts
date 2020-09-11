@@ -3,6 +3,8 @@ import { HttpcallsService } from '../services/httpcalls.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
+import { timeout, catchError } from 'rxjs/operators';
+
 
 
 @Component({
@@ -43,9 +45,9 @@ export class Tab2Page {
 
   LogcheckSubscriber() { // use subscriber to show and hide logout button
     this.showLogoutsubscriber = this.httpcalls.checkLogin().subscribe((data) => {
-      if (data) {
-        this.router.navigateByUrl('/tabs/tab1');
-      }
+        if (data) {
+          this.router.navigateByUrl('');
+        }
     });
   }
 }

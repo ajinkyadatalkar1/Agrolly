@@ -116,7 +116,7 @@ LogcheckSubscriber() { // use subscriber to show and hide logout button
     this.showLogoutsubscriber = this.httpcalls.checkLogin().subscribe((data) => {
       this.showLogout = data;
     });
-  }
+}
 
 logout() {
     this.menu.close('first');

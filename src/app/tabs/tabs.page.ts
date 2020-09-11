@@ -33,9 +33,8 @@ export class TabsPage {
   languageSubscriber() {
     this.languagesubscriber = this.httpcallsService.languageChange().subscribe((data) => {
       this.languageList = data;
-      // console.log(data);
-    });
-  }
+  });
+}
 
   setDefaultTabs() {
     this.showHomeTab = true;
