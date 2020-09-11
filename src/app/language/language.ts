@@ -118,6 +118,8 @@ export class Language {
             climate_unsuitable: 'Climate unsuitable for growing',
             current_location: 'Current Location',
             predicted_values: 'These are predicted values',
+            expert_advice: 'Expert Advice',
+            market_place: 'Market Place'
         }
     ];
 
@@ -240,6 +242,8 @@ export class Language {
             climate_unsuitable: 'Climate unsuitable for growing',
             current_location: 'Current Location',
             predicted_values: 'These are predicted values',
+            expert_advice: 'Мэргэжилтнүүдийн',
+            market_place: 'Зах зээлийн газар'
         }
     ];
 
@@ -362,6 +366,8 @@ export class Language {
             climate_unsuitable: 'Clima não adequado para o cultivo',
             current_location: 'Local atual',
             predicted_values: 'As nossas estimativas podem correr erros',
+            expert_advice: 'Solicite Ajuda',
+            market_place: 'Trocar/ Vender'
         }
     ];
 }

@@ -126,6 +126,7 @@ export class HttpcallsService {
         this.email = val;
       } else {
         storage.remove('email');
+        this.route.navigateByUrl('/tabs/tab2');
       }
     });
 

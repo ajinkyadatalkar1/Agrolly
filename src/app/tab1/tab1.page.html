@@ -36,12 +36,12 @@
      </ion-row>
      <ion-row *ngIf="showLogout">
       <ion-button class="examType" [routerLink]="['/tabs/expertadvice']"color="success">
-        Expert Advice <ion-icon name="bulb"></ion-icon>
+        {{language.expert_advice}} <ion-icon name="bulb"></ion-icon>
       </ion-button>
     </ion-row>
     <ion-row *ngIf="showLogout">
       <ion-button class="examType" [routerLink]="['/tabs/expertadvice']"color="success" disabled>
-        Market Place <ion-icon name="cart"></ion-icon>
+        {{language.market_place}} <ion-icon name="cart"></ion-icon>
       </ion-button>
     </ion-row>
    </ion-grid>
@@ -58,6 +58,7 @@
   </ion-header>
   <ion-content class="has-header">
   <ion-list *ngIf="showLogout">
+      <ion-item *ngIf="showLogout" (click)="profile()" disabled><ion-label>Todo List</ion-label><ion-icon slot="end" name="calendar"></ion-icon></ion-item>
       <ion-item *ngIf="showLogout" (click)="profile()" button><ion-label>{{language.profile}}</ion-label><ion-icon slot="end" name="person"></ion-icon></ion-item>
       <ion-item *ngIf="showLogout" (click)="changepasswordpage()" button><ion-label>{{language.Change_Password}}</ion-label><ion-icon slot="end" name="key"></ion-icon></ion-item>
       <ion-item *ngIf="showLogout" (click)="logout()" button><ion-label>{{language.logout2}}</ion-label><ion-icon slot="end" name="walk"></ion-icon></ion-item>
