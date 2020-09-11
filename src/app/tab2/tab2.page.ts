@@ -29,6 +29,7 @@ export class Tab2Page {
       });
       this.username = '';
       this.password = '';
+      this.router.navigateByUrl('/tabs/tab1');
   }
 
   forgotpsd() {
@@ -43,7 +44,7 @@ export class Tab2Page {
   LogcheckSubscriber() { // use subscriber to show and hide logout button
     this.showLogoutsubscriber = this.httpcalls.checkLogin().subscribe((data) => {
       if (data) {
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('/tabs/tab1');
       }
     });
   }
