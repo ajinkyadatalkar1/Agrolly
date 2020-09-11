@@ -39,6 +39,11 @@
         Expert Advice <ion-icon name="bulb"></ion-icon>
       </ion-button>
     </ion-row>
+    <ion-row *ngIf="showLogout">
+      <ion-button class="examType" [routerLink]="['/tabs/expertadvice']"color="success" disabled>
+        Market Place <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-row>
    </ion-grid>
    </div>  
 </div>

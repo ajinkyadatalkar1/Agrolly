@@ -8,9 +8,9 @@ export class Countries {
             name: 'Mongolia',
             icon: '../../assets/icon/mongolia.svg',
         },
-        {
+        /*{
             name: 'USA',
             icon: '../../assets/icon/usa.svg',
-        }
+        }*/
     ];
 }
