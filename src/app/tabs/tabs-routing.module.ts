@@ -88,6 +88,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'organizer',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../organizer/organizer.module').then(m => m.OrganizerPageModule)
+          }
+        ]
+      },
+      {
         path: 'cropcities',
         children: [
           {

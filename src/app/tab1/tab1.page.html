@@ -58,7 +58,7 @@
   </ion-header>
   <ion-content class="has-header">
   <ion-list *ngIf="showLogout">
-      <ion-item *ngIf="showLogout" (click)="profile()" disabled><ion-label>Todo List</ion-label><ion-icon slot="end" name="calendar"></ion-icon></ion-item>
+      <ion-item *ngIf="showLogout" (click)="organizer()" button><ion-label>Todo List</ion-label><ion-icon slot="end" name="calendar"></ion-icon></ion-item>
       <ion-item *ngIf="showLogout" (click)="profile()" button><ion-label>{{language.profile}}</ion-label><ion-icon slot="end" name="person"></ion-icon></ion-item>
       <ion-item *ngIf="showLogout" (click)="changepasswordpage()" button><ion-label>{{language.Change_Password}}</ion-label><ion-icon slot="end" name="key"></ion-icon></ion-item>
       <ion-item *ngIf="showLogout" (click)="logout()" button><ion-label>{{language.logout2}}</ion-label><ion-icon slot="end" name="walk"></ion-icon></ion-item>
