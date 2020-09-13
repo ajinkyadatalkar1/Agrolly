@@ -16,6 +16,8 @@ import { FCM } from '@ionic-native/fcm/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+import { IonReorderGroup } from '@ionic/angular';
+
 
 import { Language } from './language/language';
 import { Countries } from './Country/countries';
@@ -40,6 +42,7 @@ import { FormsModule } from '@angular/forms';
     FCM,
     Camera,
     FileTransfer,
+    IonReorderGroup,
     PhotoViewer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Language,

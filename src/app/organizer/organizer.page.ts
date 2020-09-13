@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { IonReorderGroup } from '@ionic/angular';
 
 
 @Component({
@@ -11,6 +12,7 @@ export class OrganizerPage implements OnInit {
 
   todoList: string[] = [];
   todo: string;
+  reOrder: IonReorderGroup;
   constructor(private storage: Storage) {
     this.storage.get('todo').then((val) => {
         this.storage.set('todo', this.todoList);
@@ -44,6 +46,12 @@ export class OrganizerPage implements OnInit {
 
   deleteItem(id: number) {
     this.todoList.splice(id, 1);
+    this.storage.remove('todo');
+    this.storage.set('todo', this.todoList);
+  }
+
+  doReorder(event: any) {
+    this.todoList = event.detail.complete(this.todoList);
     this.storage.remove('todo');
     this.storage.set('todo', this.todoList);
   }
