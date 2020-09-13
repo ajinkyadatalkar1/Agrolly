@@ -1,82 +1,88 @@
-<!-- <ion-header no-border>
-  <ion-toolbar>
-<ion-buttons *ngIf="showLogout" slot="end">
-
-</ion-buttons>
-  </ion-toolbar>
-</ion-header>
--->
-<ion-content class="mainContent"> 
-<ion-list slot="fixed" class="listbg" *ngIf="showLogout">
-  <ion-item lines="none" color="none">
-  <ion-icon size="large" slot="end" [attr.name]="menuIcon" (click)="openMenu()"></ion-icon>
-  </ion-item>
-</ion-list>
-<div class="centerAll">
-   <div class="bannerImage" >
-    <img src='../../assets/logo_small.svg' />
-    <h2>{{language.agrolly}}</h2>
-   </div>
-   <div class="mainButtons">
-   <ion-grid>
-     <ion-row>
-       <ion-button class="examType" [routerLink]="['/tabs/forum']" routerLinkActive="router-link-active" color="success">
-         {{language.forum}}  <ion-icon name="people"></ion-icon>
-       </ion-button>
-     </ion-row>
-     <ion-row>
-       <ion-button [routerLink]="['/tabs/forecast']" routerLinkActive="router-link-active" class="examType" color="success">
-        {{language.weather}}  <ion-icon name="partly-sunny"></ion-icon>
-       </ion-button>
-     </ion-row>
-     <ion-row>
-       <ion-button [routerLink]="['/tabs/cropmanagement']" class="examType" color="success">
-        {{language.crop_management}}  <ion-icon name="nutrition"></ion-icon>
-       </ion-button>
-     </ion-row>
-     <ion-row *ngIf="showLogout">
-      <ion-button class="examType" [routerLink]="['/tabs/expertadvice']"color="success">
-        {{language.expert_advice}} <ion-icon name="bulb"></ion-icon>
-      </ion-button>
-    </ion-row>
-    <ion-row *ngIf="showLogout">
-      <ion-button class="examType" [routerLink]="['/tabs/expertadvice']"color="success" disabled>
-        {{language.market_place}} <ion-icon name="cart"></ion-icon>
-      </ion-button>
-    </ion-row>
-   </ion-grid>
-   </div>  
-</div>
+<ion-content class="mainContent">
+  <ion-list slot="fixed" class="listbg" *ngIf="showLogout">
+    <ion-item lines="none" color="none">
+      <ion-icon size="large" slot="end" [attr.name]="menuIcon" (click)="openMenu()"></ion-icon>
+    </ion-item>
+  </ion-list>
+  <div class="centerAll">
+    <div class="bannerImage">
+      <img src='../../assets/logo_small.svg' />
+      <h2>{{language.agrolly}}</h2>
+    </div>
+    <div class="mainButtons">
+      <ion-grid>
+        <ion-row>
+          <ion-button class="examType" [routerLink]="['/tabs/forum']" routerLinkActive="router-link-active"
+            color="success">
+            {{language.forum}} <ion-icon name="people"></ion-icon>
+          </ion-button>
+        </ion-row>
+        <ion-row>
+          <ion-button [routerLink]="['/tabs/forecast']" routerLinkActive="router-link-active" class="examType"
+            color="success">
+            {{language.weather}} <ion-icon name="partly-sunny"></ion-icon>
+          </ion-button>
+        </ion-row>
+        <ion-row>
+          <ion-button [routerLink]="['/tabs/cropmanagement']" class="examType" color="success">
+            {{language.crop_management}} <ion-icon name="nutrition"></ion-icon>
+          </ion-button>
+        </ion-row>
+        <ion-row *ngIf="showLogout">
+          <ion-button class="examType" [routerLink]="['/tabs/expertadvice']" color="success">
+            {{language.expert_advice}} <ion-icon name="bulb"></ion-icon>
+          </ion-button>
+        </ion-row>
+        <ion-row *ngIf="showLogout">
+          <ion-button class="examType" [routerLink]="['/tabs/expertadvice']" color="success" disabled>
+            {{language.market_place}} <ion-icon name="cart"></ion-icon>
+          </ion-button>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
 </ion-content>
 
 
-<ion-menu side="start" (ionDidClose)="closeMenu()" menuId="first" contentId="main" *ngIf="showLogout">
+<ion-menu side="start" (ionDidClose)="closeMenu()" menuId="first" contentId="main" *ngIf="showLogout" swipeGesture="false">
   <ion-header>
     <ion-toolbar color="secondary">
       <ion-title>{{language.Options}}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content class="has-header">
-  <ion-list *ngIf="showLogout">
-      <ion-item *ngIf="showLogout" (click)="organizer()" button><ion-label>Todo List</ion-label><ion-icon slot="end" name="calendar"></ion-icon></ion-item>
-      <ion-item *ngIf="showLogout" (click)="profile()" button><ion-label>{{language.profile}}</ion-label><ion-icon slot="end" name="person"></ion-icon></ion-item>
-      <ion-item *ngIf="showLogout" (click)="changepasswordpage()" button><ion-label>{{language.Change_Password}}</ion-label><ion-icon slot="end" name="key"></ion-icon></ion-item>
-      <ion-item *ngIf="showLogout" (click)="logout()" button><ion-label>{{language.logout2}}</ion-label><ion-icon slot="end" name="walk"></ion-icon></ion-item>
-  </ion-list>
-</ion-content>
-<ion-router-outlet id="main"></ion-router-outlet>
+    <ion-list *ngIf="showLogout">
+      <ion-item *ngIf="showLogout" (click)="organizer()" button>
+        <ion-label>Todo List</ion-label>
+        <ion-icon slot="end" name="calendar"></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="showLogout" (click)="profile()" button>
+        <ion-label>{{language.profile}}</ion-label>
+        <ion-icon slot="end" name="person"></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="showLogout" (click)="changepasswordpage()" button>
+        <ion-label>{{language.Change_Password}}</ion-label>
+        <ion-icon slot="end" name="key"></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="showLogout" (click)="logout()" button>
+        <ion-label>{{language.logout2}}</ion-label>
+        <ion-icon slot="end" name="walk"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-menu>
 
 <div>
   <ion-tab-bar slot="bottom" class="languageBar">
-      <ion-tab-button (click)="english()">
-        English
-      </ion-tab-button>
-      <ion-tab-button (click)="mongolian()">
-        Монгол
-      </ion-tab-button>
-      <ion-tab-button (click)="portuguese()">
-        Português
-      </ion-tab-button>
-    </ion-tab-bar>
+    <ion-tab-button (click)="english()">
+      English
+    </ion-tab-button>
+    <ion-tab-button (click)="mongolian()">
+      Монгол
+    </ion-tab-button>
+    <ion-tab-button (click)="portuguese()">
+      Português
+    </ion-tab-button>
+  </ion-tab-bar>
 </div>
