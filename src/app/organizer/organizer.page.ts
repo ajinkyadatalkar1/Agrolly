@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'app-organizer',
@@ -7,9 +9,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrganizerPage implements OnInit {
 
-  constructor() { }
+  todoList: string[] = [];
+  todo: string;
+  constructor(private storage: Storage) {
+    this.storage.get('todo').then((val) => {
+        this.storage.set('todo', this.todoList);
+        this.todoList = val;
+    });
+  }
+
+  ionViewWillEnter() {
+    this.storage.get('todo').then((val) => {
+        this.storage.set('todo', this.todoList);
+        this.todoList = val;
+    });
+  }
 
   ngOnInit() {
   }
 
+  addToList() {
+    this.todoList.push(this.todo);
+    this.storage.get('todo').then((val) => {
+        if (val === undefined || val === null || val === '') {
+          this.storage.set('todo', this.todoList);
+          this.todoList = val;
+        } else {
+          this.storage.remove('todo');
+          this.storage.set('todo', this.todoList);
+        }
+    });
+    this.todo = null;
+  }
+
+  deleteItem(id: number) {
+    this.todoList.splice(id, 1);
+    this.storage.remove('todo');
+    this.storage.set('todo', this.todoList);
+  }
 }

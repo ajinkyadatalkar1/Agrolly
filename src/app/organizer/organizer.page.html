@@ -1,9 +1,32 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>organizer</ion-title>
+    <ion-title>Organizer</ion-title>
   </ion-toolbar>
+  <div>
+    <ion-tab-bar slot="bottom">
+        List's are stored on device, clearing app data will clear the list.
+    </ion-tab-bar>
+  </div>
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-item *ngFor="let item of todoList; let i = index;">
+      <div style="text-align: justify; margin: 5px;">{{todoList[i]}}</div>
+      <ion-button (click)='deleteItem(i)' slot='end' color="danger"><ion-icon name='trash'></ion-icon></ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="9">
+        <ion-textarea placeholder="Add an item to the list" [(ngModel)]='todo'></ion-textarea>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button color="success" (click)='addToList()'>Save <ion-icon name="save"></ion-icon></ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

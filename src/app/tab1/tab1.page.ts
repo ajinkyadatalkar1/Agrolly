@@ -53,6 +53,13 @@ profile() {
   }
 }
 
+organizer() {
+  if (this.showLogout) {
+    this.menu.close('first');
+    this.route.navigateByUrl('/tabs/organizer');
+  }
+}
+
 changeTabs() {
     this.showHideTabs.showLoginTab = this.httpcalls.showLoginTab;
     this.showHideTabs.showRegisterTab = this.httpcalls.showRegisterTab;
