@@ -84,6 +84,10 @@ export class HttpcallsService {
   chatName: string[] = [];
   chatLog: string[] = [];
 
+
+  // organizer
+  todoList: string[] = [];
+
   // tslint:disable-next-line: max-line-length
   constructor(private http: HttpClient, private route: Router, private Toast: ToastController, private storage: Storage, private screenOrientation: ScreenOrientation, private lang: Language,
               private fcm: FCM, private ngZone: NgZone, private navCtrl: NavController, private notificationId: StoreNotifications) {
@@ -166,6 +170,14 @@ export class HttpcallsService {
         storage.remove('city');
       }
       this.getLocation();
+    });
+
+    this.storage.get('todo').then((val) => {
+      if (val) {
+        this.todoList = val;
+      } else {
+        this.storage.remove('todo');
+      }
     });
 
     /*********** firebase cloud messaging ****************/

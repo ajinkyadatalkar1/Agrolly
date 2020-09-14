@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { IonReorderGroup } from '@ionic/angular';
+import { HttpcallsService } from '../services/httpcalls.service';
 
 
 @Component({
@@ -13,18 +14,30 @@ export class OrganizerPage implements OnInit {
   todoList: string[] = [];
   todo: string;
   reOrder: IonReorderGroup;
-  constructor(private storage: Storage) {
-    this.storage.get('todo').then((val) => {
-        this.storage.set('todo', this.todoList);
-        this.todoList = val;
-    });
+  constructor(private storage: Storage, private httpcalls: HttpcallsService) {
+    /*this.storage.get('todo').then((val) => {
+      if (val) {
+      this.storage.set('todo', this.todoList);
+      this.todoList = val;
+      } else {
+        this.storage.remove('todo');
+      }
+    });*/
+
+    this.todoList = this.httpcalls.todoList;
   }
 
   ionViewWillEnter() {
-    this.storage.get('todo').then((val) => {
+    /*this.storage.get('todo').then((val) => {
+      if (val) {
         this.storage.set('todo', this.todoList);
         this.todoList = val;
-    });
+      } else {
+        this.storage.remove('todo');
+      }
+    });*/
+
+    this.todoList = this.httpcalls.todoList;
   }
 
   ngOnInit() {
@@ -33,13 +46,12 @@ export class OrganizerPage implements OnInit {
   addToList() {
     this.todoList.push(this.todo);
     this.storage.get('todo').then((val) => {
-        if (val === undefined || val === null || val === '') {
-          this.storage.set('todo', this.todoList);
-          this.todoList = val;
-        } else {
-          this.storage.remove('todo');
-          this.storage.set('todo', this.todoList);
-        }
+      if (val) {
+        this.storage.set('todo', this.todoList);
+      } else {
+        this.storage.remove('remove');
+        this.storage.set('todo', this.todoList);
+      }
     });
     this.todo = null;
   }
