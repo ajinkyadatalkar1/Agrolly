@@ -119,7 +119,11 @@ export class Language {
             current_location: 'Current Location',
             predicted_values: 'These are predicted values',
             expert_advice: 'Expert Advice',
-            market_place: 'Market Place'
+            market_place: 'Market Place',
+            todo_list: 'Todo List',
+            add_to_list: 'Add an item to the list',
+            save_button: 'Save',
+            Organizer: 'Organizer',
         }
     ];
 
@@ -243,7 +247,11 @@ export class Language {
             current_location: 'Current Location',
             predicted_values: 'These are predicted values',
             expert_advice: 'Мэргэжилтнүүдийн',
-            market_place: 'Зах зээлийн газар'
+            market_place: 'Зах зээлийн газар',
+            todo_list: 'Todo List',
+            add_to_list: 'Add an item to the list',
+            save_button: 'Save',
+            Organizer: 'Organizer'
         }
     ];
 
@@ -367,7 +375,11 @@ export class Language {
             current_location: 'Local atual',
             predicted_values: 'As nossas estimativas podem correr erros',
             expert_advice: 'Solicite Ajuda',
-            market_place: 'Trocar/ Vender'
+            market_place: 'Trocar/ Vender',
+            todo_list: 'Anotações',
+            add_to_list: 'Adicione um item na sua lista',
+            save_button: 'Guardar',
+            Organizer: 'Anotações/ Lista de pendências'
         }
     ];
 }

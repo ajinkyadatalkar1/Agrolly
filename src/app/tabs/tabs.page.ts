@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
-  showHomeTab = true;
+  showHomeTab = false;
   showLoginTab = true;
   showRegisterTab = true;
   showMyQuestionsTab = false;
@@ -37,7 +37,7 @@ export class TabsPage {
 }
 
   setDefaultTabs() {
-    this.showHomeTab = true;
+    this.showHomeTab = this.httpcallsService.showHomeTab;
     this.showLoginTab = this.httpcallsService.showLoginTab;
     this.showRegisterTab = this.httpcallsService.showRegisterTab;
     this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;
@@ -46,6 +46,7 @@ export class TabsPage {
 
   checkLogin() {
     if (this.httpcallsService.loggedIn) {
+      this.showHomeTab = this.httpcallsService.showHomeTab;
       this.showLoginTab = this.httpcallsService.showLoginTab;
       this.showRegisterTab = this.httpcallsService.showRegisterTab;
       this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;
@@ -54,7 +55,7 @@ export class TabsPage {
   }
 
   onWeeklyForcastClicked() {
-    this.showHomeTab = true;
+    this.showHomeTab = this.httpcallsService.showHomeTab;
     this.showLoginTab = this.httpcallsService.showLoginTab;
     this.showRegisterTab = this.httpcallsService.showRegisterTab;
     this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;
@@ -62,7 +63,7 @@ export class TabsPage {
   }
 
   onFrm2Clicked() {
-    this.showHomeTab = true;
+    this.showHomeTab = this.httpcallsService.showHomeTab;
     this.showLoginTab = this.httpcallsService.showLoginTab;
     this.showRegisterTab = this.httpcallsService.showRegisterTab;
     this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;
@@ -70,7 +71,7 @@ export class TabsPage {
   }
 
   onLoginRegisterClicked() {
-    this.showHomeTab = true;
+    this.showHomeTab = this.httpcallsService.showHomeTab;
     this.showLoginTab = this.httpcallsService.showLoginTab;
     this.showRegisterTab = this.httpcallsService.showRegisterTab;
     this.showMyQuestionsTab = this.httpcallsService.showMyQuestionsTab;

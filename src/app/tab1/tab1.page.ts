@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { TabsPage } from '../tabs/tabs.page';
-import { HttpcallsService,  } from 'src/app/services/httpcalls.service';
+import { HttpcallsService, } from 'src/app/services/httpcalls.service';
 import { Subscription } from 'rxjs';
 import { Language } from '../language/language';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
+
 
 
 
@@ -21,78 +23,79 @@ export class Tab1Page {
   language: any;
   menuIcon: string;
   // tslint:disable-next-line: max-line-length
-  constructor( private showHideTabs: TabsPage, private httpcalls: HttpcallsService, private lang: Language, private storage: Storage,
-               private Toast: ToastController, private route: Router, private menu: MenuController) {
+  constructor(private showHideTabs: TabsPage, private httpcalls: HttpcallsService, private lang: Language, private storage: Storage,
+              private Toast: ToastController, private route: Router, private menu: MenuController, private loading: LoadingController) {
     this.LogcheckSubscriber();
     this.language = this.httpcalls.languageList;
     this.menuIcon = 'menu';
     this.greeting_call();
   }
 
-openMenu() {
+  openMenu() {
     this.menu.enable(true, 'first');
     this.menu.open('first');
     this.menuIcon = 'close';
-}
-
-closeMenu() {
-  this.menuIcon = 'menu';
-}
-
-changepasswordpage() {
-  if (this.showLogout) {
-  this.menu.close('first');
-  this.route.navigateByUrl('/tabs/changepassword');
   }
-}
 
-profile() {
-  if (this.showLogout) {
-    this.menu.close('first');
-    this.route.navigateByUrl('/tabs/profile');
+  closeMenu() {
+    this.menuIcon = 'menu';
   }
-}
 
-organizer() {
-  if (this.showLogout) {
-    this.menu.close('first');
-    this.route.navigateByUrl('/tabs/organizer');
+  changepasswordpage() {
+    if (this.showLogout) {
+      this.menu.close('first');
+      this.route.navigateByUrl('/tabs/changepassword');
+    }
   }
-}
 
-changeTabs() {
+  profile() {
+    if (this.showLogout) {
+      this.menu.close('first');
+      this.route.navigateByUrl('/tabs/profile');
+    }
+  }
+
+  organizer() {
+    if (this.showLogout) {
+      this.menu.close('first');
+      this.route.navigateByUrl('/tabs/organizer');
+    }
+  }
+
+  changeTabs() {
+    this.showHideTabs.showHomeTab = this.httpcalls.showHomeTab;
     this.showHideTabs.showLoginTab = this.httpcalls.showLoginTab;
     this.showHideTabs.showRegisterTab = this.httpcalls.showRegisterTab;
     this.showHideTabs.showMyQuestionsTab = this.httpcalls.showMyQuestionsTab;
     this.showHideTabs.showAskQuestionsTab = this.httpcalls.showAskQuestionsTab;
   }
 
-greeting_call() {
-  this.httpcalls.greetingApiCall();
-}
+  greeting_call() {
+    this.httpcalls.greetingApiCall();
+  }
 
-english() {
+  english() {
     this.httpcalls.languageList = this.lang.English[0];
     this.language = this.httpcalls.languageList;
     this.showHideTabs.languageSubscriber();
     this.saveLanguagePreferance('English');
   }
 
-mongolian() {
+  mongolian() {
     this.httpcalls.languageList = this.lang.Mongolian[0];
     this.language = this.httpcalls.languageList;
     this.showHideTabs.languageSubscriber();
     this.saveLanguagePreferance('Mongolian');
   }
 
-portuguese() {
+  portuguese() {
     this.httpcalls.languageList = this.lang.Portuguese[0];
     this.language = this.httpcalls.languageList;
     this.showHideTabs.languageSubscriber();
     this.saveLanguagePreferance('Portuguese');
   }
 
-saveLanguagePreferance(setLang) {
+  saveLanguagePreferance(setLang) {
     this.storage.set('language', setLang);
     this.langToast();
     this.httpcalls.getForecast();
@@ -109,7 +112,7 @@ saveLanguagePreferance(setLang) {
     toast.present();
   }
 
-ionViewWillEnter() { // Lifecycle event
+  ionViewWillEnter() { // Lifecycle event
     setTimeout(() => {
       this.LogcheckSubscriber();
       this.changeTabs();
@@ -119,16 +122,17 @@ ionViewWillEnter() { // Lifecycle event
     this.httpcalls.GetForumQuestions();
   }
 
-LogcheckSubscriber() { // use subscriber to show and hide logout button
+  LogcheckSubscriber() { // use subscriber to show and hide logout button
     this.showLogoutsubscriber = this.httpcalls.checkLogin().subscribe((data) => {
       this.showLogout = data;
     });
-}
+  }
 
-logout() {
+  logout() {
     this.menu.close('first');
     this.httpcalls.Logout();
     this.LogcheckSubscriber();
     this.showHideTabs.setDefaultTabs();
+    this.route.navigateByUrl('/tabs/tab2');
   }
 }
