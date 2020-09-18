@@ -14,29 +14,13 @@ export class OrganizerPage implements OnInit {
   todoList: string[] = [];
   todo: string;
   reOrder: IonReorderGroup;
+  language: any;
   constructor(private storage: Storage, private httpcalls: HttpcallsService) {
-    /*this.storage.get('todo').then((val) => {
-      if (val) {
-      this.storage.set('todo', this.todoList);
-      this.todoList = val;
-      } else {
-        this.storage.remove('todo');
-      }
-    });*/
-
     this.todoList = this.httpcalls.todoList;
+    this.language = this.httpcalls.languageList;
   }
 
   ionViewWillEnter() {
-    /*this.storage.get('todo').then((val) => {
-      if (val) {
-        this.storage.set('todo', this.todoList);
-        this.todoList = val;
-      } else {
-        this.storage.remove('todo');
-      }
-    });*/
-
     this.todoList = this.httpcalls.todoList;
   }
 

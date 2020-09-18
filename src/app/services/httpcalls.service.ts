@@ -29,6 +29,8 @@ export class HttpcallsService {
   annualWeatherUrl: string;
   annualforecast: any;
 
+  cityListUrl: string;
+
   poPlaces: object;
   poValue: object;
 
@@ -40,7 +42,7 @@ export class HttpcallsService {
 
 
   // change tabs based on login
-  showHomeTab = true;
+  showHomeTab = false;
   showLoginTab = true;
   showRegisterTab = true;
   showMyQuestionsTab = false;
@@ -73,6 +75,7 @@ export class HttpcallsService {
 
   // Annual Forecast
   annualForecast: object;
+  cityList: object;
 
   // Language lists
   languageList: any;
@@ -127,6 +130,7 @@ export class HttpcallsService {
         this.showRegisterTab = false;
         this.showMyQuestionsTab = true;
         this.showAskQuestionsTab = true;
+        this.showHomeTab = true;
         this.email = val;
       } else {
         storage.remove('email');
@@ -146,6 +150,7 @@ export class HttpcallsService {
     storage.get('country').then((val) => {
       if (val !== '' && val !== null && val !== undefined) {
         this.country = val;
+        this.getForecastAnnual();
         // console.log("name is:" + this.name);
       } else {
         storage.remove('country');
@@ -316,7 +321,6 @@ export class HttpcallsService {
       observer.next(this.loggedIn);
       this.getForecast();
       this.getForecastHourly();
-      this.getForecastAnnual();
     });
   }
 
@@ -329,6 +333,7 @@ export class HttpcallsService {
       (result) => {
         if (result['result'] === 'successful') {
           // console.log(result);
+          this.showHomeTab = true;
           this.showLoginTab = false;
           this.showRegisterTab = false;
           this.showMyQuestionsTab = true;
@@ -352,11 +357,11 @@ export class HttpcallsService {
           this.initFireBase();
           this.getLocation();
           this.getForecast();
-
+          this.getForecastAnnual();
         } else {
           // console.log(result);
           this.LoginFailed();
-          this.showHomeTab = true;
+          this.showHomeTab = false;
           this.showLoginTab = true;
           this.showRegisterTab = true;
           this.showMyQuestionsTab = false;
@@ -370,7 +375,7 @@ export class HttpcallsService {
   Logout() {
     this.removeTokenOnLogout();
     this.loggedIn = false;
-    this.showHomeTab = true;
+    this.showHomeTab = false;
     this.showLoginTab = true;
     this.showRegisterTab = true;
     this.showMyQuestionsTab = false;
@@ -793,23 +798,24 @@ export class HttpcallsService {
   }
 
   async getForecastAnnual() {
-    this.annualWeatherUrl = 'http://www.agrolly.tech/annualForecast.php';
+    this.annualWeatherUrl = 'http://www.agrolly.tech/annualForecast.php?country=' + this.country;
     this.http.get(this.annualWeatherUrl).subscribe(
       (result) => {
         this.annualForecast = result;
-        // console.log('Annual: ' + this.annualForecast[0]['Date.fcst']);
+        console.log('annual log: ' + JSON.stringify(result));
+      });
+    this.getCities();
+  }
+
+  async getCities() {
+    this.cityListUrl = 'http://www.agrolly.tech/get_cities.php';
+    this.http.get(this.cityListUrl).subscribe(
+      (result) => {
+        this.cityList = result;
       });
   }
 
   /* Crops */
-  async getCropsPlaces() {
-    this.cropsPlaces = 'http://www.agrolly.tech/crop_places.php';
-    this.http.get(this.cropsPlaces).subscribe(
-      (result) => {
-        this.cropsPlacesData = result;
-      });
-  }
-
   async getCropsList() {
     this.cropsList = 'http://www.agrolly.tech/cropdata.php';
     this.http.get(this.cropsList).subscribe(
