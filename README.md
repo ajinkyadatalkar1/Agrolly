@@ -1,10 +1,13 @@
-# Agrolly 
-Website: http://www.agrolly.tech
+# Agrolly #
 
-Instagram: [@agrolly.tech](https://www.instagram.com/agrolly.tech/)
+*Website: http://www.agrolly.com*  
+*Linkedin: https://www.linkedin.com/company/agrolly*  
+*Instagram: [@agrolly.tech](https://www.instagram.com/agrolly.tech/)*  
+*Contact: Agrolly.tech@outlook.com*    
+_______________________________________________________________________________________________________________________________________________  
 
 ## What is Agrolly? ##
-Agrolly is a mobile app to help rural household farmers in developing countries to tackle the challenges of climate change effectively and to increase potential financial credits availability for oneself. Using Agrolly, rural household farmers can connect and learn from each other by building a national-level network. Household farmers can also use Agrolly for integrated analysis of climate, especially for the weather, water, and soil for productive produce. Therefore, farmers will be able to efficiently scheme a plantation process and prevent disaster risks caused by extreme weather conditions. Besides, national and local banks and financial institutes can leverage Agrolly to effectively calculate the relative risks and then make monetary credits and loans more inclusive for rural household farmers.   
+Agrolly is a mobile app solution to help rural household farmers in developing countries tackle the challenges of climate change effectively. These farmers have suffered the most from abrupt variations rainfall and temperature decreasing their crop yields, given their small scale, the burden of economic exclusion, and lack of access to critical resources. Agrolly brings expert knowledge and cutting edge technology to the small farmers' hands, so they are able to make more educated agriculture planning decisions, increase the possibility of obtaining financing, and improve their economic outcome. It combines weather predictive algorithms built on IBM's platform with crop water requirements from the Food and Agriculture Organization for the United Nations (FAO), delivering an integrated solution tailored for the location of each farmer, type of crop, and stage of the plantation. With the support of Agrolly, farmers are able to efficiently design their plantation process and prevent disaster risks caused by extreme weather conditions. Besides, financial institutions could leverage Agrolly to risk assess each crop and provide more inclusive and lower-cost loans to rural household farmers. Using Agrolly, rural household farmers are also able to connect and learn from each other by building a national-level network.
 
 ## Contents 
 
@@ -23,14 +26,21 @@ Agrolly is a mobile app to help rural household farmers in developing countries 
 ## Short Description <a name="Short-Description"></a>
 
 ### What's the problem?
-Household farmers in many emerging countries encounter a massive burden of economic exclusion and climate change. The agricultural farming sector is mostly not well advanced so that household farmers traditionally lack access to crucial resources. Those include first, farmers' networking from which they can learn and exchange know-how. Second, information on regional climate trends and knowledge of climate-smart practices. Third, improved on-farm techniques and data capabilities. All of these factors increase farmers' resilience in the face of environmental challenges, and also financial credits and loans favorable to their life situation. While rural household farmers are the ones who least contribute to climate change, they are the most vulnerable to changing economic and climatic conditions. Rural household farmers report they are feeling unable to get ahead of the market and are thus trapped in an endless cycle of financial struggle and poverty. Access to credits, networking, and climate-related information, most importantly on weather, would help to break this cycle. On the other hand, local banks struggle to expand financial inclusivity to the rural household farmers even though they want to invest in green development and sustainable social businesses. Banks not being able to improve loan and credit system for household farmers is that the banks also lack a credible platform which can help them calculate the risk and opportunities in the agricultural farming sector.
+Household farmers in emerging countries face a massive burden of economic exclusion accentuated by climate change. Family farming traditionally lacks access to basic resources for plantation given its small scale, poor access to information, and financing. Climate changes have made this situation worse. While rural household farmers are the ones who least contribute to climate change, they are the most vulnerable to change in climatic conditions given their economic dependence, as abrupt changes in rainfall and temperature result in reduced crop yields. These farmers also do not have adequate networking, from which they can learn and easily exchange know-how. They also do not have access to educated information regarding climate change trends and knowledge of climate-smart practices. Furthermore, those farmers are not skilled in climate risk assessment, which is an important factor in obtaining financing from financial institutions. This situation has made family agriculture unsustainable in many locations, causing an exodus of unskilled workers to the large cities who get rapped in an endless cycle of financial struggle and poverty, which is the root cause of many other social problems. Access to credit, networking, and climate-related information, most importantly on weather, would help to break this cycle.  While local banks have been interested to invest in green development and sustainable social businesses, they have struggled to implement more inclusive financing practices, given the unpredictability associated with family farming. 
+
 
 ### How can technology help?
+
 * Connect rural household farmers with the ability to exchange text and photos.
 * Real-time weather monitoring (*text and visual*).
 * Provide Long-Term Weather Forecast (*temperature and rainfall*). 
+* Talk with Specialist tool (using Artificial Inteligence bot to match farmers and local resources)
 * Crop selection based on the forthcoming forecast. 
 * Crop risk assessment by identifying weather problem areas in advance (before it started).
+
+Improving on-farm techniques and data capabilities is critical to help farmers make more educated decisions within the context of climate change, based on predicted regional climate trends and knowledge of climate-smart practices. The ability to build a virtual ecosystem in which farmers will be able to network, learn and exchange know-how will also create a solid base for future developments. As a result, family farmers will increase their resilience in the face of environmental challenges, and also improve their ability to obtain financial credits and loans more favorable to their economic situation. 
+
+Agrolly's solution uses cuting-edge technology to do the data analysis heavy lifting on behalf of household farmers, bringing the best fitted results of weather predictions to the farmers' hands. Furthermore, it combined weather predictions with the crop water requirements for Food and Agriculture Organization for the United Nations (FAO), which is tailored for the location of each farmer, type of crop and stage of the plantation. Agrolly's technology is built on IBM DB2 and IBM WATSON RStudio technology, and our program is written in: C/C++, Java, Javascript (ES6/ES7), PHP, AngularJS, IONIC, RxJS, Rstudio, Qt framework to provider the user the best operation system.
 
 ### What are the Languages available?
 English, Portuguese (*Brazil*), Mongolian.
@@ -124,8 +134,9 @@ We plan in this phase to deploy  APP testing in Brasil - Parana. We already have
 ## IBM Cloud Services <a name="IBM-Cloud-Services"></a>
 * [IBM Cloud Object Storage](https://www.ibm.com/cloud/object-storage)
 * [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio)
-* [IBM Watson Assistant](https://www.ibm.com/cloud/watson-assistant/) (Currently Implementing/ future scope)
-* [The Weather Company API](https://callforcode.weather.com/)
+* [IBM Watson Assistant](https://www.ibm.com/cloud/watson-assistant/) 
+* [The Weather Company API](https://callforcode.weather.com/)   
+Check out Agrolly's website  repository database [click here](https://github.com/helentsai17/agrolly) 
 
 ## Deployment/Pilot <a name="Pilot"></a>
 In order to create the APP, we did previous research with the farmers to identify their main concerns and needs. The mains focus areas that we found were the lack of access to rainfall and bank loans.
@@ -134,6 +145,10 @@ We then started testing the APP features with a selected 15 farmers in the Mongo
 * Region: Mongolia (Dornord Province)
 * Currently real users :[15 users]( https://github.com/ajinkyadatalkar1/Agrolly/blob/master/Pilot%20Mongolia%20Users.png)
 * Currently Situation: OnGoing. Collecting data.
+
+Check the firsts feedbacks from the field test done to the APP's user interface: 
+* [Feedback Director of the Alt Margad- Khentii province](https://www.youtube.com/watch?v=_mRERF0wa1Y).
+* [Feedback family farmer Sukhbaatar province](https://www.youtube.com/watch?v=SHfCFlWM-5c).
 
 ## Authors <a name="Authors"></a>
 * Ajinkya Datalkar - Product & Sotware Developer, System Design [*See Linkedin*](https://www.linkedin.com/in/ajinkya-datalkar/)
