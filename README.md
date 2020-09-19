@@ -66,8 +66,8 @@ Some government and non-profit organizations such as FAO and the Brazilian gover
 
 *Sample of the APP visual risk crop assessment:*
 <div align="center">
-        <img width="45%" src="Sample APP- Risk assesment Forecast.png" alt="About screen" title="About screen"</img>
-        <img height="0" width="8px">
+        <img width="140%" src="Sample APP- Risk assesment Forecast.png" alt="About screen" title="About screen"</img>
+        <img height="0" width="10px">
 
 </div>
 
