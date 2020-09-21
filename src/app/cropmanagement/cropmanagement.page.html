@@ -6,12 +6,17 @@
 
 <ion-content>
   <ion-card>
-    <ion-card-header>
+    <ion-card-header *ngIf="country == 'Mongolia'">
       <div class="stars">
         * Data displayed follows FAO regulations.
       </div>
       <div class="stars">
         ** Data is available only for some cities in Mongolia.
+      </div>
+    </ion-card-header>
+    <ion-card-header *ngIf="country == 'Brazil'">
+      <div class="stars">
+        State: Parana
       </div>
     </ion-card-header>
     <ion-card-content>

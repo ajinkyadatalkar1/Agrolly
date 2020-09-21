@@ -27,7 +27,7 @@ export class HttpcallsService {
   weeklyWeatherUrl: string;
   hourlyWeatherUrl: string;
   annualWeatherUrl: string;
-  annualforecast: any;
+  annualforecast: any = null;
 
   cityListUrl: string;
 
@@ -324,6 +324,13 @@ export class HttpcallsService {
     });
   }
 
+  checkAnnualForecast() {
+    return new Observable(observer => {
+      observer.next(this.annualForecast);
+      // console.log(this.annualForecast);
+    });
+  }
+
   GetLogin(email, password) {
     const postData = {
       useremail: email,
@@ -358,6 +365,7 @@ export class HttpcallsService {
           this.getLocation();
           this.getForecast();
           this.getForecastAnnual();
+          this.route.navigateByUrl('/tabs/tab1');
         } else {
           // console.log(result);
           this.LoginFailed();
@@ -717,7 +725,7 @@ export class HttpcallsService {
           this.storage.set('city', city);
           this.storage.set('state', state);
           this.storage.set('country', country);
-          this.route.navigateByUrl('/tabs/tab1');
+          // this.route.navigateByUrl('/tabs/tab1');
           this.getLocation();
           this.getForecastHourly();
           this.getForecast(); // weekly
@@ -803,6 +811,9 @@ export class HttpcallsService {
       (result) => {
         this.annualForecast = result;
         console.log('annual log: ' + JSON.stringify(result));
+      },
+      error => {
+        this.annualForecast = undefined;
       });
     this.getCities();
   }

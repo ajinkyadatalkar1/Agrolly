@@ -6,21 +6,13 @@
 
 <ion-content>
   <ion-card>
-    <ion-card-header>
-      <div class="stars">
-        *Annual weather forecast is available only for certain cities in Mongolia at the moment
-      </div>
-      <div class="stars">
-      ** {{language.predicted_values}}
-      </div>
-    </ion-card-header>
     <ion-card-content>
       <ion-list>
         <ion-item lines="none">
-          <ion-datetime (ionChange)="getDate()" [attr.placeholder]="language.month_year" min="2020-06" max="2021-06" displayFormat="MMMM-YYYY" display-timezone="utc" [(ngModel)]="userSelectMonth"></ion-datetime>
+          <ion-datetime (ionChange)="getDate()" [attr.placeholder]="language.month_year" min="2020-09" max="2021-08" displayFormat="MMMM-YYYY" display-timezone="utc" [(ngModel)]="userSelectMonth"></ion-datetime>
           <ion-icon size="large" slot="end" src="../assets/icon/calendar-outline.svg"></ion-icon>
         </ion-item>
-        <ion-item lines="none">
+        <ion-item *ngIf="country == 'Mongolia'" lines="none">
           <ion-select interface="action-sheet" [attr.placeholder]="language.city" [(ngModel)]="city">
             <ion-select-option value="Dashbalbar">Dashbalbar</ion-select-option>
             <ion-select-option value="Bayabdun">Bayabdun</ion-select-option>
@@ -40,6 +32,16 @@
           </ion-select>
           <ion-icon size="large" slot="end" src="../assets/icon/Mongolia.svg"></ion-icon>
         </ion-item>
+
+        <ion-item *ngIf="country == 'Brazil'" lines="none">
+          <ion-select interface="action-sheet" [attr.placeholder]="language.city" [(ngModel)]="city">
+            <ion-select-option *ngFor="let item of cityList; let i = index;" [attr.value]="cityList[i]['Code']">
+                {{cityList[i]['City']}}
+            </ion-select-option>
+          </ion-select>
+          <ion-icon size="large" slot="end" src="../assets/icon/Brazil.svg"></ion-icon>
+        </ion-item>
+
         <ion-item lines="none" *ngIf="city != undefined && userSelectMonth != undefined">
           <ion-button (click)="fetchData()" color="success"><b>{{language.fetch_data}}</b><ion-icon name="download" size="small"></ion-icon></ion-button>
         </ion-item>

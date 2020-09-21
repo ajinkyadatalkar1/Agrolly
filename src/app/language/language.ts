@@ -261,7 +261,7 @@ export class Language {
             home: 'Principal',
             login: 'Usuário',
             register: 'Cadastro',
-            forum: 'Dúvidas/Perguntas',
+            forum: 'Comunidade',
             weather: 'Tempo',
             crop_management: 'Plantação',
             logout: 'Sair',

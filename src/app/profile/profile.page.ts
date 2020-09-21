@@ -5,6 +5,9 @@ import { HttpcallsService } from '../services/httpcalls.service';
 import { Countries } from '../Country/countries';
 import { States } from '../States/states';
 import { Sums } from '../Sums/sums';
+import { LoadingController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
+
 
 
 @Component({
@@ -26,8 +29,13 @@ export class ProfilePage implements OnInit {
   countrySelected: string;
   countrySelectedIcon: string;
   citySelected: string;
+
+  showCropDataLoadingSubscriber: Subscription;
+  cropdataretriveInterval: any;
+  cropLoadingMessage: string;
+
   constructor(private route: Router, private platform: Platform, private httpcalls: HttpcallsService, private country: Countries,
-              private state: States, private city: Sums) {
+              private state: States, private city: Sums, private loading: LoadingController) {
     this.load_data();
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.route.navigateByUrl('/tabs/tab2');
@@ -56,10 +64,14 @@ export class ProfilePage implements OnInit {
 
   update() {
     this.httpcalls.update_profile(this.name, this.citySelected, this.stateSelected, this.countrySelected, this.password);
-    this.password = null;
-    this.load_data();
-    this.httpcalls.latitude = undefined;
-    this.httpcalls.longitude = undefined;
+    setTimeout(() => {
+      this.password = null;
+      this.load_data();
+      this.httpcalls.latitude = undefined;
+      this.httpcalls.longitude = undefined;
+      this.httpcalls.annualForecast = undefined;
+      this.cropDataSubscriber();
+    }, 1500);
   }
 
   load_data() {
@@ -101,6 +113,32 @@ export class ProfilePage implements OnInit {
     }
   }
 
+  async cropDataSubscriber() {
+    this.httpcalls.getForecastAnnual();
+    this.cropLoadingMessage = 'Loading new crop data and annual weather forecast, please wait...';
+    const loader = await this.loading.create({
+      message: this.cropLoadingMessage,
+    });
+    await loader.present();
+    let counter = 0;
+
+    this.cropdataretriveInterval = setInterval(() => {
+      this.showCropDataLoadingSubscriber = this.httpcalls.checkAnnualForecast().subscribe((data) => {
+        counter++;
+        if (data !== undefined) {
+          loader.dismiss();
+          clearInterval(this.cropdataretriveInterval);
+          this.route.navigateByUrl('/tabs/tab1');
+        }
+
+        if (counter % 1000 === 0) {
+          this.cropLoadingMessage = 'Data is taking longer to load due to poor internet connectivity. Retrying...';
+          loader.setAttribute('message', this.cropLoadingMessage);
+          this.httpcalls.getForecastAnnual();
+        }
+      });
+    }, 100);
+  }
 
   ngOnInit() {
   }
