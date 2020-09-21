@@ -10,8 +10,6 @@ import { MenuController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 
 
-
-
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -19,13 +17,17 @@ import { LoadingController } from '@ionic/angular';
 })
 export class Tab1Page {
   showLogoutsubscriber: Subscription;
+  showCropDataLoadingSubscriber: Subscription;
+  cropdataretriveInterval: any;
+  cropLoadingMessage: string;
   showLogout: any;
   language: any;
   menuIcon: string;
   // tslint:disable-next-line: max-line-length
   constructor(private showHideTabs: TabsPage, private httpcalls: HttpcallsService, private lang: Language, private storage: Storage,
-              private Toast: ToastController, private route: Router, private menu: MenuController, private loading: LoadingController) {
+    private Toast: ToastController, private route: Router, private menu: MenuController, private loading: LoadingController) {
     this.LogcheckSubscriber();
+    this.cropDataSubscriber();
     this.language = this.httpcalls.languageList;
     this.menuIcon = 'menu';
     this.greeting_call();
@@ -119,7 +121,34 @@ export class Tab1Page {
       this.language = this.httpcalls.languageList;
       this.showHideTabs.languageSubscriber();
     }, 500);
+
     this.httpcalls.GetForumQuestions();
+  }
+
+  async cropDataSubscriber() {
+    this.cropLoadingMessage = 'Loading crop data and annual weather forecast, please wait...';
+    const loader = await this.loading.create({
+      message: this.cropLoadingMessage,
+    });
+    await loader.present();
+    let counter = 0;
+
+    this.cropdataretriveInterval = setInterval(() => {
+      this.showCropDataLoadingSubscriber = this.httpcalls.checkAnnualForecast().subscribe((data) => {
+        counter++;
+        // this.cropDataSubscriber();
+        if (data !== undefined) {
+          loader.dismiss();
+          clearInterval(this.cropdataretriveInterval);
+        }
+
+        if (counter % 100 === 0) {
+          this.cropLoadingMessage = 'Data is taking longer to load due to poor internet connectivity. Retrying...';
+          loader.setAttribute('message', this.cropLoadingMessage);
+          this.httpcalls.getForecastAnnual();
+        }
+      });
+    }, 100);
   }
 
   LogcheckSubscriber() { // use subscriber to show and hide logout button

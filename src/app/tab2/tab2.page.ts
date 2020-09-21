@@ -31,7 +31,6 @@ export class Tab2Page {
       });
       this.username = '';
       this.password = '';
-      this.router.navigateByUrl('/tabs/tab1');
   }
 
   forgotpsd() {

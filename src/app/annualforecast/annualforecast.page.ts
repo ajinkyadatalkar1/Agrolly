@@ -30,9 +30,13 @@ export class AnnualforecastPage implements OnInit {
   day: string;
   newDate: string;
   language: any;
+  country: string;
+  cityList: object;
   constructor(private httpcalls: HttpcallsService, private platform: Platform, private route: Router) {
     this.annualForecast = this.httpcalls.annualForecast;
     this.language = this.httpcalls.languageList;
+    this.country = this.httpcalls.country;
+    this.cityList = this.httpcalls.cityList;
 
     this.weekday[0] = this.language.Sunday;
     this.weekday[1] = this.language.Monday;
@@ -53,6 +57,9 @@ export class AnnualforecastPage implements OnInit {
   ionViewWillEnter() {
     this.annualForecast = this.httpcalls.annualForecast;
     this.language = this.httpcalls.languageList;
+    this.country = this.httpcalls.country;
+    this.cityList = this.httpcalls.cityList;
+
 
     this.weekday[0] = this.language.Sunday;
     this.weekday[1] = this.language.Monday;
@@ -77,6 +84,7 @@ export class AnnualforecastPage implements OnInit {
     this.requestedForecast = [];
     let i = 0;
     while (i < 365) {
+      console.log(this.city);
       this.requestedForecastDate = [];
       this.newDate = this.annualForecast[i]['Date.fcst'];
 
