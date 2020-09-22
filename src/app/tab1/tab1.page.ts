@@ -97,6 +97,13 @@ export class Tab1Page {
     this.saveLanguagePreferance('Portuguese');
   }
 
+  mandarin() {
+    this.httpcalls.languageList = this.lang.Mandarin[0];
+    this.language = this.httpcalls.languageList;
+    this.showHideTabs.languageSubscriber();
+    this.saveLanguagePreferance('Mandarin');
+  }
+
   saveLanguagePreferance(setLang) {
     this.storage.set('language', setLang);
     this.langToast();
