@@ -226,20 +226,20 @@ export class Language {
             maturity: 'Maturity',
             in: 'in',
             forecast_match: 'Forecast Match',
-            January: 'January',
-            February: 'February',
-            March: 'March',
-            April: 'April',
-            May: 'May',
-            June: 'June',
-            July: 'July',
-            August: 'August',
-            September: 'September',
-            October: 'October',
-            November: 'November',
-            December: 'December',
-            read_more: 'Read More',
-            Comments: 'Comments',
+            January: '1-р сар',
+            February: '2-р сар',
+            March: 'Гуравдугаар сар',
+            April: 'Дөрөвдүгээр сар',
+            May: '5-р сар',
+            June: 'Зургадугаар сар',
+            July: 'Ju7-р сар',
+            August: 'Наймдугаар сар',
+            September: '9-р сар',
+            October: 'Аравдугаар сар',
+            November: 'Арваннэгдүгээр сар',
+            December: 'Арванхоёрдугаар сар',
+            read_more: 'Цааш нь унших',
+            Comments: 'Сэтгэгдлүүд',
             for: 'for',
             yes: 'Yes',
             No: 'No',
@@ -378,7 +378,7 @@ export class Language {
             market_place: 'Trocar/ Vender',
             todo_list: 'Anotações',
             add_to_list: 'Adicione um item na sua lista',
-            save_button: 'Guardar',
+            save_button: 'Salvar',
             Organizer: 'Anotações/ Lista de pendências'
         }
     ];
@@ -507,7 +507,6 @@ export class Language {
             add_to_list: '新增達成事項',
             save_button: '儲存',
             Organizer: '管理',
-            ajinkya: 'ajiunkya'
         }
     ];
 }

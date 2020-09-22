@@ -22,6 +22,7 @@ export class OrganizerPage implements OnInit {
 
   ionViewWillEnter() {
     this.todoList = this.httpcalls.todoList;
+    this.language = this.httpcalls.languageList;
   }
 
   ngOnInit() {
