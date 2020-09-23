@@ -16,7 +16,7 @@
     </ion-card-header>
     <ion-card-header *ngIf="country == 'Brazil'">
       <div class="stars">
-        State: Parana
+        Estado: Parana
       </div>
     </ion-card-header>
     <ion-card-content>
@@ -90,7 +90,7 @@
           <ion-label><b>{{item["Crop_English"]}} / {{item["Crop_Mongolian"]}} / {{item["Crop_Portuguese"]}}</b></ion-label>
         </ion-item-divider>
         <ion-grid>
-            <ion-label><b>Crop Requirements:</b></ion-label>
+            <ion-label><b>{{language.crop_requirement}}:</b></ion-label>
           <ion-row>
             <ion-col size="6">
               <ion-icon name="thermometer" size="small" color="warning"></ion-icon>
@@ -154,7 +154,7 @@
 
           <hr />
           <div *ngIf="waterNeeded[i] != 0">
-            <ion-label *ngIf="forecastMatch"><b>Forecast Match:</b></ion-label>
+            <ion-label *ngIf="forecastMatch"><b>{{language.forecast_match}}:</b></ion-label>
             <ion-row *ngIf="forecastMatch">
               <ion-col size="6">
                 <ion-button mode='ios' [attr.color]="monthMaxTemp > item['Geral_air_Temp_max'] + 2 || monthMaxTemp < item['Geral_air_Temp_min']? 'danger': 'success'" size="small" strong>
