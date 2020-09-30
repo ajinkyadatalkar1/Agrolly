@@ -32,7 +32,7 @@ export class ChangepasswordPage implements OnInit {
       this.curPassword = undefined;
       this.newPassword = undefined;
     } else {
-      console.log('Password length should be more than 8 characters');
+      // console.log('Password length should be more than 8 characters');
     }
   }
 }

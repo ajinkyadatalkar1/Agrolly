@@ -93,7 +93,7 @@ export class CropmanagementPage implements OnInit {
       const year = date.getFullYear();
 
       if (this.country === 'Mongolia') {
-      console.log('Called');
+      // console.log('Called');
       if (this.monthList[this.month] === this.monthList[month] && this.year === year) {
         if (this.monthMaxTemp < this.annualForecast[i]['TEMPMAX_fcast_' + this.city]) {
           this.monthMaxTemp = this.annualForecast[i]['TEMPMAX_fcast_' + this.city];
@@ -117,8 +117,8 @@ export class CropmanagementPage implements OnInit {
       }
     } else {
       if (this.monthList[this.month] === this.monthList[month] && this.year === year) {
-        console.log('TEMPMAX_fcast_' + this.city);
-        console.log('called' + this.annualForecast[i]['TEMPMAX_fcast_' + this.city]);
+        // console.log('TEMPMAX_fcast_' + this.city);
+        // console.log('called' + this.annualForecast[i]['TEMPMAX_fcast_' + this.city]);
         if (this.monthMaxTemp < this.annualForecast[i]['TEMPMAX_fcast_' + this.city]) {
           this.monthMaxTemp = this.annualForecast[i]['TEMPMAX_fcast_' + this.city];
         }
@@ -148,7 +148,7 @@ export class CropmanagementPage implements OnInit {
     this.tempMedian = this.tempMedian / 30;
     this.tempMedian2 = this.tempMedian2 / 30;
     this.tempMedian3 = this.tempMedian3 / 30;
-    console.log('min temp' + this.monthMinTemp);
+    // console.log('min temp' + this.monthMinTemp);
     this.waterRequirement(this.month);
   }
 

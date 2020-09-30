@@ -84,7 +84,7 @@ export class AnnualforecastPage implements OnInit {
     this.requestedForecast = [];
     let i = 0;
     while (i < 365) {
-      console.log(this.city);
+      // console.log(this.city);
       this.requestedForecastDate = [];
       this.newDate = this.annualForecast[i]['Date.fcst'];
 

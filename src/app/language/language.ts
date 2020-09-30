@@ -353,7 +353,7 @@ export class Language {
             days: 'dias',
             maturity: 'Ciclo Estimado',
             in: 'em',
-            forecast_match: 'Previsão tempo x Necessidade',
+            forecast_match: 'Necessidade',
             January: 'Janeiro',
             February: 'Fevereiro',
             March: 'Março',

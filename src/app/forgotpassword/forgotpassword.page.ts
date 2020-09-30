@@ -17,13 +17,14 @@ export class ForgotpasswordPage implements OnInit {
   fgtpass: string;
   registerUsr: string;
   otp: string;
-  language: string;
+  language: any;
   constructor(private otpModal: ModalController, private alert: AlertController, private httpcalls: HttpcallsService, private route: Router,
               private platform: Platform ) {
     this.language = this.httpcalls.languageList;
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.route.navigateByUrl('/tabs/tab2');
     });
+    this.language = this.httpcalls.languageList;
   }
   ngOnInit() {
   }

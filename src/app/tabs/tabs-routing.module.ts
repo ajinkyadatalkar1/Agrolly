@@ -98,16 +98,6 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'cropcities',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../crop-cities/crop-cities.module').then(m => m.CropCitiesPageModule)
-          }
-        ]
-      },
-      {
         path: 'cropsowing',
         children: [
           {

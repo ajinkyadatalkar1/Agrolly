@@ -16,7 +16,7 @@ export class AskQuesPage implements OnInit {
   clickedImage: string = undefined;
   base64Image: string;
   imageFilename: string;
-  language: string;
+  language: any;
 
 
   options: CameraOptions = {
@@ -33,6 +33,7 @@ export class AskQuesPage implements OnInit {
                 this.platform.backButton.subscribeWithPriority(10, () => {
                   this.route.navigateByUrl('/tabs/tab1');
                 });
+                this.language = this.httpCalls.languageList;
                }
   logForm() {
 

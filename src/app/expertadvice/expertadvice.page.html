@@ -2,16 +2,32 @@
   <ion-toolbar>
     <ion-title><ion-icon src='../../assets/icon/hardware-chip.svg' size="large"></ion-icon> Virtual Assistant</ion-title>
   </ion-toolbar>
+  <div>
+    <ion-tab-bar slot="bottom">
+        This feature is currently under development
+    </ion-tab-bar>
+  </div>
 </ion-header>
 
 <ion-content [scrollEvents]="true" #responses>
 
       <ion-grid color="none">
-        <ion-row color="none" *ngFor="let item of chatlogobj; let i = index;">
+        <ion-row color="none" *ngFor="let item of chatnameobj; let i = index;">
             <ion-col color="none" *ngIf="chatnameobj[i] == 'watson'" size="9">
               <ion-card color="primary">
                 <ion-card-content>
                   <strong>{{chatlogobj[i]}}</strong>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+
+            <ion-col color="none" *ngIf="chatnameobj[i] == 'suggestion'" size="9">
+              <ion-card color="primary">
+                <ion-card-content>
+                  <strong>Did you Mean: </strong><br />
+                  <div *ngFor="let item of suggestionsObj; let j = index;">
+                    <ion-button shape="round" (click)="autoRespond(suggestionsObj[i][j])" fill="outline" color="light" *ngIf="suggestionsObj[i][j] != null" strong>{{suggestionsObj[i][j]}}</ion-button>
+                  </div>
                 </ion-card-content>
               </ion-card>
             </ion-col>
