@@ -1,4 +1,4 @@
-import { Component, OnInit, Directive, ViewChild } from '@angular/core';
+import { Component, OnInit, Directive, ViewChild, ViewEncapsulation } from '@angular/core';
 import { HttpcallsService, } from 'src/app/services/httpcalls.service';
 import { Subscription } from 'rxjs';
 import { IonContent } from '@ionic/angular';
@@ -10,12 +10,15 @@ import { IonContent } from '@ionic/angular';
 })
 
 export class ExpertadvicePage implements OnInit {
-  // @ViewChild(IonContent, { static: false }) responses: IonContent;
-  @ViewChild(IonContent, {read: IonContent, static: false}) responses: IonContent;
+  @ViewChild(IonContent, { read: IonContent, static: false }) responses: IonContent;
+
   chatlog: string[] = [];
   chatname: string[] = [];
   suggestionsObj: string[][] = [];
+  suggestionTitle: string[] = [];
   watsonChatRefresh: any;
+
+  watsonReplyOption: string[][] = [];
 
   chatlogobj: object;
   chatnameobj: object;
@@ -27,6 +30,9 @@ export class ExpertadvicePage implements OnInit {
     this.chatlog = this.httpcalls.chatLog;
     this.chatname = this.httpcalls.chatName;
     this.suggestionsObj = this.httpcalls.suggestionLog;
+    this.suggestionTitle = this.httpcalls.suggestionTitle;
+
+    this.watsonReplyOption = JSON.parse(JSON.stringify(this.httpcalls.watsonReplyOptions));
     this.chatlogobj = JSON.parse(JSON.stringify(this.chatlog));
     this.chatnameobj = JSON.parse(JSON.stringify(this.chatname));
   }
@@ -35,6 +41,8 @@ export class ExpertadvicePage implements OnInit {
     this.chatlog = this.httpcalls.chatLog;
     this.chatname = this.httpcalls.chatName;
     this.suggestionsObj = this.httpcalls.suggestionLog;
+    this.suggestionTitle = this.httpcalls.suggestionTitle;
+    this.watsonReplyOption = this.httpcalls.watsonReplyOptions;
 
     this.timer = setInterval(
       () => {
@@ -43,7 +51,9 @@ export class ExpertadvicePage implements OnInit {
         this.chatlogobj = JSON.parse(JSON.stringify(this.chatlog));
         this.chatnameobj = JSON.parse(JSON.stringify(this.chatname));
         this.suggestionsObj = this.httpcalls.suggestionLog;
-      }, 50
+        this.suggestionTitle = this.httpcalls.suggestionTitle;
+        this.watsonReplyOption = JSON.parse(JSON.stringify(this.httpcalls.watsonReplyOptions));
+      }, 2500
     );
     this.updateScroll();
   }
@@ -57,13 +67,19 @@ export class ExpertadvicePage implements OnInit {
 
 
   response() {
-    this.updateScroll();
     if (this.query !== null && this.query !== undefined && this.query !== '') {
       this.httpcalls.chatName.push('user');
       this.httpcalls.chatLog.push(this.query);
       this.httpcalls.quesAndans(this.query);
-      this.suggestionsObj = this.httpcalls.suggestionLog;
+      this.chatlog = this.httpcalls.chatLog;
+      this.chatname = this.httpcalls.chatName;
+      this.chatlogobj = JSON.parse(JSON.stringify(this.chatlog));
+      this.chatnameobj = JSON.parse(JSON.stringify(this.chatname));
+      this.updateScroll();
 
+      this.suggestionsObj = this.httpcalls.suggestionLog;
+      this.suggestionTitle = this.httpcalls.suggestionTitle;
+      this.watsonReplyOption = JSON.parse(JSON.stringify(this.httpcalls.watsonReplyOptions));
       this.watsonChatRefresh = setInterval(() => {
         this.responseSubscriber = this.httpcalls.WatsonResposeCheckObserver().subscribe((chatname) => {
           // console.log('result:' + chatname);
@@ -72,14 +88,18 @@ export class ExpertadvicePage implements OnInit {
           this.chatlogobj = JSON.parse(JSON.stringify(this.chatlog));
           this.chatnameobj = JSON.parse(JSON.stringify(this.chatname));
           this.suggestionsObj = this.httpcalls.suggestionLog;
+          this.suggestionTitle = this.httpcalls.suggestionTitle;
+          this.watsonReplyOption = JSON.parse(JSON.stringify(this.httpcalls.watsonReplyOptions));
           if (chatname === this.chatname) {
             this.chatname = this.httpcalls.chatName;
             this.suggestionsObj = this.httpcalls.suggestionLog;
+            this.suggestionTitle = this.httpcalls.suggestionTitle;
+            this.watsonReplyOption = JSON.parse(JSON.stringify(this.httpcalls.watsonReplyOptions));
+            this.updateScroll();
             clearInterval(this.watsonChatRefresh);
           }
         });
-        this.updateScroll();
-      }, 3000);
+      }, 1000);
 
       this.query = '';
     }
@@ -91,10 +111,9 @@ export class ExpertadvicePage implements OnInit {
   }
 
   updateScroll(): void {
-    this.responses.scrollToBottom(100);
-
-    setTimeout(() => {
-    this.responses.scrollToBottom(100);
-    }, 1000);
+    let scrollTimer = setTimeout(() => {
+      this.responses.scrollToBottom(300);
+      clearTimeout(scrollTimer);
+    }, 500);
   }
 }

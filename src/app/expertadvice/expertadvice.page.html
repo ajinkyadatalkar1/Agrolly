@@ -13,20 +13,27 @@
 
       <ion-grid color="none">
         <ion-row color="none" *ngFor="let item of chatnameobj; let i = index;">
-            <ion-col color="none" *ngIf="chatnameobj[i] == 'watson'" size="9">
+
+            <ion-col color="none" *ngIf="chatnameobj[i] == 'watson'" size="10">
               <ion-card color="primary">
                 <ion-card-content>
-                  <strong>{{chatlogobj[i]}}</strong>
+                  <strong><app-format [innerHtml]='chatlogobj[i]'></app-format></strong>
+                   <div *ngIf="watsonReplyOption[i] != 'null' || watsonReplyOption[i] != ''">
+                    <div *ngFor="let item of watsonReplyOption[i];let j = index;">
+                      <ion-button class="ion-text-wrap" style="height: fit-content; min-height: 15px;" (click)="autoRespond(item.label)"  fill="solid" color="light" [innerHTML]="item.label" size="small"></ion-button>
+                    </div>
+                  </div>
                 </ion-card-content>
               </ion-card>
             </ion-col>
 
-            <ion-col color="none" *ngIf="chatnameobj[i] == 'suggestion'" size="9">
+            <ion-col color="none" *ngIf="chatnameobj[i] == 'suggestion'" size="10">
               <ion-card color="primary">
                 <ion-card-content>
-                  <strong>Did you Mean: </strong><br />
-                  <div *ngFor="let item of suggestionsObj; let j = index;">
-                    <ion-button shape="round" (click)="autoRespond(suggestionsObj[i][j])" fill="outline" color="light" *ngIf="suggestionsObj[i][j] != null" strong>{{suggestionsObj[i][j]}}</ion-button>
+                  <strong><app-format [innerHtml]='suggestionTitle[i]'></app-format></strong><br /><br />
+                  <strong>Did you mean:</strong>
+                  <div *ngFor="let item of suggestionsObj; let k = index;">
+                    <ion-button class="ion-text-wrap" style="height: fit-content; min-height: 15px;" (click)="autoRespond(suggestionsObj[i][k])" fill="outline" color="light" *ngIf="suggestionsObj[i][k] != null" [innerHTML]="suggestionsObj[i][k]" strong></ion-button>
                   </div>
                 </ion-card-content>
               </ion-card>
@@ -35,7 +42,7 @@
             <ion-col color="none" *ngIf="chatnameobj[i] == 'user'" size="9" offset="3">
               <ion-card color="light">
                 <ion-card-content>
-                  <strong style="color: blue;">{{chatlogobj[i]}}</strong>
+                  <strong style="color: blue;" [innerHTML]="chatlogobj[i]"></strong>
                 </ion-card-content>
               </ion-card>
             </ion-col>

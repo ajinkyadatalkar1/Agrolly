@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { ExpertadvicePageRoutingModule } from './expertadvice-routing.module';
 
 import { ExpertadvicePage } from './expertadvice.page';
+import { FormatComponent } from '../chatBlock/format/format.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ExpertadvicePageRoutingModule
+    ExpertadvicePageRoutingModule,
   ],
-  declarations: [ExpertadvicePage]
+  declarations: [ExpertadvicePage, FormatComponent]
 })
 export class ExpertadvicePageModule {}

@@ -30,6 +30,7 @@ import { QuescommentsPage } from './quescomments/quescomments.page';
 import { FormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [AppComponent, OnetimepasswordPage, QuescommentsPage],
   entryComponents: [OnetimepasswordPage, QuescommentsPage],
