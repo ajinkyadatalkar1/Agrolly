@@ -20,8 +20,8 @@
                   <strong><app-format [innerHtml]='chatlogobj[i]'></app-format></strong>
                    <div *ngIf="watsonReplyOption[i] != 'null' || watsonReplyOption[i] != ''">
                     <div *ngFor="let item of watsonReplyOption[i];let j = index;">
-                      <ion-button class="ion-text-wrap" style="height: fit-content; min-height: 15px;" (click)="autoRespond(item.label)"  fill="solid" color="light" [innerHTML]="item.label" size="small"></ion-button>
-                    </div>
+                      <ion-button class="ion-text-wrap" style="height: fit-content; min-height: 15px; margin-top: 15px;" (click)="autoRespond(item.label)"  fill="solid" color="light" [innerHTML]="item.label" size="small"></ion-button>
+                    </div><br />
                   </div>
                 </ion-card-content>
               </ion-card>
