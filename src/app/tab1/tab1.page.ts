@@ -19,6 +19,7 @@ export class Tab1Page {
   showLogoutsubscriber: Subscription;
   showCropDataLoadingSubscriber: Subscription;
   cropdataretriveInterval: any;
+  cropLoaded = false;
   cropLoadingMessage: string;
   showLogout: any;
   language: any;
@@ -124,6 +125,7 @@ export class Tab1Page {
   ionViewWillEnter() { // Lifecycle event
     setTimeout(() => {
       this.LogcheckSubscriber();
+      this.cropDataSubscriber();
       this.changeTabs();
       this.language = this.httpcalls.languageList;
       this.showHideTabs.languageSubscriber();
@@ -133,29 +135,34 @@ export class Tab1Page {
   }
 
   async cropDataSubscriber() {
-    this.cropLoadingMessage = 'Loading crop data and annual weather forecast, please wait...';
-    const loader = await this.loading.create({
-      message: this.cropLoadingMessage,
-    });
-    await loader.present();
-    let counter = 0;
-
-    this.cropdataretriveInterval = setInterval(() => {
-      this.showCropDataLoadingSubscriber = this.httpcalls.checkAnnualForecast().subscribe((data) => {
-        counter++;
-        // this.cropDataSubscriber();
-        if (data !== undefined) {
-          loader.dismiss();
-          clearInterval(this.cropdataretriveInterval);
-        }
-
-        if (counter % 100 === 0) {
-          this.cropLoadingMessage = 'Data is taking longer to load due to poor internet connectivity. Retrying...';
-          loader.setAttribute('message', this.cropLoadingMessage);
-          this.httpcalls.getForecastAnnual();
-        }
+    if (this.showLogout && this.cropLoaded === false && this.httpcalls.annualForecast === undefined) {
+      this.cropLoadingMessage = 'Loading crop data and annual weather forecast, please wait...';
+      const loader = await this.loading.create({
+        message: this.cropLoadingMessage,
       });
-    }, 100);
+      await loader.present();
+      let counter = 0;
+
+      this.cropdataretriveInterval = setInterval(() => {
+        this.showCropDataLoadingSubscriber = this.httpcalls.checkAnnualForecast().subscribe((data) => {
+          counter++;
+          // this.cropDataSubscriber();
+          if (data !== undefined) {
+            this.cropLoaded = true;
+            loader.dismiss();
+            clearInterval(this.cropdataretriveInterval);
+          }
+
+          if (counter % 100 === 0) {
+            this.cropLoadingMessage = 'Data is taking longer to load due to poor internet connectivity. Retrying...';
+            loader.setAttribute('message', this.cropLoadingMessage);
+            this.httpcalls.getForecastAnnual();
+          }
+        });
+      }, 100);
+    } else {
+      this.cropLoaded = false;
+    }
   }
 
   LogcheckSubscriber() { // use subscriber to show and hide logout button
@@ -170,5 +177,6 @@ export class Tab1Page {
     this.LogcheckSubscriber();
     this.showHideTabs.setDefaultTabs();
     this.route.navigateByUrl('/tabs/tab2');
+    this.storage.clear();
   }
 }

@@ -29,6 +29,7 @@ export class ProfilePage implements OnInit {
   countrySelected: string;
   countrySelectedIcon: string;
   citySelected: string;
+  brazilCities: object;
 
   showCropDataLoadingSubscriber: Subscription;
   cropdataretriveInterval: any;
@@ -41,25 +42,30 @@ export class ProfilePage implements OnInit {
       this.route.navigateByUrl('/tabs/tab2');
     });
     this.language = this.httpcalls.languageList;
+    this.brazilCities = this.httpcalls.cityList;
    }
 
    ionViewWillEnter() {
     this.language = this.httpcalls.languageList;
     this.load_data();
+    this.brazilCities = this.httpcalls.cityList;
+
    }
 
    ionViewDidEnter() {
     this.language = this.httpcalls.languageList;
     this.load_data();
+    this.brazilCities = this.httpcalls.cityList;
+
    }
 
    showCountryIcon() {
     this.countrySelectedIcon = '../../assets/icon/' + this.countrySelected + '.svg';
     this.stateSelected = '';
+    this.citySelected = '';
     this.showStates = true;
-    this.states = this.state.list[this.countrySelected];
     this.showCities = false;
-    // this.citySelected = null;
+    this.states = this.state.list[this.countrySelected];
   }
 
   update() {
@@ -107,6 +113,9 @@ export class ProfilePage implements OnInit {
       } else {
         this.showCities = false;
       }
+    } else if (this.countrySelected === 'Brazil' && this.stateSelected === 'Paraná (PR)') {
+      this.showCities = true;
+      // this.citySelected = null;
     } else {
       this.showCities = false;
       this.citySelected = null;

@@ -124,6 +124,14 @@ export class Language {
             add_to_list: 'Add an item to the list',
             save_button: 'Save',
             Organizer: 'Organizer',
+            otp_sent: 'One Time Password has been sent to your email',
+            mail_server_error: 'Its not you, its us, our mail server is facing some issue, could you come back in sometime?',
+            invaild_email: 'The email address you entered is invalid',
+            account_exists: 'Account already exists, please try loggin in',
+            unknown_error: 'An unknown error has occured',
+            network_error: 'Network Error',
+            resend_otp: 'Resend One Time Password',
+            incorrect_otp: 'Incorrect One Time Password'
         }
     ];
 
@@ -251,7 +259,15 @@ export class Language {
             todo_list: 'Хийх ажлууд',
             add_to_list: 'Хийх ажлуудад нэмэх зүйл',
             save_button: 'Хадгалах',
-            Organizer: 'Зохион байгуулагч'
+            Organizer: 'Зохион байгуулагч',
+            otp_sent: 'Нэг удаагийн нууц үгийг таны имэйл рүү илгээлээ',
+            mail_server_error: 'Танаас хамааралтай бус сүлжээнд алдаа заалаа, та дараа дахин холбогдоно уу?',
+            invaild_email: 'Таны оруулсан имэйл хүчингүй байна',
+            account_exists: 'Бүртгэл аль хэдийн хийгдсэн байна, нэвтэрнэ үү',
+            unknown_error: 'Алдаа гарлаа',
+            network_error: 'Сүлжээний алдаа',
+            resend_otp: 'Нэг удаагийн нууц үгийг дахин явуулах',
+            incorrect_otp: 'Нэг удаагийн нууц үг буруу'
         }
     ];
 
@@ -380,6 +396,14 @@ export class Language {
             add_to_list: 'Adicione um item na sua lista',
             save_button: 'Salvar',
             Organizer: 'Anotações/ Lista de pendências',
+            otp_sent: 'A senha foi enviada para o seu e-mail',
+            mail_server_error: 'Estamos com problemas no servidor, tente novamente',
+            invaild_email: 'O e-mail incluído não é valido',
+            account_exists: 'Usuário já existe, favor tentar o login',
+            unknown_error: 'Um erro ocorreu na sua solicitação',
+            network_error: 'Erro de rede, tente novamente',
+            resend_otp: 'Reenviar Senha',
+            incorrect_otp: 'Senha Incoreta'
         }
     ];
     Mandarin = [
@@ -507,6 +531,14 @@ export class Language {
             add_to_list: '新增達成事項',
             save_button: '儲存',
             Organizer: '管理',
+            otp_sent: '次性四位數密碼',
+            mail_server_error: '我們的寄送程式出了一些問題，請稍候一下再做嘗試',
+            invaild_email: '您輸入的信箱帳號不正確',
+            account_exists: '您的信箱帳號已存在，請嘗試登入',
+            unknown_error: '未知的錯誤',
+            network_error: '連線失敗',
+            resend_otp: '請重寄一次性密碼',
+            incorrect_otp: '次性密碼錯誤'
         }
     ];
 }

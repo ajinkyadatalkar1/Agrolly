@@ -1,7 +1,7 @@
 export class States {
     list = {
     Brazil : [
-        'Acre (AC)',
+       /* 'Acre (AC)',
         'Alagoas (AL)',
         'Amapá (AP)',
         'Amazonas (AM)',
@@ -15,9 +15,9 @@ export class States {
         'Mato Grosso do Sul (MS)',
         'Minas Gerais (MG)',
         'Pará (PA)',
-        'Paraíba (PB)',
+        'Paraíba (PB)',*/
         'Paraná (PR)',
-        'Pernambuco (PE)',
+        /*'Pernambuco (PE)',
         'Piauí (PI)',
         'Rio de Janeiro (RJ)',
         'Rio Grande do Norte (RN)',
@@ -27,7 +27,7 @@ export class States {
         'Santa Catarina (SC)',
         'São Paulo (SP)',
         'Sergipe (SE)',
-        'Tocantins (TO)',
+        'Tocantins (TO)',*/
     ],
     Mongolia : [
         'Arkhangai',

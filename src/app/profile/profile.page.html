@@ -22,8 +22,13 @@
 
           <div class="countrySelect crediantials input-block"  *ngIf="showCities">
             <ion-icon [attr.src]="countrySelectedIcon" size="large"></ion-icon>
-            <ion-select class="crediantials" [attr.placeholder]="language.city" interface="action-sheet" [(ngModel)]="citySelected" *ngIf="showStates" (ionChange)="showCity()" required>
+            <ion-select class="crediantials" [attr.placeholder]="language.city" interface="action-sheet" [(ngModel)]="citySelected" *ngIf="showStates && stateSelected != 'Paraná (PR)'" (ionChange)="showCity()" required>
               <ion-select-option *ngFor="let c of cities" class="fold-lines" [value]="c">{{c}}</ion-select-option>
+            </ion-select>
+            <ion-select class="crediantials" [attr.placeholder]="language.city" interface="action-sheet" [(ngModel)]="citySelected" *ngIf="showStates && stateSelected == 'Paraná (PR)'" (ionChange)="showCity()" required>
+              <ion-select-option *ngFor="let item of brazilCities; let i = index;" [attr.value]="brazilCities[i]['City']">
+                {{brazilCities[i]['City']}}
+              </ion-select-option>
             </ion-select>
           </div>
         <input type="password" [attr.placeholder]="language.cur_pass_apply_changes" class="crediantials input-block" [(ngModel)]="password" required/>
